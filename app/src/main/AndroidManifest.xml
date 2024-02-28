@@ -13,7 +13,94 @@
         android:theme="@style/Theme.FitZone"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".MembershipList"
+            android:exported="false" />
+        <activity
+            android:name=".BookingList"
+            android:exported="false" />
+        <activity
+            android:name=".PrivacyPolicy"
+            android:exported="false" />
+        <activity
+            android:name=".Feedback"
+            android:exported="false" />
+        <activity
+            android:name=".Membership"
+            android:exported="false" />
+        <activity
+            android:name=".UpdateProfile"
+            android:exported="false" />
+        <activity
+            android:name=".Profile"
+            android:exported="false" />
+        <activity
+            android:name=".Appointment"
+            android:exported="false" />
+        <activity
+            android:name=".Diet"
+            android:exported="false" />
+        <activity
+            android:name=".DietList"
+            android:exported="false" />
+        <activity
+            android:name=".MyWorkoutPlansList"
+            android:exported="false" />
+        <activity
+            android:name=".Exercises"
+            android:exported="false" />
+        <activity
+            android:name=".WorkoutPlan"
+            android:exported="false" />
+        <activity
+            android:name=".WriteReview"
+            android:exported="false" />
+        <activity
+            android:name=".Review"
+            android:exported="false" />
+        <activity
+            android:name=".ApprovedTrainerProfile"
+            android:exported="false" />
+        <activity
+            android:name=".Registration"
+            android:exported="false" />
+        <activity
+            android:name=".TrainerApprovedList"
+            android:exported="false" />
+        <activity
+            android:name=".Packages"
+            android:exported="false" />
+        <activity
+            android:name=".PackagesList"
+            android:exported="false" />
+        <activity
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".Age"
+            android:exported="false" />
+        <activity
+            android:name=".ActivityLevel"
+            android:exported="false" />
+        <activity
+            android:name=".Goal"
+            android:exported="false" />
+        <activity
+            android:name=".Height"
+            android:exported="false" />
+        <activity
+            android:name=".Gender"
+            android:exported="false" />
+        <activity
+            android:name=".Weight"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileUserName"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreen"
+            android:exported="false" />
+        <activity
+            android:name=".BookingDetail"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
