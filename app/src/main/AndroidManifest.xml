@@ -13,6 +13,9 @@
         android:theme="@style/Theme.FitZone"
         tools:targetApi="31">
         <activity
+            android:name=".BookingDetail"
+            android:exported="false" />
+        <activity
             android:name=".MembershipList"
             android:exported="false" />
         <activity
@@ -100,7 +103,7 @@
             android:name=".SplashScreen"
             android:exported="false" />
         <activity
-            android:name=".BookingDetail"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

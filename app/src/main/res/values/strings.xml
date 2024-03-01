@@ -178,4 +178,6 @@
 
     <!--Privacy Policy-->
     <string name="Privacy_Policy">Privacy Policy</string>
+    <string name="Reports">Reports</string>
+    <string name="home">Home</string>
 </resources>
