@@ -1,14 +1,16 @@
-package com.example.fitzone;
+package com.example.fitzone.trainer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ApprovedTrainerProfile extends AppCompatActivity {
+import com.example.fitzone.R;
+
+public class TrainerApprovedList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_approved_trainer_profile);
+        setContentView(R.layout.activity_trainer_approved_list);
     }
 }

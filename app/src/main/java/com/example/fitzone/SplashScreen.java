@@ -7,23 +7,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import com.facebook.shimmer.ShimmerFrameLayout;
 
 
 
 @SuppressLint("CustomSplashScreen")
 public class SplashScreen extends AppCompatActivity {
 
-    ShimmerFrameLayout shimmerFrameLayout;
 
     @SuppressLint({"WrongViewCast", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-
-        shimmerFrameLayout = findViewById(R.id.shimmer_view_container);
-        shimmerFrameLayout.startShimmer(); // Start shimmer animation
 
         new Handler().postDelayed(() -> {
             // on below line we are

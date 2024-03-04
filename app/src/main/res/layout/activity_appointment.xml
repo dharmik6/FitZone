@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_blue"
-    tools:context=".Appointment">
+    tools:context=".trainer.Appointment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -238,15 +238,16 @@
                                 android:layout_alignParentEnd="true"
                                 android:layout_alignParentTop="true">
 
-                            <CalendarView
-                                android:id="@+id/calendarView"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:outlineSpotShadowColor="@color/dark_cyan"
-                                android:theme="@style/CustomCalendarView"
-                                android:layout_alignParentStart="true"
-                                android:layout_alignParentEnd="true"
-                                tools:ignore="UnusedAttribute" />
+                                <CalendarView
+                                    android:id="@+id/calendarView"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginStart="0dp"
+                                    android:layout_marginEnd="0dp"
+                                    android:outlineSpotShadowColor="@color/dark_cyan"
+                                    tools:ignore="UnusedAttribute" />
 
                             </RelativeLayout>
 

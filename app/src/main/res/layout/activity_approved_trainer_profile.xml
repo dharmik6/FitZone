@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_blue"
-    tools:context=".ApprovedTrainerProfile">
+    tools:context=".trainer.ApprovedTrainerProfile">
 
 
     <ImageView
@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:orientation="vertical"
-        android:src="@drawable/demo2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -374,7 +373,7 @@
                 </RelativeLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_singIn"
+                    android:id="@+id/btn_registration"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

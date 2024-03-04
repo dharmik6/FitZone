@@ -1,14 +1,16 @@
-package com.example.fitzone;
+package com.example.fitzone.diet;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Membership extends AppCompatActivity {
+import com.example.fitzone.R;
+
+public class DietList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_membership);
+        setContentView(R.layout.activity_diet_list);
     }
 }

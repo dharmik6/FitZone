@@ -86,15 +86,17 @@
                 android:id="@+id/text2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:layout_marginTop="5dp"
                 android:layout_below="@+id/text"
-                android:textColor="@color/text"
-                android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
-                android:gravity="center"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="-2dp"
                 android:fontFamily="@font/nunito_regular"
+                android:gravity="center"
                 android:text="@string/To_give"
+                android:textColor="@color/text"
+                android:textSize="14sp"
                 tools:ignore="HardcodedText" />
 
             <RelativeLayout
@@ -149,6 +151,7 @@
                 tools:ignore="NotSibling">
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_gender"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
