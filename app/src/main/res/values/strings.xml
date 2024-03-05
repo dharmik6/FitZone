@@ -1,3 +1,183 @@
 <resources>
     <string name="app_name">Fit Zone</string>
+
+    <string name="Title">FIT ZONE</string>
+
+    <!-- Onboarding Screen-->
+    <string name="screen1desc">Meet your coach,\nstart your journey</string>
+    <string name="screen2desc">Create a workout plan \n to stay fit </string>
+
+    <!--Packages-->
+    <string name="packages_list">Packages List</string>
+    <string name="Packages">Packages</string>
+    <string name="package_name">Package name</string>
+    <string name="price">Price</string>
+    <string name="duration">Duration</string>
+    <string name="description">Description</string>
+    <string name="buy_now">Buy now</string>
+
+    <!--Login-->
+    <string name="Welcome_to_fitZone">Welcome to FitZone</string>
+    <string name="Login">Login</string>
+    <string name="Welcome_back">Welcome back,</string>
+    <string name="Ready">Ready to crush your fitness goals today?</string>
+    <string name="Email">Email</string>
+    <string name="password">Password</string>
+    <string name="Forgot">Forgot Password ?</string>
+    <string name="sing_in">Sing In</string>
+    <string name="Don_t">Don\'t have an account?</string>
+    <string name="Create_now">Create now</string>
+
+    <!--Register-->
+    <string name="create_account">Create Account</string>
+    <string name="Welcome">Welcome,</string>
+    <string name="Registration">Registration</string>
+    <string name="Let">Let\'s get started on achieving your goals together !</string>
+    <string name="Name">Name</string>
+    <string name="Phone">Phone</string>
+    <string name="Address">Address</string>
+    <string name="Terms_conditions">Terms &amp; conditions</string>
+    <string name="read_more">read more</string>
+    <string name="sing_up">Sing Up</string>
+
+    <!--profile & user name-->
+    <string name="About_yourself">About yourself</string>
+    <string name="Enter_your">Enter your information</string>
+    <string name="This_helps">This helps us create your personalized fitness</string>
+    <string name="Profile_Photo">Profile Photo</string>
+    <string name="User_Name">User Name</string>
+    <string name="user_name">user name</string>
+    <string name="address">address</string>
+    <string name="phone_no">phone no.</string>
+    <string name="Phone_number">Phone number</string>
+    <string name="Next">Next</string>
+
+    <!--Gender-->
+    <string name="What_s"> What\’s your Gender ?</string>
+    <string name="To_give">To give you a better experience we need \nto know your gender</string>
+
+    <!--age-->
+    <string name="How_old">How old are you ?</string>
+    <string name="This_helps_us"> This helps us create your personalized plan</string>
+
+    <!--goal-->
+    <string name="What_s_goal">What\’s your goal?</string>
+
+    <!--Activity level-->
+    <string name="Your_regular">Your regular physical \n activity level?</string>
+
+    <!--fragment home-->
+    <string name="FitZone_Trainers">FitZone Trainers </string>
+    <string name="Unlock_potential">Unlock potential, achieve goals with experienced trainers!</string>
+    <string name="My_workout_plans">My workout plans</string>
+    <string name="see_all_details">see all details</string>
+    <string name="Diets">Diets</string>
+    <string name="Workout_plans">Workout plans</string>
+
+    <!--reports-->
+    <string name="reports">Reports</string>
+    <string name="My_weight">My weight</string>
+    <string name="Weight">Weight</string>
+    <string name="Current">Current</string>
+    <string name="Heaviest">Heaviest</string>
+    <string name="Lightest">Lightest</string>
+    <string name="BMI_Body">BMI (Body mass index)</string>
+    <string name="BMI">BMI</string>
+    <string name="Height">Height</string>
+
+    <!--workout-->
+    <string name="Workouts">Workouts</string>
+    <string name="Default_workout">Default workout</string>
+
+    <!--account-->\
+    <string name="Account">Account</string>
+    <string name="My_Bookings">My Bookings </string>
+    <string name="My_membership">My membership</string>
+    <string name="Dark_mode">Dark mode</string>
+    <string name="Privacy_policy">Privacy policy</string>
+    <string name="Rate_us">Rate us</string>
+    <string name="Feedback">Feedback</string>
+    <string name="Logout">Logout</string>
+
+    <!--approved Trainer profile-->
+    <string name="About">About</string>
+    <string name="Achievements"> Achievements</string>
+    <string name="Reviews">Reviews </string>
+    <string name="Read_all_reviews">Read all reviews</string>
+    <string name="Hourly_Charge">Hourly Charge</string>
+    <string name="Book_an_Appointment">Book an Appointment</string>
+
+    <!--review-->
+    <string name="review">Review</string>
+    <string name="Write_a_Review">Write a Review</string>
+
+    <!--Appointment-->
+    <string name="Appointment">Appointment</string>
+
+    <!--workout plan-->
+    <string name="Workouts_plan">Workouts Plan</string>
+
+    <!--exercises-->
+    <string name="exercises">Exercises </string>
+    <string name="Exercise_name">Exercise name</string>
+    <string name="Focus_area">Focus area</string>
+    <string name="Equipment">Equipment</string>
+    <string name="Description">Description</string>
+
+    <!--my workout plans  list-->
+    <string name="My_workout_plans_list">My Workout Plans List</string>
+
+    <!--Diet list-->
+    <string name="Diets_list">Diets List</string>
+
+    <!--Diet-->
+    <string name="Diet">Diet</string>
+    <string name="Diet_name">Diet name</string>
+
+    <!--profile-->
+    <string name="Profile">Profile</string>
+    <string name="Mobile">Mobile</string>
+    <string name="Gender">Gender</string>
+    <string name="Age">Age</string>
+    <string name="Goal">Goal</string>
+    <string name="Activity_level">Activity level</string>
+    <string name="Edit_Profile">Edit Profile</string>
+
+    <!--update profile-->
+    <string name="User_name">User name</string>
+    <string name="Update">Update</string>
+
+    <!--booking list-->
+    <string name="My_Bookings_list">My Bookings List</string>
+
+    <!--booking detail-->
+    <string name="Bookings_details">Bookings details</string>
+    <string name="Booking_ID">Booking ID</string>
+    <string name="Trainer_Name">Trainer Name</string>
+    <string name="Booking_time">Booking time</string>
+    <string name="Status">Status</string>
+    <string name="Payments_Details">Payments Details </string>
+    <string name="Payment_ID">Payment ID</string>
+    <string name="Amount">Amount</string>
+    <string name="Payment_Method">Payment Method</string>
+    <string name="Payment_Date">Payment Date</string>
+
+    <!--membership list-->
+    <string name="My_membership_list">My membership List</string>
+
+    <!--membership-->
+    <string name="Membership">Membership</string>
+    <string name="Package_name">Package name</string>
+    <string name="Package_duration">Package duration</string>
+    <string name="Package_Status">Package Status</string>
+    <string name="Purchase_date">Purchase date</string>
+    <string name="Expiration_date">Expiration date</string>
+
+    <!--feedback-->
+    <string name="Send">Send</string>
+
+    <!--Privacy Policy-->
+    <string name="Privacy_Policy">Privacy Policy</string>
+    <string name="Reports">Reports</string>
+    <string name="home">Home</string>
 </resources>

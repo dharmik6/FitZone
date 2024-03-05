@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue"
+    tools:context=".Profile">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UselessLeaf">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:background="@color/dark_blue"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_arrow_small_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:layout_toStartOf="@+id/back"
+                android:layout_toEndOf="@+id/back"
+                android:fontFamily="@font/opensans_bold"
+                android:text="@string/Profile"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/back"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/linearLayout"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/back_ground">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                tools:ignore="ObsoleteLayoutParam,ScrollViewSize">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/member_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    app:cardCornerRadius="20dp">
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentStart="true">
+
+                        <RelativeLayout
+                            android:id="@+id/Profile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentStart="true"
+                            tools:ignore="UselessParent">
+
+
+                        <RelativeLayout
+                            android:id="@+id/rl_member_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="30dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentStart="true">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:src="@drawable/people_imge"
+                            tools:ignore="ContentDescription,ImageContrastCheck" />
+
+                        </RelativeLayout>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/member_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/rl_member_img"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:textSize="25sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/opensans_bold"
+                            android:text="Member Name"
+                            tools:ignore="HardcodedText" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/username_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/member_name"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentStart="true"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:textColor="@color/dark_cyan"
+                            android:fontFamily="@font/opensans_bold"
+                            android:text="user_name"
+                            tools:ignore="HardcodedText" />
+
+                        </RelativeLayout>
+                        <LinearLayout
+                            android:id="@+id/profile_info"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_below="@+id/Profile"
+                            android:orientation="vertical"
+                            tools:ignore="Orientation">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="30dp"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/opensans_bold"
+                                android:text="@string/Email"
+                                android:textColor="@color/text"
+                                android:textSize="16sp"
+                                tools:ignore="HardcodedText,SpUsage" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="15dp"
+                                android:padding="10dp"
+                                android:paddingStart="15dp"
+                                android:textColor="@color/black"
+                                android:text="dharmik@gmail.com"
+                                android:textSize="18sp"
+                                tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck,TextSizeCheck" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_line"
+                                tools:ignore="ContentDescription" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="30dp"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/opensans_bold"
+                                android:text="@string/Mobile"
+                                android:textColor="@color/text"
+                                android:textSize="16sp"
+                                tools:ignore="HardcodedText,SpUsage" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="15dp"
+                                android:padding="10dp"
+                                android:paddingStart="15dp"
+                                android:text="0000000000"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck,TextSizeCheck" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_line"
+                                tools:ignore="ContentDescription" />
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="30dp"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/opensans_bold"
+                                android:text="@string/Address"
+                                android:textColor="@color/text"
+                                android:textSize="16sp"
+                                tools:ignore="HardcodedText,SpUsage" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="15dp"
+                                android:padding="10dp"
+                                android:paddingStart="15dp"
+                                android:text="110, bhaktinagar socity, katargam,surat"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_line"
+                                tools:ignore="ContentDescription" />
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="30dp"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/opensans_bold"
+                                android:text="@string/Gender"
+                                android:textColor="@color/text"
+                                android:textSize="16sp"
+                                tools:ignore="HardcodedText,SpUsage" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="15dp"
+                                android:padding="10dp"
+                                android:paddingStart="15dp"
+                                android:text="male"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_line"
+                                tools:ignore="ContentDescription" />
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="30dp"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/opensans_bold"
+                                android:text="@string/Age"
+                                android:textColor="@color/text"
+                                android:textSize="16sp"
+                                tools:ignore="HardcodedText,SpUsage" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="15dp"
+                                android:padding="10dp"
+                                android:paddingStart="15dp"
+                                android:text="19"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_line"
+                                tools:ignore="ContentDescription" />
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="30dp"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/opensans_bold"
+                                android:text="@string/Height"
+                                android:textColor="@color/text"
+                                android:textSize="16sp"
+                                tools:ignore="HardcodedText,SpUsage" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="15dp"
+                                android:padding="10dp"
+                                android:paddingStart="15dp"
+                                android:text="176"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_line"
+                                tools:ignore="ContentDescription" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="30dp"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/opensans_bold"
+                                android:text="@string/Weight"
+                                android:textColor="@color/text"
+                                android:textSize="16sp"
+                                tools:ignore="HardcodedText,SpUsage" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="15dp"
+                                android:padding="10dp"
+                                android:paddingStart="15dp"
+                                android:text="69.50"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_line"
+                                tools:ignore="ContentDescription" />
+
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="30dp"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/opensans_bold"
+                                android:text="@string/Goal"
+                                android:textColor="@color/text"
+                                android:textSize="16sp"
+                                tools:ignore="HardcodedText,SpUsage" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="15dp"
+                                android:padding="10dp"
+                                android:paddingStart="15dp"
+                                android:text="get fitter"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_line"
+                                tools:ignore="ContentDescription" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="30dp"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/opensans_bold"
+                                android:text="@string/Activity_level"
+                                android:textColor="@color/text"
+                                android:textSize="16sp"
+                                tools:ignore="HardcodedText,SpUsage" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginEnd="15dp"
+                                android:padding="10dp"
+                                android:paddingStart="15dp"
+                                android:text="Beginner"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_line"
+                                android:layout_marginBottom="20dp"
+                                tools:ignore="ContentDescription" />
+
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/edit_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/member_info"
+                    android:layout_marginVertical="30dp"
+                    android:background="@color/card_view"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:padding="5dp"
+                    app:cardCornerRadius="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="20dp"
+                            android:src="@drawable/ic_pencil"
+                            tools:ignore="ContentDescription,ObsoleteLayoutParam" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/nunito_bold"
+                            android:text="@string/Edit_Profile"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            tools:ignore="HardcodedText" />
+
+                    </LinearLayout>
+
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+        </ScrollView>
+
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
