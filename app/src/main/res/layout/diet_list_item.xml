@@ -15,47 +15,76 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/active_card"
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/back_ground"
-            android:layout_marginStart="60dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="20dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:background="@color/card_view">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints,UselessParent">
 
-            <ImageView
+            <androidx.cardview.widget.CardView
+                android:id="@+id/active_card"
                 android:layout_width="300dp"
                 android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentTop="true"
+                android:backgroundTint="@color/card_view"
+                android:layout_marginStart="60dp"
+                android:layout_marginEnd="60dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="20dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:src="@drawable/healthy_food_img"
-                tools:ignore="ContentDescription" />
+                android:layout_alignParentTop="true"
+                android:background="@color/card_view">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="160dp"
-                android:background="@drawable/text_bg"
-                android:backgroundTint="#C4000000"
-                android:padding="10dp"
-                android:paddingStart="20dp"
-                android:text="Diet name"
-                android:textColor="@color/white"
-                android:textSize="20dp"
-                tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TextSizeCheck" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
 
-        </androidx.cardview.widget.CardView>
+                    <ImageView
+                        android:layout_width="300dp"
+                        android:layout_height="200dp"
+                        android:layout_gravity="center"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/healthy_food_img"
+                        tools:ignore="ContentDescription" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:backgroundTint="#BC000000"
+                    android:background="@drawable/text_bg"
+                    android:padding="10dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="20dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:text="Diet name"
+                        android:textColor="@color/white"
+                        android:textSize="20dp"
+                        tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TextSizeCheck" />
+
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
