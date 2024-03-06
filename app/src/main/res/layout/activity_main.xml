@@ -9,50 +9,52 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints,UselessLeaf">
+        android:layout_height="0dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav_bar"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <FrameLayout
-            android:id="@+id/frag_container"
+        <ScrollView
+            android:id="@+id/sv_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true">
+            tools:ignore="UselessParent,SpeakableTextPresentCheck">
 
-        </FrameLayout>
-
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            tools:ignore="UselessParent">
-
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottom_nav_bar"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_gravity="bottom"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:menu="@menu/bottom_menu"
-                android:background="@drawable/bottom_navigation_bg"
-                app:itemIconSize="30dp"
-                app:itemPaddingTop="12dp"
-                app:itemTextColor="@color/white"
-                />
+                android:layout_height="wrap_content">
 
-        </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rl_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
+                    <FrameLayout
+                        android:id="@+id/frag_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="30dp">
+
+                    </FrameLayout>
+
+                </RelativeLayout>
+            </RelativeLayout>
+        </ScrollView>
     </RelativeLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_bar"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/bottom_menu"
+        android:background="@drawable/bottom_navigation_bg"
+        app:itemIconSize="30dp"
+        app:itemPaddingTop="12dp"
+        app:itemTextColor="@color/white"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

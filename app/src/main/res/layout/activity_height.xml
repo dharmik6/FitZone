@@ -61,7 +61,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="60dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
@@ -140,7 +140,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="70dp"
                 android:layout_below="@+id/rl_age"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
@@ -165,7 +165,6 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/button_text_size"
                     android:textStyle="bold"
-                    android:drawableRight="@drawable/ic_chevron_right"
                     tools:ignore="HardcodedText,RtlHardcoded" />
 
             </RelativeLayout>
