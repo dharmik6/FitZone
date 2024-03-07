@@ -159,6 +159,8 @@
     <string name="Payments_Details">Payments Details </string>
     <string name="Payment_ID">Payment ID</string>
     <string name="Amount">Amount</string>
+    <string name="Booking_start_time">Booking start time</string>
+    <string name="Booking_end_time">Booking end time</string>
     <string name="Payment_Method">Payment Method</string>
     <string name="Payment_Date">Payment Date</string>
 
@@ -166,6 +168,7 @@
     <string name="My_membership_list">My membership List</string>
 
     <!--membership-->
+    <string name="Package_Details">Package Details</string>
     <string name="Membership">Membership</string>
     <string name="Package_name">Package name</string>
     <string name="Package_duration">Package duration</string>

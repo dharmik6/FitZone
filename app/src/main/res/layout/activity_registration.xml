@@ -73,9 +73,8 @@
                 android:id="@+id/img_sing_in_logo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
                 android:layout_marginStart="120dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginEnd="120dp"
                 android:background="@drawable/ic_logo_round_edge"
                 tools:ignore="ContentDescription,ObsoleteLayoutParam" />
@@ -86,7 +85,7 @@
                 android:layout_below="@+id/img_sing_in_logo"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginVertical="30dp"
                 android:fontFamily="@font/opensans_extrabold"
                 android:gravity="center"
                 android:text="@string/Registration"
@@ -100,7 +99,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/icon"
-            android:layout_marginTop="20dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
@@ -109,7 +107,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:layout_alignParentTop="true"
@@ -136,7 +133,7 @@
                     android:id="@+id/Ready"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:text="@string/Let"
                     android:layout_below="@+id/welcome"
                     android:layout_alignParentStart="true"
@@ -153,8 +150,7 @@
                     android:layout_marginTop="20dp"
                     android:layout_below="@+id/Ready"
                     android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="30dp">
+                    android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -186,7 +182,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:hint="@string/Email"
                         app:boxBackgroundColor="@color/edit_text_background"
                         app:boxStrokeColor="#4E4A4A"
@@ -212,7 +208,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:hint="@string/password"
                         app:boxBackgroundColor="@color/edit_text_background"
                         app:boxStrokeColor="@color/hint_color"
@@ -234,66 +230,77 @@
                             android:textStyle="bold"
                             tools:ignore="RtlSymmetry,TextContrastCheck" />
 
-                        <LinearLayout
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="30dp"
                             android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
 
                             <CheckBox
                                 android:id="@+id/member_check"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"/>
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"/>
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
                                 android:text="@string/Terms_conditions"
+                                android:layout_marginStart="50dp"
+                                android:layout_alignParentStart="true"
                                 android:textSize="14sp"
                                 android:fontFamily="@font/nunito_bold"/>
+
+                            </RelativeLayout>
 
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:id="@+id/read_more"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/read_more"
-                                android:layout_marginStart="60dp"
+                                android:layout_marginTop="12dp"
+                                android:layout_marginEnd="10dp"
                                 android:textSize="14sp"
                                 android:fontFamily="@font/nunito_bold"
                                 android:textColor="@color/dark_cyan"
                                 android:layout_alignParentEnd="true"
-                                tools:ignore="ObsoleteLayoutParam" />
-                        </LinearLayout>
+                                tools:ignore="ObsoleteLayoutParam,RelativeOverlap" />
+                        </RelativeLayout>
                     </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_registration"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/btn_bg"
+                        android:elevation="@dimen/button_elevation"
+                        android:fontFamily="@font/nunito_medium"
+                        android:gravity="center"
+                        android:shadowColor="@color/black"
+                        android:text="@string/sing_up"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/button_text_size"
+                        android:textStyle="normal|bold"
+                        app:cardElevation="@dimen/button_card_elevation"
+                        tools:ignore="HardcodedText,TouchTargetSizeCheck" />
+
 
 
 
                 </LinearLayout>
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_registration"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="25dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_below="@+id/ll_layout"
-                    android:layout_marginEnd="25dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/btn_bg"
-                    android:elevation="@dimen/button_elevation"
-                    android:fontFamily="@font/nunito_medium"
-                    android:gravity="center"
-                    android:shadowColor="@color/black"
-                    android:text="@string/sing_up"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/button_text_size"
-                    android:textStyle="normal|bold"
-                    app:cardElevation="@dimen/button_card_elevation"
-                    tools:ignore="HardcodedText,TouchTargetSizeCheck" />
 
             </RelativeLayout>
 

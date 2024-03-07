@@ -61,7 +61,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="60dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
@@ -101,7 +101,7 @@
                 android:id="@+id/rl_age"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="120dp"
+                android:layout_marginTop="200dp"
                 android:layout_marginStart="100dp"
                 android:layout_marginEnd="100dp"
                 android:gravity="center"
@@ -110,35 +110,16 @@
                 android:orientation="vertical"
                 android:layout_below="@+id/text2">
 
-                <com.shawnlin.numberpicker.NumberPicker
-                    android:id="@+id/age_num"
+                <NumberPicker
+                    android:id="@+id/np_level"
                     android:layout_width="150dp"
                     android:layout_height="300dp"
-                    android:layout_gravity="center"
-                    android:baselineAligned="false"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:elevation="20dp"
-                    android:gravity="center"
-                    app:np_dividerColor="@color/dark_cyan"
-                    app:np_dividerDistance="80dp"
-                    app:np_dividerThickness="4dp"
-                    app:np_itemSpacing="-20dp"
-                    app:np_max="150"
-                    app:np_min="0"
-                    app:np_selectedTextColor="@color/black"
-                    app:np_selectedTextSize="50dp"
-                    app:np_textColor="@color/text"
-                    app:np_textSize="30dp"
-                    app:np_value="18"
-                    tools:ignore="SpeakableTextPresentCheck" />
-
+                    android:layout_centerInParent="true" />
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="70dp"
                 android:layout_below="@+id/rl_age"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
@@ -163,7 +144,6 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/button_text_size"
                     android:textStyle="bold"
-                    android:drawableRight="@drawable/ic_chevron_right"
                     tools:ignore="HardcodedText,RtlHardcoded" />
 
             </RelativeLayout>

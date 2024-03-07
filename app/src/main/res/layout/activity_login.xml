@@ -66,16 +66,15 @@
             android:layout_below="@+id/rl_layout"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="60dp"
             tools:ignore="NotSibling">
 
             <ImageView
                 android:id="@+id/img_sing_in_logo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
                 android:layout_marginStart="120dp"
-                android:layout_marginTop="30dp"
                 android:layout_marginEnd="120dp"
                 android:background="@drawable/ic_logo_round_edge"
                 tools:ignore="ContentDescription,ObsoleteLayoutParam" />
@@ -86,7 +85,7 @@
                 android:layout_below="@+id/img_sing_in_logo"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginVertical="20dp"
                 android:fontFamily="@font/opensans_extrabold"
                 android:gravity="center"
                 android:text="@string/Login"
@@ -100,7 +99,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/icon"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
@@ -153,8 +152,7 @@
                     android:layout_marginTop="40dp"
                     android:layout_below="@+id/Ready"
                     android:gravity="center"
-                    android:orientation="vertical"
-                   >
+                    android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
@@ -187,7 +185,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="20dp"
                         android:hint="@string/password"
                         app:boxBackgroundColor="@color/edit_text_background"
                         app:boxStrokeColor="@color/hint_color"
@@ -214,7 +212,7 @@
                         android:id="@+id/txt_forgot_pass"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="30dp"
                         android:text="@string/Forgot"
                         android:fontFamily="@font/nunito_medium"
                         android:textAlignment="center"
@@ -223,30 +221,31 @@
                         android:textStyle="normal|bold"
                         tools:ignore="HardcodedText,TextContrastCheck,TextSizeCheck" />
 
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_login"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@drawable/btn_bg"
+                        android:elevation="@dimen/button_elevation"
+                        android:fontFamily="@font/nunito_medium"
+                        android:gravity="center"
+                        android:shadowColor="@color/black"
+                        android:text="@string/sing_in"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/button_text_size"
+                        android:textStyle="normal|bold"
+                        app:cardElevation="@dimen/button_card_elevation"
+                        tools:ignore="HardcodedText,TouchTargetSizeCheck" />
+
+
                 </LinearLayout>
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_login"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/ll_layout"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="23dp"
-                    android:layout_marginEnd="25dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/btn_bg"
-                    android:elevation="@dimen/button_elevation"
-                    android:fontFamily="@font/nunito_medium"
-                    android:gravity="center"
-                    android:shadowColor="@color/black"
-                    android:text="@string/sing_in"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/button_text_size"
-                    android:textStyle="normal|bold"
-                    app:cardElevation="@dimen/button_card_elevation"
-                    tools:ignore="HardcodedText,TouchTargetSizeCheck" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -254,12 +253,13 @@
                     android:layout_marginTop="10dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/btn_login">
+                    android:layout_below="@+id/ll_layout">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:layout_marginTop="20dp"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentTop="true"
@@ -278,6 +278,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/Create_now"
+                            android:layout_marginStart="10dp"
                             android:layout_alignParentEnd="true"
                             android:textColor="@color/dark_cyan"
                             android:textSize="16sp"

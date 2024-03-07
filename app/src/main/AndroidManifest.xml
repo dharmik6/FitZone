@@ -37,7 +37,7 @@
             android:name=".Profile"
             android:exported="false" />
         <activity
-            android:name=".trainer.Appointment"
+            android:name=".ActivityLevel"
             android:exported="false" />
         <activity
             android:name=".diet.Diet"
@@ -82,10 +82,10 @@
             android:name=".Age"
             android:exported="false" />
         <activity
-            android:name=".ActivityLevel"
+            android:name=".Goal"
             android:exported="false" />
         <activity
-            android:name=".Goal"
+            android:name=".SplashScreen"
             android:exported="false" />
         <activity
             android:name=".Height"
@@ -103,7 +103,7 @@
             android:name=".home.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".trainer.Appointment"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -58,7 +58,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="60dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
@@ -289,7 +289,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentBottom="true"
@@ -313,7 +313,6 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/button_text_size"
                 android:textStyle="bold"
-                android:drawableRight="@drawable/ic_chevron_right"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
             </RelativeLayout>
