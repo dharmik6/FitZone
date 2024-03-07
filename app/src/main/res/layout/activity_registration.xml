@@ -169,7 +169,7 @@
                         tools:ignore="HardcodedText">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/id_name"
+                            android:id="@+id/member_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -196,7 +196,7 @@
                         tools:ignore="HardcodedText">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/id_email"
+                            android:id="@+id/member_email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -223,7 +223,7 @@
                         tools:ignore="HardcodedText">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/id_pass"
+                            android:id="@+id/member_pass"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -241,6 +241,7 @@
                             android:orientation="horizontal">
 
                             <CheckBox
+                                android:id="@+id/member_check"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"/>
 
@@ -252,6 +253,7 @@
                                 android:fontFamily="@font/nunito_bold"/>
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/read_more"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/read_more"
