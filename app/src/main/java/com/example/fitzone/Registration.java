@@ -9,12 +9,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
-import com.example.fitzone.home.MainActivity;
+import com.example.fitzone.ProfileUserName;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -22,41 +23,28 @@ import java.util.Map;
 
 public class Registration extends AppCompatActivity {
 
-    AppCompatTextView read_more;
-    TextInputEditText member_name,member_email,member_pass;
+    TextInputEditText member_name, member_email, member_pass;
     CheckBox member_check;
     AppCompatButton btn_registration;
-    // Firestore instance
-    private FirebaseFirestore db;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
+        // Initialize Firestore
         db = FirebaseFirestore.getInstance();
 
+        // Find views
         member_name = findViewById(R.id.member_name);
         member_email = findViewById(R.id.member_email);
         member_pass = findViewById(R.id.member_pass);
         member_check = findViewById(R.id.member_check);
         btn_registration = findViewById(R.id.btn_registration);
 
-        read_more = findViewById(R.id.read_more);
-        read_more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Registration.this, PrivacyPolicy.class));
-            }
-        });
-        btn_registration.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                registerUser();
-            }
-        });
+        btn_registration.setOnClickListener(view -> registerUser());
     }
-
     private void registerUser() {
         String name = member_name.getText().toString().trim();
         String email = member_email.getText().toString().trim();
@@ -82,30 +70,41 @@ public class Registration extends AppCompatActivity {
             return;
         }
 
-        // Assuming you have a Firestore collection named "users"
-        // Replace 'users' with your desired collection name
-        Map<String, Object> user = new HashMap<>();
-        user.put("name", name);
-        user.put("email", email);
-        user.put("password", password);
+        // Register the user with email and password using Firebase Authentication
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        String userId = user.getUid();
 
-        db.collection("users")
-                .document(name) // Assuming email is unique and used as document id
-                .set(user)
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(Registration.this, "Registration successful", Toast.LENGTH_SHORT).show();
-                    Intent intent =new Intent(Registration.this, ProfileUserName.class);
-                    intent.putExtra("name", name);
-                    // Start the activity
-                    startActivity(intent);
-                })
-                .addOnFailureListener(e -> Toast.makeText(Registration.this, "Registration failed", Toast.LENGTH_SHORT).show());
+                        // Create a user object
+                        Map<String, Object> userData = new HashMap<>();
+                        userData.put("name", name);
+                        userData.put("email", email);
+
+                        // Add the user to Firestore with the generated UID
+                        db.collection("users")
+                                .document(userId)
+                                .set(userData)
+                                .addOnSuccessListener(aVoid -> {
+                                    Toast.makeText(Registration.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                                    // Redirect to the profile activity
+                                    redirectActivity(Registration.this, ProfileUserName.class, userId);
+                                })
+                                .addOnFailureListener(e -> {
+                                    Toast.makeText(Registration.this, "Failed to save user data", Toast.LENGTH_SHORT).show();
+                                    // Handle failure
+                                });
+                    } else {
+                        Toast.makeText(Registration.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
-
-    public static void redirectActivity(Activity activity, Class secondActivity) {
-        Intent intent = new Intent(activity, secondActivity);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    public static void redirectActivity(Activity activity, Class destination, String name) {
+        Intent intent = new Intent(activity, destination);
+        intent.putExtra("uid", name);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
     }
 }

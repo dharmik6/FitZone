@@ -32,7 +32,8 @@ public class Weight extends AppCompatActivity {
         weight_num = findViewById(R.id.weight);
         next_page = findViewById(R.id.btn_weight);
         backButton = findViewById(R.id.back);
-
+// Initialize Firestore
+        db = FirebaseFirestore.getInstance();
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,14 +41,14 @@ public class Weight extends AppCompatActivity {
             }
 
         });
-        weight=60 ;
+        weight=30 ;
 
         weight_num.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 if(weight_num==null)
                 {
-                    weight = 150 ;
+                    weight = 250 ;
                 }
                 else{
                     weight = newVal;
@@ -58,19 +59,20 @@ public class Weight extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Save selected weight to Firestore
-                saveWeightToFirestore(weight);
+                saveWeightToFirestore(String.valueOf(weight));
             }
         });
     }
-    private void saveWeightToFirestore(int weight) {
+    private void saveWeightToFirestore(String weight) {
+        // Get the UID from the Intent extras
         Intent intent = getIntent();
-        String nameid = intent.getStringExtra("name");
+        String uid = intent.getStringExtra("uid");
 
         // Assuming you have a Firestore collection named "users"
         // Replace 'users' with your desired collection name
         // Save the weight to Firestore for the user with userId
         db.collection("users")
-                .document(nameid)
+                .document(uid)
                 .update("weight", weight)
                 .addOnSuccessListener(aVoid -> {
                     // Handle success
@@ -79,19 +81,19 @@ public class Weight extends AppCompatActivity {
                     // Redirect to the next activity if needed
                     Toast.makeText(Weight.this, "Age saved successfully", Toast.LENGTH_SHORT).show();
                     // Redirect to the next activity
-                    Intent intent1 =new Intent(Weight.this,Goal .class);
-                    intent1.putExtra("name", nameid);
-                    // Start the activity
-                    startActivity(intent1);
+                    redirectActivity(Weight.this, Goal.class,uid);
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(Weight.this, "Error saving Age", Toast.LENGTH_SHORT).show();
                 });
     }
 
-    public static void redirectActivity(Activity activity, Class secondActivity) {
-        Intent intent = new Intent(activity, secondActivity);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    // In the Registration activity
+    // Change the redirectActivity method to pass the UID instead of the name
+    public static void redirectActivity(Activity activity, Class destination, String uid) {
+        Intent intent = new Intent(activity, destination);
+        intent.putExtra("uid", uid);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
     }
 }

@@ -32,6 +32,8 @@ public class Age extends AppCompatActivity {
         next_page = findViewById(R.id.btn_age);
         back = findViewById(R.id.back);
         age_num = findViewById(R.id.age_num);
+        // Initialize Firestore
+        db = FirebaseFirestore.getInstance();
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,42 +61,41 @@ public class Age extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Save selected age to Firestore
-                saveAgeToFirestore(age);
+                saveAgeToFirestore(String.valueOf(age));
             }
         });
 
     }
-    private void saveAgeToFirestore(int age) {
+    private void saveAgeToFirestore(String age) {
+        // Get the UID from the Intent extras
         Intent intent = getIntent();
-        String nameid = intent.getStringExtra("name");
+        String uid = intent.getStringExtra("uid");
 
         // Assuming you have a Firestore collection named "users"
         // Replace 'users' with your desired collection name
         Map<String, Object> data = new HashMap<>();
         data.put("age", age);
 
-        // Save the age to Firestore for the user with userId
-        db.collection("users")
-                .document(nameid)
-                .set(data)
-                .addOnSuccessListener(aVoid -> {
-                    // Handle successful save
+        // Add the age data to Firestore
+        db.collection("users") // This line is causing the NullPointerException
+                .document(uid)
+                .update(data)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(Age.this, "Data saved successfully", Toast.LENGTH_SHORT).show();
                     // Redirect to the next activity
-                    //redirectActivity(Age.this, NextActivity.class);
-                    Toast.makeText(Age.this, "Age saved successfully", Toast.LENGTH_SHORT).show();
-                    // Redirect to the next activity
-                    Intent intent1 =new Intent(Age.this,Height .class);
-                    intent1.putExtra("name", nameid);
-                    // Start the activity
-                    startActivity(intent1);
+                    redirectActivity(Age.this, Height.class,uid);
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(Age.this, "Error saving Age", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Age.this, "Failed to save data", Toast.LENGTH_SHORT).show();
+                    // Handle failure
                 });
     }
-    public static void redirectActivity(Activity activity, Class secondActivity) {
-        Intent intent = new Intent(activity, secondActivity);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    // In the Registration activity
+    // Change the redirectActivity method to pass the UID instead of the name
+    public static void redirectActivity(Activity activity, Class destination, String uid) {
+        Intent intent = new Intent(activity, destination);
+        intent.putExtra("uid", uid);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
     }
 }

@@ -97,31 +97,37 @@ public class Gender extends AppCompatActivity {
 
     }
     private void saveGenderToFirestore(String gender) {
+        // Get the UID from the Intent extras
         Intent intent = getIntent();
-        String nameid = intent.getStringExtra("name");
+        String uid = intent.getStringExtra("uid");
 
-        // Assuming you have a Firestore collection named "users"
-        // Replace 'users' with your desired collection name
+        // Initialize Firestore instance
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Create a Map to store the selected gender
         Map<String, Object> data = new HashMap<>();
         data.put("gender", gender);
 
-        // Save the gender to Firestore for the user with userId
+        // Update the document in Firestore
         db.collection("users")
-                .document(nameid)
-                .set(data)
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(Gender.this, "Gender saved successfully", Toast.LENGTH_SHORT).show();
+                .document(uid)
+                .update(data)
+                .addOnSuccessListener(documentReference -> {
+                    Toast.makeText(Gender.this, "Gender saved !", Toast.LENGTH_SHORT).show();
                     // Redirect to the next activity
-                    Intent intent1 =new Intent(Gender.this,Age .class);
-                    intent1.putExtra("name", nameid);
-                    // Start the activity
-                    startActivity(intent1);
+                    redirectActivity(Gender.this, Age.class,uid);
                 })
-                .addOnFailureListener(e -> Toast.makeText(Gender.this, "Error saving gender", Toast.LENGTH_SHORT).show());
+                .addOnFailureListener(e -> {
+                    Toast.makeText(Gender.this, "Error saving gender to Firestore!", Toast.LENGTH_SHORT).show();
+//                    Log.e("Firestore", "Error saving gender", e);
+                });
     }
-    public static void redirectActivity(Activity activity, Class secondActivity) {
-        Intent intent = new Intent(activity, secondActivity);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    // In the Registration activity
+    // Change the redirectActivity method to pass the UID instead of the name
+    public static void redirectActivity(Activity activity, Class destination, String uid) {
+        Intent intent = new Intent(activity, destination);
+        intent.putExtra("uid", uid);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
     }
 }

@@ -31,7 +31,8 @@ public class Height extends AppCompatActivity {
         back = findViewById(R.id.back);
         height_num = findViewById(R.id.height_num);
         next_page = findViewById((R.id.btn_height));
-
+// Initialize Firestore
+        db = FirebaseFirestore.getInstance();
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,13 +41,13 @@ public class Height extends AppCompatActivity {
         });
 
         height_num.setValue(150);
-        height=150;
+        height=90;
         height_num.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 if(height_num==null)
                 {
-                    height = 150 ;
+                    height = 250 ;
                 }
                 else{
                     height = newVal;
@@ -57,39 +58,40 @@ public class Height extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Save selected height to Firestore
-                saveHeightToFirestore(height);
+                saveHeightToFirestore(String.valueOf(height));
             }
         });
     }
-    private void saveHeightToFirestore(int height) {
+    private void saveHeightToFirestore(String height) {
+        // Get the UID from the Intent extras
         Intent intent = getIntent();
-        String nameid = intent.getStringExtra("name");
+        String uid = intent.getStringExtra("uid");
 
         // Assuming you have a Firestore collection named "users"
         // Replace 'users' with your desired collection name
 
         // Save the height to Firestore for the user with userId
         db.collection("users")
-                .document(nameid)
+                .document(uid)
                 .update("height", height)
                 .addOnSuccessListener(aVoid -> {
                     // Handle success
                     // Redirect to the next activity if needed
                     Toast.makeText(Height.this, "Age saved successfully", Toast.LENGTH_SHORT).show();
                     // Redirect to the next activity
-                    Intent intent1 =new Intent(Height.this,Weight .class);
-                    intent1.putExtra("name", nameid);
-                    // Start the activity
-                    startActivity(intent1);
+                    redirectActivity(Height.this, Weight.class,uid);
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(Height.this, "Error saving Age", Toast.LENGTH_SHORT).show();
                 });
     }
 
-    public static void redirectActivity(Activity activity, Class secondActivity) {
-        Intent intent = new Intent(activity, secondActivity);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    // In the Registration activity
+    // Change the redirectActivity method to pass the UID instead of the name
+    public static void redirectActivity(Activity activity, Class destination, String uid) {
+        Intent intent = new Intent(activity, destination);
+        intent.putExtra("uid", uid);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
     }
 }

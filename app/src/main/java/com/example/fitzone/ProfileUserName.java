@@ -18,6 +18,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -59,7 +61,6 @@ public class ProfileUserName extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 saveDataToFirestore();
-                redirectActivity(ProfileUserName.this, Gender.class);
             }
         });
     }
@@ -75,53 +76,63 @@ public class ProfileUserName extends AppCompatActivity {
         }
     }
 
+
+    // In the ProfileUserName activity
     private void saveDataToFirestore() {
         String username = user_username.getText().toString().trim();
         String userAddress = address.getText().toString().trim();
         String userPhone = phone.getText().toString().trim();
 
+        // Get the UID from the Intent extras
         Intent intent = getIntent();
-        String nameid = intent.getStringExtra("name");
+        String uid = intent.getStringExtra("uid");
 
         // Check if all fields are filled
         if (!username.isEmpty() && !userAddress.isEmpty() && !userPhone.isEmpty() && selectedImageUri != null) {
-            // Assuming you have a Firestore collection named "users"
-            // Replace 'users' with your desired collection name
-            // Assuming 'email' is the unique identifier for each user
-            // Replace 'email' with your desired unique identifier
-            // Create a map to store user data
-            Map<String, Object> userData = new HashMap<>();
-            userData.put("username", username);
-            userData.put("address", userAddress);
-            userData.put("number", userPhone);
-            userData.put("image", selectedImageUri.toString());
+            // Create a reference to the Firebase Storage location where you want to store the image
+            StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("user_images").child(uid);
 
-            // Add the user data to Firestore
-            db.collection("users")
-                    .document(nameid)
-                    .set(userData)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(ProfileUserName.this, "Registration successful", Toast.LENGTH_SHORT).show();
-                            Intent intent1 =new Intent(ProfileUserName.this,Gender .class);
-                            intent1.putExtra("name", nameid);
-                            // Start the activity
-                            startActivity(intent1);
-                        }
+            // Upload the image to Firebase Storage
+            storageRef.putFile(selectedImageUri)
+                    .addOnSuccessListener(taskSnapshot -> {
+                        // Get the download URL of the uploaded image
+                        storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                            String imageUrl = uri.toString();
+
+                            // Create a map to store user data
+                            Map<String, Object> userData = new HashMap<>();
+                            userData.put("username", username);
+                            userData.put("address", userAddress);
+                            userData.put("number", userPhone);
+                            userData.put("image", imageUrl); // Save the image URL instead of URI
+
+                            // Add the user data to Firestore using the same UID
+                            db.collection("users")
+                                    .document(uid)
+                                    .update(userData)
+                                    .addOnSuccessListener(aVoid -> {
+                                        Toast.makeText(ProfileUserName.this, "Registration successful", Toast.LENGTH_SHORT).show();
+                                        // Redirect to the next activity
+                                        redirectActivity(ProfileUserName.this, Gender.class, uid);
+                                    })
+                                    .addOnFailureListener(e -> {
+                                        // Failed to save data
+                                        Toast.makeText(ProfileUserName.this, "Failed to save user data", Toast.LENGTH_SHORT).show();
+                                    });
+                        });
                     })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            // Failed to save data
-                        }
+                    .addOnFailureListener(e -> {
+                        // Handle failures
+                        Toast.makeText(ProfileUserName.this, "Failed to upload image", Toast.LENGTH_SHORT).show();
                     });
         }
     }
-
-    public static void redirectActivity(Activity activity, Class secondActivity) {
-        Intent intent = new Intent(activity, secondActivity);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    // In the Registration activity
+    // Change the redirectActivity method to pass the UID instead of the name
+    public static void redirectActivity(Activity activity, Class destination, String uid) {
+        Intent intent = new Intent(activity, destination);
+        intent.putExtra("uid", uid);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
     }
 }
