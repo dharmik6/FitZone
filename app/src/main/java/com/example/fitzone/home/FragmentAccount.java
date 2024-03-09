@@ -17,6 +17,8 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.example.fitzone.Profile;
 import com.example.fitzone.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -43,46 +45,36 @@ public class FragmentAccount extends Fragment {
         rl_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Open Profile activity with UID passed as extra
-                Intent intent = new Intent(getActivity(), Profile.class);
-                intent.putExtra("uid", uid);
-                startActivity(intent);
-            }
+                    Intent intent = new Intent(getActivity(), Profile.class);
+//                    intent.putExtra("uid", uid);
+                    startActivity(intent);
+          }
         });
-
-        // Check if UID is not null before querying Firestore
-        if (uid != null) {
-            // Query Firestore for data
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("users").get().addOnSuccessListener(queryDocumentSnapshots -> {
-                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+            db.collection("users").document(userId).get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) {
                     String membername = documentSnapshot.getString("name");
                     String memberusername = documentSnapshot.getString("username");
-                    String memberimage = documentSnapshot.getString("image");
+                   String memberimage = documentSnapshot.getString("image");
 
-                    // Check if the userNameFromIntent matches the user
-                    if (uid.equals(membername)) {
-                        // Display the data only if they match
-                        user_acc_name.setText(membername != null ? membername : "No name");
-                        user_acc_username.setText(memberusername != null ? memberusername : "No username");
-                        if (memberimage != null) {
-                            Glide.with(getActivity())
-                                    .load(memberimage)
-                                    .into(user_acc_image);
-                        }
-                        // Exit loop since the user is found
-                        break;
+                    user_acc_name.setText(membername != null ? membername : "No name");
+                    user_acc_username.setText(memberusername != null ? memberusername : "No username");
+                   if (memberimage != null) {
+                        Glide.with(FragmentAccount.this)
+                                .load(memberimage)
+                                .into(user_acc_image);
                     }
                 }
             }).addOnFailureListener(e -> {
-                // Handle Firestore query failure
-                e.printStackTrace();
+//                Toast.makeText(FragmentAccount.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             });
         } else {
-            // Handle the case where UID is null
-            Toast.makeText(getActivity(), "not", Toast.LENGTH_SHORT).show();
-            // For example, show an error message or take appropriate action
+//            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
         }
+
 
         return view;
     }
