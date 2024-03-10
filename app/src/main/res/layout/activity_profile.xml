@@ -113,6 +113,7 @@
                             android:layout_alignParentStart="true">
 
                         <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/show_image"
                             android:layout_width="150dp"
                             android:layout_height="150dp"
                             android:layout_alignParentEnd="true"
@@ -124,7 +125,7 @@
                         </RelativeLayout>
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/member_name"
+                            android:id="@+id/show_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/rl_member_img"
@@ -139,10 +140,10 @@
                             tools:ignore="HardcodedText" />
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/username_name"
+                            android:id="@+id/show_username"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/member_name"
+                            android:layout_below="@+id/show_name"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentStart="true"
                             android:gravity="center"
@@ -174,6 +175,7 @@
                                 tools:ignore="HardcodedText,SpUsage" />
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/show_email"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
@@ -204,6 +206,7 @@
                                 tools:ignore="HardcodedText,SpUsage" />
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/show_number"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
@@ -235,6 +238,7 @@
                                 tools:ignore="HardcodedText,SpUsage" />
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/show_address"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
@@ -265,6 +269,7 @@
                                 tools:ignore="HardcodedText,SpUsage" />
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/show_gender"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
@@ -296,6 +301,7 @@
                                 tools:ignore="HardcodedText,SpUsage" />
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/show_age"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
@@ -327,6 +333,7 @@
                                 tools:ignore="HardcodedText,SpUsage" />
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/show_height"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
@@ -357,6 +364,7 @@
                                 tools:ignore="HardcodedText,SpUsage" />
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/show_weight"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
@@ -388,6 +396,7 @@
                                 tools:ignore="HardcodedText,SpUsage" />
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/show_goal"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"
@@ -418,6 +427,7 @@
                                 tools:ignore="HardcodedText,SpUsage" />
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/show_level"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="20dp"

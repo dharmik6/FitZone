@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -20,10 +21,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Get the UID from the Intent extras
+        Intent intent = getIntent();
+        String uid = intent.getStringExtra("uid");
+
         // hooks
         bottomNav = findViewById(R.id.bottom_nav_bar);
         bottomNav.setSelectedItemId(R.id.home);
-        loadFragment(new FragmentHome(), true);
+        loadFragment(new FragmentHome(),uid, true);
         bottomNav.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -31,13 +36,13 @@ public class MainActivity extends AppCompatActivity {
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.home) {
-                    loadFragment(new FragmentHome(), false);
+                    loadFragment(new FragmentHome(),uid, false);
                 } else if (itemId == R.id.repot) {
-                    loadFragment(new FragmentReports(), false);
+                    loadFragment(new FragmentReports(),uid, false);
                 } else if (itemId == R.id.workout) {
-                    loadFragment(new FragmentWorkout(), false);
+                    loadFragment(new FragmentWorkout(),uid, false);
                 } else if (itemId == R.id.account) {
-                    loadFragment(new FragmentAccount(), false);
+                    loadFragment(new FragmentAccount(),uid, false);
                 }
                 return true;
             }
@@ -47,14 +52,19 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-    public void loadFragment(Fragment fragment, boolean flag) {
+    public void loadFragment(Fragment fragment, String uid, boolean flag) {
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         if (flag)
             ft.add(R.id.frag_container, fragment);
         else
             ft.replace(R.id.frag_container, fragment);
+
+        // Pass the UID to the fragment using arguments
+        Bundle bundle = new Bundle();
+        bundle.putString("uid", uid);
+        fragment.setArguments(bundle);
+
         ft.commit();
     }
 }

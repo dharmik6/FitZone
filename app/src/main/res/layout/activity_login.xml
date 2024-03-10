@@ -168,7 +168,7 @@
                         tools:ignore="HardcodedText">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/id_email"
+                            android:id="@+id/user_email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:ems="10"
@@ -182,6 +182,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/user_password"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

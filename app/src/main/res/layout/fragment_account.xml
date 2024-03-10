@@ -89,6 +89,7 @@
                             tools:ignore="TooDeepLayout">
 
                             <ImageView
+                                android:id="@+id/user_acc_image"
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:src="@drawable/people_imge"
@@ -108,7 +109,7 @@
                             android:orientation="vertical">
 
                             <androidx.appcompat.widget.AppCompatTextView
-                                android:id="@+id/member_name"
+                                android:id="@+id/user_acc_name"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentTop="true"
@@ -119,9 +120,10 @@
                                 tools:ignore="HardcodedText" />
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/user_acc_username"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_below="@+id/member_name"
+                                android:layout_below="@+id/user_acc_name"
                                 android:text="user_name"
                                 android:textColor="@color/dark_cyan"
                                 android:fontFamily="@font/nunito_bold"

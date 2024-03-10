@@ -78,6 +78,7 @@
             tools:ignore="ObsoleteLayoutParam">
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/diet_recyc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

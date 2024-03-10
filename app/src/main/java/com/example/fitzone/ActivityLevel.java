@@ -6,27 +6,59 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.NumberPicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fitzone.home.MainActivity;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ActivityLevel extends AppCompatActivity {
 
     NumberPicker textPicker;
-
-
-    @SuppressLint("NewApi")
+    Button btn_activitylevel;
+    ImageView back;
+    // Firestore instance
+    private FirebaseFirestore db;
+TextView profile_in;
+    @SuppressLint({"NewApi", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level);
 
         textPicker = findViewById(R.id.np_level);
+// Initialize Firestore
+        db = FirebaseFirestore.getInstance();
 
-        Button activitylevel = findViewById(R.id.btn_activitylevel);
+        // Get the UID from the Intent extras
+        Intent intent = getIntent();
+        String uid = intent.getStringExtra("uid");
+
+        profile_in = findViewById(R.id.profile_in);
+        profile_in.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectActivity(ActivityLevel.this, Profile.class,uid);
+            }
+        });
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        btn_activitylevel = findViewById(R.id.btn_activitylevel);
+
 
         final String[] items = {"Beginner", "Intermediate", "Advance","Beginner", "Intermediate", "Advance"};
 
@@ -36,17 +68,41 @@ public class ActivityLevel extends AppCompatActivity {
         textPicker.setDisplayedValues(items);
         textPicker.setTextSize(60);
 
-        activitylevel.setOnClickListener(view -> {
+        btn_activitylevel.setOnClickListener(view -> {
             int selectedIndex = textPicker.getValue();
             String selectedText = items[selectedIndex];
-            Toast.makeText(ActivityLevel.this, "Selected Activity Level: " + selectedText, Toast.LENGTH_SHORT).show();
+            // Get the UID from the Intent extras
+//            Intent intent = getIntent();
+//            String uid = intent.getStringExtra("uid");
 
-            redirectActivity(ActivityLevel.this , MainActivity.class);
+            // Initialize Firestore instance
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+            // Create a Map to store the selected activity level
+            Map<String, Object> data = new HashMap<>();
+            data.put("activity", selectedText);
+
+            // Update the document in Firestore
+            db.collection("users")
+                    .document(uid)
+                    .update(data)
+                    .addOnSuccessListener(documentReference -> {
+                        Toast.makeText(ActivityLevel.this, "Activity level saved to Firestore!", Toast.LENGTH_SHORT).show();
+                        // Redirect to the next activity
+                        redirectActivity(ActivityLevel.this, MainActivity.class,uid);
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(ActivityLevel.this, "Error saving activity level to Firestore!", Toast.LENGTH_SHORT).show();
+                        Log.e("Firestore", "Error saving activity level", e);
+                    });
         });
     }
-    public static void redirectActivity(Activity activity, Class secondActivity) {
-        Intent intent = new Intent(activity, secondActivity);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+    // In the Registration activity
+    // Change the redirectActivity method to pass the UID instead of the name
+    public static void redirectActivity(Activity activity, Class destination, String uid) {
+        Intent intent = new Intent(activity, destination);
+        intent.putExtra("uid", uid);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
     }
 }

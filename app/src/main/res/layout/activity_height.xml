@@ -111,7 +111,7 @@
                 android:layout_below="@+id/text2">
 
                 <com.shawnlin.numberpicker.NumberPicker
-                    android:id="@+id/age_num"
+                    android:id="@+id/height_num"
                     android:layout_width="150dp"
                     android:layout_height="300dp"
                     android:layout_gravity="center"
