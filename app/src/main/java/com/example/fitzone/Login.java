@@ -107,9 +107,13 @@ public class Login extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<AuthResult> task) {
                                                 pd.dismiss(); // Dismiss the progress dialog
                                                 if (task.isSuccessful()) {
-                                                    // Credentials match, perform intent operation
-                                                    setLoggedInFlag();
-                                                    // Sign-in successful, navigate to the next page
+
+                                                    SharedPreferences pref = getSharedPreferences("login",MODE_PRIVATE);
+                                                    SharedPreferences.Editor editor = pref.edit();
+
+                                                    editor.putBoolean("flag" ,true);
+                                                    editor.apply();
+
                                                     Intent intent = new Intent(Login.this, MainActivity.class);
                                                     startActivity(intent);
                                                     finish(); // Close the login activity
