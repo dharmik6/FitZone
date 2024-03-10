@@ -4,59 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/package_card_view_bg">
+    android:background="@drawable/package_card_view_bg"
+    tools:context=".Packages">
 
-    <ImageView
-        android:id="@+id/back"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
-        android:src="@drawable/ic_arrow_small_left"
-        app:layout_constraintBottom_toBottomOf="@+id/text_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_title" />
-
-    <TextView
-        android:id="@+id/text_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:gravity="center"
-        android:text="@string/Packages"
-        android:textColor="@color/white"
-        android:textSize="20sp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rl_layout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/back"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_arrow_small_left"
+            app:layout_constraintBottom_toBottomOf="@+id/text_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/text_title"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_toStartOf="@+id/back"
+            android:layout_toEndOf="@+id/back"
+            android:fontFamily="@font/opensans_bold"
+            android:gravity="center"
+            android:text="Packages"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/back"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="HardcodedText" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@+id/btn_registration"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="60dp"
-        android:layout_marginBottom="80dp"
-        app:layout_constraintTop_toBottomOf="@+id/text_title">
+        app:layout_constraintTop_toBottomOf="@+id/rl_layout"
+        android:layout_marginBottom="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
             android:orientation="vertical">
 
-
-            <androidx.appcompat.widget.AppCompatTextView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/package_name"
-                android:textColor="@color/white"
-                android:textSize="25sp"
-                app:fontFamily="@font/nunito_bold"
-                tools:ignore="HardcodedText" />
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/pac_show_name"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentStart="true"
+                    android:text="Package name"
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    app:fontFamily="@font/nunito_bold"
+                    tools:ignore="HardcodedText" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:text="Active"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    app:fontFamily="@font/nunito_bold"
+                    tools:ignore="HardcodedText" />
+
+
+            </RelativeLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/pac_show_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/price"
@@ -101,6 +140,7 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/pac_show_duration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -122,6 +162,7 @@
                 tools:ignore="HardcodedText" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/pac_show_descri"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -145,25 +186,35 @@
         </LinearLayout>
     </ScrollView>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_registration"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/button_layout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginVertical="10dp"
-        android:background="@drawable/btn_bg"
-        android:elevation="@dimen/button_elevation"
-        android:fontFamily="@font/nunito_medium"
-        android:gravity="center"
-        android:shadowColor="@color/black"
-        android:text="@string/buy_now"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="@dimen/button_text_size"
-        android:textStyle="normal|bold"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_registration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginVertical="20dp"
+            android:background="@drawable/btn_bg"
+            android:elevation="@dimen/button_elevation"
+            android:fontFamily="@font/nunito_medium"
+            android:gravity="center"
+            android:shadowColor="@color/black"
+            android:text="@string/buy_now"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/button_text_size"
+            android:textStyle="normal|bold" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

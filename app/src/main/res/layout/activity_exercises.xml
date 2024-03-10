@@ -20,7 +20,7 @@
             android:id="@+id/linearLayout"
             android:background="@color/dark_blue"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="?attr/actionBarSize"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
@@ -156,7 +156,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="20sp"
-                            android:layout_marginTop="10dp"
                             android:layout_alignParentTop="true"
                             android:layout_alignParentStart="true"
                             android:textColor="@color/black"
@@ -164,7 +163,7 @@
                             android:text="@string/Focus_area"
                             tools:ignore="HardcodedText" />
 
-                        <androidx.appcompat.widget.AppCompatEditText
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
@@ -194,7 +193,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="20sp"
-                            android:layout_marginTop="10dp"
                             android:layout_alignParentTop="true"
                             android:layout_alignParentStart="true"
                             android:textColor="@color/black"
@@ -202,7 +200,7 @@
                             android:text="@string/Equipment"
                             tools:ignore="HardcodedText" />
 
-                        <androidx.appcompat.widget.AppCompatEditText
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentStart="true"
@@ -237,7 +235,7 @@
                             android:text="@string/Description"
                             tools:ignore="HardcodedText" />
 
-                        <androidx.appcompat.widget.AppCompatEditText
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@+id/Description"

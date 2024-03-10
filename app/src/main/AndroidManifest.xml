@@ -37,7 +37,7 @@
             android:name=".Profile"
             android:exported="false" />
         <activity
-            android:name=".ActivityLevel"
+            android:name=".Goal"
             android:exported="false" />
         <activity
             android:name=".diet.Diet"
@@ -82,7 +82,7 @@
             android:name=".Age"
             android:exported="false" />
         <activity
-            android:name=".Goal"
+            android:name=".ActivityLevel"
             android:exported="false" />
         <activity
             android:name=".Login"
