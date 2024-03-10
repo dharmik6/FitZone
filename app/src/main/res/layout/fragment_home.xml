@@ -199,14 +199,24 @@
                    android:layout_alignParentEnd="true"
                    android:layout_alignParentStart="true"
                    android:layout_alignParentTop="true"
+                   android:orientation="horizontal"
                    tools:ignore="UselessParent">
 
                    <androidx.appcompat.widget.AppCompatTextView
-                       android:layout_width="match_parent"
+                       android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:layout_alignParentStart="true"
-                       android:layout_alignParentEnd="true"
                        android:text="@string/My_workout_plans"
+                       android:fontFamily="@font/opensans_bold"
+                       android:textSize="20sp"
+                       tools:ignore="HardcodedText,RelativeOverlap" />
+
+                   <androidx.appcompat.widget.AppCompatTextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_alignParentEnd="true"
+                       android:text="view more"
+                       android:textColor="@color/dark_cyan"
                        android:fontFamily="@font/opensans_bold"
                        android:textSize="20sp"
                        tools:ignore="HardcodedText" />
@@ -274,17 +284,28 @@
                    android:layout_alignParentEnd="true"
                    android:layout_alignParentStart="true"
                    android:layout_alignParentTop="true"
+                   android:orientation="horizontal"
                    tools:ignore="UselessParent">
 
                    <androidx.appcompat.widget.AppCompatTextView
-                       android:layout_width="match_parent"
+                       android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/Diets"
                        android:layout_alignParentStart="true"
-                       android:layout_alignParentEnd="true"
                        android:fontFamily="@font/opensans_bold"
                        android:textSize="20sp"
                        tools:ignore="HardcodedText" />
+
+                   <androidx.appcompat.widget.AppCompatTextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_alignParentEnd="true"
+                       android:text="view more"
+                       android:textColor="@color/dark_cyan"
+                       android:fontFamily="@font/opensans_bold"
+                       android:textSize="20sp"
+                       tools:ignore="HardcodedText" />
+
 
                </RelativeLayout>
 
@@ -351,14 +372,23 @@
                    tools:ignore="UselessParent">
 
                    <androidx.appcompat.widget.AppCompatTextView
-                       android:layout_width="match_parent"
+                       android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
                        android:text="@string/Workout_plans"
                        android:layout_alignParentStart="true"
+                       android:fontFamily="@font/opensans_bold"
+                       android:textSize="20sp"
+                       tools:ignore="HardcodedText,RelativeOverlap" />
+                   <androidx.appcompat.widget.AppCompatTextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
                        android:layout_alignParentEnd="true"
+                       android:text="view more"
+                       android:textColor="@color/dark_cyan"
                        android:fontFamily="@font/opensans_bold"
                        android:textSize="20sp"
                        tools:ignore="HardcodedText" />
+
 
                </RelativeLayout>
 
