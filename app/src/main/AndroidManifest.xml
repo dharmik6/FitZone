@@ -76,7 +76,7 @@
             android:name=".PackagesList"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".trainer.Appointment"
             android:exported="false" />
         <activity
             android:name=".Age"
@@ -85,7 +85,7 @@
             android:name=".Goal"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".Login"
             android:exported="false" />
         <activity
             android:name=".Height"
@@ -103,7 +103,7 @@
             android:name=".home.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".trainer.Appointment"
+            android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
