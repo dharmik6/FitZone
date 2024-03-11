@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         // hooks
         bottomNav = findViewById(R.id.bottom_nav_bar);
         bottomNav.setSelectedItemId(R.id.home);
+        bottomNav.setItemIconTintList(null);
         loadFragment(new FragmentHome(),uid, true);
         bottomNav.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".FragmentHeightBottomSheet">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/login_register_bg">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_bold"
+                android:text="Weight"
+                android:textColor="@color/black"
+                android:paddingStart="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="25sp"
+                tools:ignore="HardcodedText,RtlSymmetry" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="40dp"
+                tools:ignore="Orientation">
+
+                <com.shawnlin.numberpicker.NumberPicker
+                    android:id="@+id/weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center"
+                    android:baselineAligned="false"
+                    android:elevation="20dp"
+                    android:gravity="center"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    app:np_dividerColor="#00000000"
+                    app:np_dividerDistance="80dp"
+                    app:np_dividerThickness="4dp"
+                    app:np_itemSpacing="-50dp"
+                    app:np_max="500"
+                    app:np_min="0"
+                    app:np_orientation="horizontal"
+                    app:np_selectedTextColor="@color/black"
+                    app:np_selectedTextSize="50dp"
+                    app:np_textAlign="textAlignCenter"
+                    app:np_textColor="@color/black"
+                    app:np_textSize="30dp"
+                    app:np_value="60"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/exe_delete"
+                    android:layout_width="140dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/delete_btn_bg"
+                    android:elevation="10dp"
+                    android:text="Cancle"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/exe_update"
+                    android:layout_width="140dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/update_btn_bg"
+                    android:elevation="10dp"
+                    android:text="Save"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</FrameLayout>

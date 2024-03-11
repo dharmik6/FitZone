@@ -64,18 +64,20 @@
             android:layout_below="@+id/linearLayout"
             android:layout_marginHorizontal="20dp">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/rl_my_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
+            android:orientation="horizontal"
             android:layout_marginTop="20dp">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/My_weight"
+                android:layout_marginEnd="200dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
@@ -84,7 +86,20 @@
                 android:fontFamily="@font/opensans_bold"
                 tools:ignore="HardcodedText" />
 
-        </LinearLayout>
+            <ImageView
+                android:id="@+id/edit_weight"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_edit"
+                android:layout_gravity="center"
+                android:layout_marginStart="280dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                tools:ignore="ContentDescription" />
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/rl_chart"
@@ -300,10 +315,25 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
+                android:layout_marginEnd="100dp"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 android:fontFamily="@font/opensans_bold"
                 tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/edit_height"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_edit"
+                android:layout_gravity="center"
+                android:layout_marginStart="280dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                tools:ignore="ContentDescription" />
+
 
         </RelativeLayout>
 

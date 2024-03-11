@@ -3,11 +3,16 @@ package com.example.fitzone.home;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.example.fitzone.FragmentHeightBottomSheet;
+import com.example.fitzone.FragmentWeightBottomSheet;
 import com.example.fitzone.R;
 
 /**
@@ -61,6 +66,30 @@ public class FragmentReports extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reports, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_reports, container, false);
+
+        ImageView editWeight = rootView.findViewById(R.id.edit_weight);
+        ImageView editHeight = rootView.findViewById(R.id.edit_height);
+
+        editHeight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Show the bottom sheet fragment for height
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentHeightBottomSheet bottomSheetFragment = new FragmentHeightBottomSheet();
+                bottomSheetFragment.show(fragmentManager, bottomSheetFragment.getTag());
+            }
+        });editWeight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Show the bottom sheet fragment
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentWeightBottomSheet bottomSheetFragment = new FragmentWeightBottomSheet();
+                bottomSheetFragment.show(fragmentManager, bottomSheetFragment.getTag());
+            }
+        });
+
+        return rootView;
     }
+
 }

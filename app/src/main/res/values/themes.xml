@@ -20,4 +20,10 @@
     <style name="MyTimePickerDialogStyle" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/dark_cyan</item>
     </style>
+
+
+    <style name="bottom_nav" parent="Base.Theme.FitZone" >
+        <item name="colorAccent">@color/dark_blue</item>
+    </style>
+
 </resources>
