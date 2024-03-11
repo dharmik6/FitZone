@@ -18,11 +18,11 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
-public class WorkoutPlanAdapter  extends RecyclerView.Adapter<WorkoutPlanAdapter.ViewHolder> {
-    private List<WorkoutItemList> exercisesItemLists;
+public class ExercisesAdapter extends RecyclerView.Adapter<ExercisesAdapter.ViewHolder> {
+    private List<ExercisesItemList> exercisesItemLists;
     Context context;
 
-    public WorkoutPlanAdapter(Context context, List<WorkoutItemList> exercisesItemLists) {
+    public ExercisesAdapter(Context context, List<ExercisesItemList> exercisesItemLists) {
         this.exercisesItemLists = exercisesItemLists;
         this.context = context;
 
@@ -30,22 +30,22 @@ public class WorkoutPlanAdapter  extends RecyclerView.Adapter<WorkoutPlanAdapter
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ExercisesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View tra = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_workout_plans_home_list_item, parent, false);
-        return new ViewHolder(tra);
+        return new ExercisesAdapter.ViewHolder(tra);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        WorkoutItemList member = exercisesItemLists.get(position);
+    public void onBindViewHolder(@NonNull ExercisesAdapter.ViewHolder holder, int position) {
+        ExercisesItemList member = exercisesItemLists.get(position);
         holder.exename.setText(member.getName());
-        holder.exebody.setText(member.getBody());
+        holder.exebody.setText(member.getGoal());
 
         // Check if the context is not null before loading the image
         if (context != null) {
             // Load image into CircleImageView using Glide library
             Glide.with(context)
-                    .load(member.getImageUrl()) // Assuming getImage() returns the URL of the image
+                    .load(member.getImage()) // Assuming getImage() returns the URL of the image
                     .apply(RequestOptions.circleCropTransform()) // Apply circle crop transformation for CircleImageView
                     .diskCacheStrategy(DiskCacheStrategy.ALL) // Cache image to disk
                     .into(holder.exeimage); // Load image into CircleImageView
@@ -59,18 +59,18 @@ public class WorkoutPlanAdapter  extends RecyclerView.Adapter<WorkoutPlanAdapter
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
-                    WorkoutItemList item = exercisesItemLists.get(position);
+                    ExercisesItemList item = exercisesItemLists.get(position);
 
                     // Create an intent to start the MembersProfile activity
-                    Intent intent = new Intent(context, Exercises.class);
-                    // Pass data to the intent
-                    intent.putExtra("imageUrl", item.getImageUrl());
-                    intent.putExtra("name", item.getName());
-                    intent.putExtra("body", item.getBody());
-//                    intent.putExtra("body", item.getBody());
-
-                    // Start the activity
-                    context.startActivity(intent);
+//                    Intent intent = new Intent(context, Exercises.class);
+//                    // Pass data to the intent
+//                    intent.putExtra("image", item.getImage());
+//                    intent.putExtra("name", item.getName());
+//                    intent.putExtra("goal", item.getGoal());
+////                    intent.putExtra("body", item.getBody());
+//
+//                    // Start the activity
+//                    context.startActivity(intent);
                 }
             }
         });

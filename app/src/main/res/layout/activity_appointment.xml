@@ -248,7 +248,12 @@
                                 android:layout_marginStart="0dp"
                                 android:layout_marginEnd="0dp"
                                 android:outlineSpotShadowColor="@color/dark_cyan"
-                                tools:ignore="UnusedAttribute" />
+                                tools:ignore="UnusedAttribute"
+                                android:weekDayTextAppearance="@style/MyWeekDayTextAppearance"
+                                android:selectedWeekBackgroundColor="#FFFFFF"
+                                style="@style/MyWeekDayTextAppearance"
+                                />
+
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -279,6 +284,7 @@
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
 
+
                                 <TextView
                                     android:id="@+id/selected_time"
                                     android:layout_width="wrap_content"
@@ -287,15 +293,17 @@
                                     android:background="@drawable/text_bg"
                                     android:clickable="true"
                                     android:focusable="true"
+                                    android:gravity="center"
                                     android:fontFamily="@font/nunito_semi_bold"
                                     android:hint="Select Time"
+                                    android:minHeight="48dp"
                                     android:paddingHorizontal="15dp"
                                     android:paddingVertical="8dp"
                                     android:textColor="@color/black"
                                     android:textColorHint="@color/text"
+
+
                                     android:textSize="16sp"
-
-
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />

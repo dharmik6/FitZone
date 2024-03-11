@@ -44,6 +44,7 @@
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:id="@+id/exercises_image"
                         android:layout_gravity="center"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentTop="true"
@@ -65,7 +66,7 @@
                         android:padding="10dp">
 
                         <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/tv_Workout_plan_name"
+                            android:id="@+id/exercises_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingStart="20dp"
@@ -77,10 +78,11 @@
                             tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TextSizeCheck" />
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/exercises_alllist"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingStart="20dp"
-                            android:layout_below="@+id/tv_Workout_plan_name"
+                            android:layout_below="@+id/exercises_name"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentEnd="true"
                             android:text="0 exercises"

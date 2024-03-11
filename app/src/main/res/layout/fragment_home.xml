@@ -75,7 +75,7 @@
                         tools:ignore="MissingConstraints,UselessParent">
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/active_card"
+                            android:id="@+id/trainers_all_list"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/card_view"
@@ -206,12 +206,13 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
-                                android:text="@string/My_workout_plans"
+                                android:text="@string/Workouts"
                                 android:fontFamily="@font/opensans_bold"
                                 android:textSize="20sp"
                                 tools:ignore="HardcodedText,RelativeOverlap" />
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/workout_mor"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
@@ -248,16 +249,14 @@
                                     tools:ignore="ObsoleteLayoutParam">
 
                                     <androidx.recyclerview.widget.RecyclerView
+                                        android:id="@+id/wor_recyc"
                                         android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_alignParentStart="true"
-                                    android:orientation="horizontal"
-                                    android:scrollbars="horizontal"
-                                    tools:listitem="@layout/my_workout_plans_home_list_item" />
-                                    <!--                                        android:id="@+id/"-->
-
-
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_alignParentStart="true"
+                                        android:orientation="horizontal"
+                                        android:scrollbars="horizontal"
+                                        tools:listitem="@layout/my_workout_plans_home_list_item" />
                                 </RelativeLayout>
 
                             </ScrollView>
@@ -421,6 +420,7 @@
                                     tools:ignore="ObsoleteLayoutParam">
 
                                     <androidx.recyclerview.widget.RecyclerView
+                                        android:id="@+id/exercises_recyc"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_alignParentEnd="true"
@@ -443,6 +443,91 @@
             </RelativeLayout>
 
         </ScrollView>
+
+        <!--My workout plans-->
+
+<!--        <RelativeLayout-->
+<!--            android:id="@+id/rl_workout_plans"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_alignParentStart="true"-->
+<!--            android:layout_below="@+id/fizone"-->
+<!--            android:layout_marginTop="20dp">-->
+
+<!--            <RelativeLayout-->
+<!--                android:id="@+id/my_workout_plans"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_alignParentStart="true"-->
+<!--                android:layout_alignParentTop="true"-->
+<!--                android:orientation="horizontal"-->
+<!--                tools:ignore="UselessParent">-->
+
+<!--                <androidx.appcompat.widget.AppCompatTextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentStart="true"-->
+<!--                    android:text="@string/My_workout_plans"-->
+<!--                    android:fontFamily="@font/opensans_bold"-->
+<!--                    android:textSize="20sp"-->
+<!--                    tools:ignore="HardcodedText,RelativeOverlap" />-->
+
+<!--                <androidx.appcompat.widget.AppCompatTextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:text="view more"-->
+<!--                    android:textColor="@color/dark_cyan"-->
+<!--                    android:fontFamily="@font/opensans_bold"-->
+<!--                    android:textSize="20sp"-->
+<!--                    tools:ignore="HardcodedText" />-->
+
+<!--            </RelativeLayout>-->
+
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/my_workout_plans">-->
+
+<!--                <ScrollView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="30dp"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_alignParentStart="true"-->
+<!--                    android:layout_alignParentBottom="true"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:background="@color/card_view"-->
+<!--                    tools:ignore="NestedScrolling,UselessParent">-->
+
+<!--                    <RelativeLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignParentEnd="true"-->
+<!--                        android:layout_alignParentStart="true"-->
+<!--                        android:layout_alignParentBottom="true"-->
+<!--                        tools:ignore="ObsoleteLayoutParam">-->
+
+<!--                        <androidx.recyclerview.widget.RecyclerView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_alignParentEnd="true"-->
+<!--                            android:layout_alignParentStart="true"-->
+<!--                            android:orientation="horizontal"-->
+<!--                            android:scrollbars="horizontal"-->
+<!--                            tools:listitem="@layout/my_workout_plans_home_list_item" />-->
+<!--                        &lt;!&ndash;                                        android:id="@+id/"&ndash;&gt;-->
+
+
+<!--                    </RelativeLayout>-->
+
+<!--                </ScrollView>-->
+
+<!--            </RelativeLayout>-->
+
+<!--        </RelativeLayout>-->
 
 
 
