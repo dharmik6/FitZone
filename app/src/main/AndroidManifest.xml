@@ -13,6 +13,12 @@
         android:theme="@style/Theme.FitZone"
         tools:targetApi="31">
         <activity
+            android:name=".Achievements"
+            android:exported="false" />
+        <activity
+            android:name=".AchievementsList"
+            android:exported="false" />
+        <activity
             android:name=".booking.BookingDetail"
             android:exported="false" />
         <activity
