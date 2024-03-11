@@ -35,9 +35,9 @@ public class Appointment extends AppCompatActivity {
        Calendar tomorrow = Calendar.getInstance();
         tomorrow.add(Calendar.DAY_OF_YEAR, 1);
 
+
         // Set minimum date for CalendarView
         SelectedCalendarView.setMinDate(tomorrow.getTimeInMillis());
-
         // Set up listener for CalendarView
         SelectedCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -72,6 +72,7 @@ public class Appointment extends AppCompatActivity {
         int minute = calendar.get(Calendar.MINUTE);
 
         TimePickerDialog timePickerDialog = new TimePickerDialog(Appointment.this,
+                R.style.MyTimePickerDialogStyle,
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
