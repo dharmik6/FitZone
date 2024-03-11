@@ -8,20 +8,21 @@
     android:background="@color/dark_blue"
     tools:context=".trainer.Appointment">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UselessLeaf">
+        tools:ignore="UselessLeaf"
+        android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
             android:background="@color/dark_blue"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="?attr/actionBarSize"
             android:layout_alignParentEnd="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
@@ -213,20 +214,6 @@
                     android:layout_alignParentStart="true"
                     tools:ignore="UselessParent">
 
-                    <RelativeLayout
-                        android:id="@+id/rl_date"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Select Date"
-                            android:paddingStart="20dp"
-                            android:textSize="16dp"
-                            android:fontFamily="@font/opensans_semicondensed_semibold"
-                            tools:ignore="HardcodedText,RtlSymmetry,SpUsage" />
-                    </RelativeLayout>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cv_calender"
@@ -236,7 +223,6 @@
                         android:backgroundTint="@color/card_view"
                         app:cardCornerRadius="10dp"
                         app:cardElevation="5dp"
-                        android:layout_below="@+id/rl_date"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentEnd="true"
                         tools:ignore="MissingConstraints"
@@ -244,110 +230,94 @@
                         android:layout_marginHorizontal="10dp">
 
 
-                        <RelativeLayout
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingVertical="5dp"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:layout_alignParentStart="true"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentTop="true">
 
-                            <RelativeLayout
-                                android:id="@+id/rl_calender"
+                            <CalendarView
+                                android:id="@+id/calendarView"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
                                 android:layout_alignParentEnd="true"
-                                android:layout_alignParentTop="true">
+                                android:layout_marginStart="0dp"
+                                android:layout_marginEnd="0dp"
+                                android:outlineSpotShadowColor="@color/dark_cyan"
+                                tools:ignore="UnusedAttribute"
+                                android:weekDayTextAppearance="@style/MyWeekDayTextAppearance"
+                                android:selectedWeekBackgroundColor="#FFFFFF"
+                                style="@style/MyWeekDayTextAppearance"
+                                />
 
-                                <CalendarView
-                                    android:id="@+id/calendarView"
-                                    android:layout_width="match_parent"
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_line"
+                                tools:ignore="ContentDescription" />
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                android:layout_marginHorizontal="20dp"
+                                android:layout_marginVertical="10dp"
+                                >
+
+                                <TextView
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_alignParentStart="true"
-                                    android:layout_alignParentEnd="true"
-                                    android:layout_marginStart="0dp"
-                                    android:layout_marginEnd="0dp"
-                                    android:outlineSpotShadowColor="@color/dark_cyan"
-                                    tools:ignore="UnusedAttribute" />
+                                    android:layout_alignParentTop="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:fontFamily="@font/nunito_semi_bold"
+                                    android:gravity="center"
+                                    android:text="Time"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
 
-                            </RelativeLayout>
-                        </RelativeLayout>
+
+                                <TextView
+                                    android:id="@+id/selected_time"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentEnd="true"
+                                    android:background="@drawable/text_bg"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:gravity="center"
+                                    android:fontFamily="@font/nunito_semi_bold"
+                                    android:hint="Select Time"
+                                    android:minHeight="48dp"
+                                    android:paddingHorizontal="15dp"
+                                    android:paddingVertical="8dp"
+                                    android:textColor="@color/black"
+                                    android:textColorHint="@color/text"
+
+
+                                    android:textSize="16sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </LinearLayout>
+
+
 
                     </androidx.cardview.widget.CardView>
 
 
-                            <RelativeLayout
-                                android:id="@+id/text_time"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="20dp"
-                                android:layout_below="@+id/cv_calender">
 
-                                <androidx.appcompat.widget.AppCompatTextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Time"
-                                    android:paddingStart="20sp"
-                                    android:fontFamily="@font/opensans_semicondensed_semibold"
-                                    android:textSize="16sp"
-                                    tools:ignore="HardcodedText,RtlSymmetry" />
-
-                            </RelativeLayout>
-
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@id/text_time">
-
-                                <androidx.cardview.widget.CardView
-                                    android:id="@+id/cv_time"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="50dp"
-                                    android:backgroundTint="@color/card_view"
-                                    app:cardCornerRadius="10dp"
-                                    app:cardElevation="5dp"
-
-                                    android:layout_alignParentStart="true"
-                                    android:layout_alignParentEnd="true"
-                                    tools:ignore="MissingConstraints"
-                                    android:layout_marginVertical="10dp"
-                                    android:layout_marginHorizontal="10dp">
-
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:paddingVertical="5dp"
-                                        android:orientation="horizontal"
-                                        android:layout_alignParentStart="true"
-                                        android:layout_alignParentEnd="true"
-                                        android:layout_alignParentTop="true">
-
-                                    <RelativeLayout
-                                        android:id="@+id/rl_time"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentStart="true"
-                                        android:layout_alignParentEnd="true"
-                                        android:layout_alignParentTop="true">
-                                        <TimePicker
-                                           android:id="@+id/timePicker"
-                                           android:layout_width="match_parent"
-                                           android:layout_height="match_parent"
-                                            android:background="@color/card_view"
-                                            android:textColor="@color/dark_cyan"/>
-
-                                    </RelativeLayout>
-                                    </RelativeLayout>
-
-                                </androidx.cardview.widget.CardView>
-
-                            </RelativeLayout>
-
-                        </RelativeLayout>
+                </RelativeLayout>
 
                 </RelativeLayout>
                 <RelativeLayout
@@ -389,7 +359,7 @@
 
         </ScrollView>
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
