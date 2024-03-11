@@ -40,6 +40,7 @@
                 android:layout_alignParentTop="true">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/tra_image"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentTop="true"
@@ -63,6 +64,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tra_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -74,6 +76,7 @@
                         tools:ignore="HardcodedText,TextSizeCheck" />
 
                     <TextView
+                        android:id="@+id/tra_specialization"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunito_bold"
@@ -83,6 +86,7 @@
                         tools:ignore="HardcodedText,SmallSp,TextContrastCheck,TextSizeCheck" />
 
                     <TextView
+                        android:id="@+id/tra_experience"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/nunito_bold"
@@ -101,6 +105,7 @@
                     android:layout_marginHorizontal="15dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tra_review"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="4.45"
