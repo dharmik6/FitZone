@@ -13,12 +13,15 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.ekn.gruzer.gaugelibrary.HalfGauge;
 import com.ekn.gruzer.gaugelibrary.Range;
+import com.example.fitzone.FragmentHeightBottomSheet;
+import com.example.fitzone.FragmentWeightBottomSheet;
 import com.example.fitzone.Profile;
 import com.example.fitzone.R;
 import com.example.fitzone.UpdateProfile;
@@ -55,6 +58,30 @@ public class FragmentReports extends Fragment {
         show_Weight=view.findViewById(R.id.show_Weight);
         show_Height=view.findViewById(R.id.show_Height);
         lineChart=view.findViewById(R.id.lineChart);
+
+        // Add click listener to edit_weight ImageView
+        ImageView editWeightImageView = view.findViewById(R.id.edit_weight);
+        editWeightImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Show FragmentWeightBottomSheet when edit_weight is clicked
+                FragmentWeightBottomSheet bottomSheet = new FragmentWeightBottomSheet();
+                bottomSheet.show(getChildFragmentManager(), bottomSheet.getTag());
+            }
+        });
+
+        // Add click listener to edit_weight ImageView
+        ImageView editHeightImageView = view.findViewById(R.id.edit_height);
+        editHeightImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Show FragmentWeightBottomSheet when edit_weight is clicked
+                FragmentHeightBottomSheet bottomSheet = new FragmentHeightBottomSheet();
+                bottomSheet.show(getChildFragmentManager(), bottomSheet.getTag());
+            }
+        });
+
+
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
