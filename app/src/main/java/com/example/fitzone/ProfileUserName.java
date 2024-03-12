@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class ProfileUserName extends AppCompatActivity {
     private FirebaseFirestore db;
     private Uri selectedImageUri;
     private static final int PICK_IMAGE_REQUEST = 1;
+    ProgressDialog progressDialog; // Declare the ProgressDialog variable
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,10 @@ public class ProfileUserName extends AppCompatActivity {
         user_username = findViewById(R.id.user_username);
         address = findViewById(R.id.address);
         phone = findViewById(R.id.phone);
+
+        progressDialog = new ProgressDialog(this); // Initialize the ProgressDialog
+        progressDialog.setMessage("Uploading image..."); // Set the message for ProgressDialog
+        progressDialog.setCancelable(false); // Prevent dismissal by tapping outside of the dialog
 
         user_camera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +95,7 @@ public class ProfileUserName extends AppCompatActivity {
 
         // Check if all fields are filled
         if (!username.isEmpty() && !userAddress.isEmpty() && !userPhone.isEmpty() && selectedImageUri != null) {
+            progressDialog.show(); // Show the progress dialog
             // Create a reference to the Firebase Storage location where you want to store the image
             StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("user_images").child(uid);
 
@@ -111,17 +118,20 @@ public class ProfileUserName extends AppCompatActivity {
                                     .document(uid)
                                     .update(userData)
                                     .addOnSuccessListener(aVoid -> {
+                                        progressDialog.dismiss(); // Dismiss the progress dialog
                                         Toast.makeText(ProfileUserName.this, "Registration successful", Toast.LENGTH_SHORT).show();
                                         // Redirect to the next activity
                                         redirectActivity(ProfileUserName.this, Gender.class, uid);
                                     })
                                     .addOnFailureListener(e -> {
+                                        progressDialog.dismiss(); // Dismiss the progress dialog
                                         // Failed to save data
                                         Toast.makeText(ProfileUserName.this, "Failed to save user data", Toast.LENGTH_SHORT).show();
                                     });
                         });
                     })
                     .addOnFailureListener(e -> {
+                        progressDialog.dismiss(); // Dismiss the progress dialog
                         // Handle failures
                         Toast.makeText(ProfileUserName.this, "Failed to upload image", Toast.LENGTH_SHORT).show();
                     });

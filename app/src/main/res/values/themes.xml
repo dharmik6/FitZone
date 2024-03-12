@@ -19,6 +19,7 @@
 
     <style name="MyTimePickerDialogStyle" parent="Theme.AppCompat.Light.Dialog">
         <item name="colorAccent">@color/dark_cyan</item>
+        <item name="android:text">@color/black</item>
     </style>
 
 

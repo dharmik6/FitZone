@@ -4,7 +4,9 @@ import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -19,9 +21,14 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Appointment extends AppCompatActivity {
     TextView selectedTimeTextView;
     CalendarView SelectedCalendarView ;
+    CircleImageView app_tre_image;
+    TextView app_tre_name,app_tre_specialization,app_tre_experience,app_tre_review;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,12 +36,39 @@ public class Appointment extends AppCompatActivity {
 
         selectedTimeTextView = findViewById(R.id.selected_time);
         SelectedCalendarView = findViewById(R.id.calendarView);
+
+        app_tre_review = findViewById(R.id.app_tre_review);
+        app_tre_experience = findViewById(R.id.app_tre_experience);
+        app_tre_specialization = findViewById(R.id.app_tre_specialization);
+        app_tre_name = findViewById(R.id.app_tre_name);
+        app_tre_image = findViewById(R.id.app_tre_image);
 /////
+        Intent intent = getIntent();
+        String trainerName = intent.getStringExtra("trainer_name");
+        String trainerImage = intent.getStringExtra("trainer_img");
+        String trainerReview = intent.getStringExtra("trainer_review");
+        String functionalStrength = intent.getStringExtra("Functional_Strength");
+        String exeee = intent.getStringExtra("trainer_eee_txt");
+
+        app_tre_review.setText(trainerReview);
+        app_tre_experience.setText(functionalStrength);
+// Assuming trainer specialization is stored in exeee
+        app_tre_specialization.setText(exeee);
+        app_tre_name.setText(trainerName);
+
+// Assuming trainer image is stored as resource ID
+//        if (trainerImage != null) {
+//            int resourceId = Integer.parseInt(trainerImage); // Assuming trainerImage is a resource ID
+//            app_tre_image.setImageResource(resourceId);
+//        } else {
+//            // If trainer image is stored as a URL or another format, handle it accordingly
+//        }
+
+
 
         // Get tomorrow's date
        Calendar tomorrow = Calendar.getInstance();
         tomorrow.add(Calendar.DAY_OF_YEAR, 1);
-
 
         // Set minimum date for CalendarView
         SelectedCalendarView.setMinDate(tomorrow.getTimeInMillis());

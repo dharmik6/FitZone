@@ -40,18 +40,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-
                     <ImageView
+                        android:id="@+id/exercises_image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/exercises_image"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
                         android:layout_gravity="center"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentEnd="true"
                         android:src="@drawable/dumbbell_img"
-                        tools:ignore="ContentDescription" />
+                        tools:ignore="ContentDescription,ExtraText,ImageContrastCheck,ObsoleteLayoutParam,UselessParent" />
+
+
                 </RelativeLayout>
 
                     <RelativeLayout

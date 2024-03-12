@@ -41,6 +41,7 @@ public class Weight extends AppCompatActivity {
             }
 
         });
+        weight_num.setValue(90);
         weight=30 ;
 
         weight_num.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {

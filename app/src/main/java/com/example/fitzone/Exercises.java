@@ -19,7 +19,7 @@ public class Exercises extends AppCompatActivity {
 
     ImageView exe_image;
     TextView exercised_name;
-    EditText exercised_body,exercised_equipment,exercised_description;
+    TextView exercised_body,exercised_equipment,exercised_description;
     ProgressDialog progressDialog;
 
     @Override

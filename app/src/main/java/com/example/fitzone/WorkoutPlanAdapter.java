@@ -46,7 +46,7 @@ public class WorkoutPlanAdapter  extends RecyclerView.Adapter<WorkoutPlanAdapter
             // Load image into CircleImageView using Glide library
             Glide.with(context)
                     .load(member.getImageUrl()) // Assuming getImage() returns the URL of the image
-                    .apply(RequestOptions.circleCropTransform()) // Apply circle crop transformation for CircleImageView
+//                    .apply(RequestOptions.circleCropTransform()) // Apply circle crop transformation for CircleImageView
                     .diskCacheStrategy(DiskCacheStrategy.ALL) // Cache image to disk
                     .into(holder.exeimage); // Load image into CircleImageView
         }

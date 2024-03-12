@@ -180,6 +180,7 @@
                                 android:layout_alignParentStart="true"
                                 tools:ignore="HardcodedText,TooDeepLayout" />
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/show_Weight"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="60.6kg"
@@ -365,7 +366,7 @@
                     tools:ignore="UselessLeaf">
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/BMI"
+                        android:id="@+id/totle_bmi_rep"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
@@ -388,16 +389,6 @@
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="80dp">
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="15.7"
-                            android:textColor="@color/black"
-                            android:fontFamily="@font/nunito_bold"
-                            android:textSize="20sp"
-                            android:layout_marginStart="20dp"
-                            android:textStyle="bold"
-                            tools:ignore="HardcodedText" />
 
                         <RelativeLayout
                             android:layout_width="wrap_content"
@@ -405,21 +396,21 @@
 
 
                             <androidx.cardview.widget.CardView
-                                android:id="@+id/cardView"
+                                android:id="@+id/tv_result"
                                 android:layout_width="24dp"
                                 android:layout_height="24dp"
                                 android:layout_marginStart="120dp"
                                 android:layout_alignParentStart="true"
-                                android:backgroundTint="#E53935"
                                 android:elevation="8dp"
                                 app:cardCornerRadius="25dp" />
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/value_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
                                 android:layout_marginStart="10dp"
-                                android:layout_toEndOf="@+id/cardView"
+                                android:layout_toEndOf="@+id/tv_result"
                                 android:fontFamily="@font/nunito_bold"
                                 android:text="Severely underweight"
                                 android:textColor="@color/black"
@@ -477,6 +468,7 @@
                             tools:ignore="HardcodedText,RelativeOverlap"/>
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/show_Height"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="224cm"

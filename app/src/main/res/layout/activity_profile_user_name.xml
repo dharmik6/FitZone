@@ -12,15 +12,17 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         tools:ignore="UselessLeaf">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
-            android:background="@color/dark_blue"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:background="@color/dark_blue"
             android:orientation="horizontal"
             tools:ignore="MissingConstraints">
 
@@ -41,10 +43,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:gravity="center"
                 android:layout_toStartOf="@+id/back"
                 android:layout_toEndOf="@+id/back"
                 android:fontFamily="@font/opensans_bold"
+                android:gravity="center"
                 android:text="@string/About_yourself"
                 android:textColor="@color/white"
                 android:textSize="20sp"
@@ -55,269 +57,278 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <RelativeLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/linearLayout"
-            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/linearLayout"
             android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:background="@drawable/login_register_bg">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:layout_marginTop="30dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:gravity="center"
-                android:fontFamily="@font/opensans_bold"
-                android:text="@string/Enter_your"
-                tools:ignore="HardcodedText" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/text2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:layout_marginTop="5dp"
-                android:layout_below="@+id/text"
-                android:textColor="@color/text"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:gravity="center"
-                android:fontFamily="@font/nunito_regular"
-                android:text="@string/This_helps"
-                tools:ignore="HardcodedText" />
-
             <RelativeLayout
-                android:id="@+id/rl_photo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_alignParentEnd="true"
+                android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
-                android:orientation="vertical"
-                android:layout_below="@+id/text2">
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                tools:ignore="ObsoleteLayoutParam,ScrollViewSize">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/text_photo"
+                    android:id="@+id/text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
                     android:layout_alignParentStart="true"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/Profile_Photo"
-                    android:textColor="@color/black"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="30dp"
                     android:fontFamily="@font/opensans_bold"
-                    android:textSize="16sp"
+                    android:gravity="center"
+                    android:text="@string/Enter_your"
+                    android:textSize="22sp"
+                    tools:ignore="HardcodedText" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/nunito_regular"
+                    android:gravity="center"
+                    android:text="@string/This_helps"
+                    android:textColor="@color/text"
+                    android:textSize="14sp"
                     tools:ignore="HardcodedText" />
 
                 <RelativeLayout
-                    android:id="@+id/rl_image"
+                    android:id="@+id/rl_photo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/text2"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/text_photo"
-                    tools:ignore="UselessParent">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/user_image"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
-                        android:layout_centerInParent="true"
-                        android:layout_marginTop="10dp"
-                        android:src="@drawable/people_img"
-                        tools:ignore="ExtraText,UselessParent,ImageContrastCheck" />
-
-                <RelativeLayout
-                    android:id="@+id/user_camera"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_alignEnd="@+id/user_image"
-                    android:layout_alignBottom="@+id/user_image"
-                    android:layout_marginStart="170dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/camera_bg">
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="10dp"
-                        android:background="@drawable/ic_photo_camera"
-                        tools:ignore="ContentDescription" />
-
-                </RelativeLayout>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_below="@+id/rl_image"
+                    android:layout_marginEnd="20dp"
                     android:orientation="vertical">
 
-                    <androidx.appcompat.widget.AppCompatCheckedTextView
-                        android:id="@+id/id_user_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
-                        android:fontFamily="@font/opensans_bold"
-                        android:layout_marginStart="25dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:text="@string/User_Name"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        tools:ignore="HardcodedText,RtlSymmetry" />
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/user_username"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/text_photo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginTop="10dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_below="@+id/id_user_name"
-                        android:background="@drawable/text_bg"
                         android:fontFamily="@font/opensans_bold"
-                        android:hint="@string/user_name"
-                        android:inputType="text"
-                        android:padding="10dp"
-                        android:paddingStart="15dp"
+                        android:text="@string/Profile_Photo"
                         android:textColor="@color/black"
-                        android:textColorHint="@color/text"
-                        android:textSize="18sp"
-                        app:cardCornerRadius="10dp"
-                        tools:ignore="HardcodedText,RtlSymmetry,TouchTargetSizeCheck" />
-
-                    <androidx.appcompat.widget.AppCompatCheckedTextView
-                        android:id="@+id/id_address"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
-                        android:fontFamily="@font/opensans_bold"
-                        android:layout_marginStart="25dp"
-                        android:layout_below="@+id/user_username"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:text="@string/Address"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        tools:ignore="HardcodedText,RtlSymmetry" />
+                        tools:ignore="HardcodedText" />
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/address"
+                    <RelativeLayout
+                        android:id="@+id/rl_image"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
+                        android:layout_below="@+id/text_photo"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
                         android:layout_marginTop="10dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_below="@+id/id_address"
-                        android:background="@drawable/text_bg"
-                        android:fontFamily="@font/opensans_bold"
-                        android:hint="@string/Address"
-                        android:inputType="text"
-                        android:padding="10dp"
-                        android:paddingStart="15dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/text"
-                        android:textSize="18sp"
-                        app:cardCornerRadius="10dp"
-                        tools:ignore="HardcodedText,RtlSymmetry,TouchTargetSizeCheck" />
+                        tools:ignore="UselessParent">
 
-                    <androidx.appcompat.widget.AppCompatCheckedTextView
-                        android:id="@+id/id_phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="25dp"
-                        android:fontFamily="@font/opensans_bold"
-                        android:layout_marginStart="25dp"
-                        android:layout_below="@+id/address"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentStart="true"
-                        android:text="@string/Phone_number"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        tools:ignore="HardcodedText,RtlSymmetry" />
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/user_image"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            android:layout_centerInParent="true"
+                            android:layout_marginTop="10dp"
+                            android:src="@drawable/people_img"
+                            tools:ignore="ExtraText,UselessParent,ImageContrastCheck" />
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/phone"
+                        <RelativeLayout
+                            android:id="@+id/user_camera"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_alignEnd="@+id/user_image"
+                            android:layout_alignBottom="@+id/user_image"
+                            android:layout_marginStart="170dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/camera_bg">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/ic_photo_camera"
+                                tools:ignore="ContentDescription" />
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="15dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_alignParentEnd="true"
+                        android:layout_below="@+id/rl_image"
                         android:layout_alignParentStart="true"
-                        android:layout_below="@+id/id_phone"
-                        android:background="@drawable/text_bg"
-                        android:fontFamily="@font/opensans_bold"
-                        android:hint="@string/phone_no"
-                        android:inputType="phone"
-                        android:maxLength="10"
-                        android:padding="10dp"
-                        android:paddingStart="15dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/text"
-                        android:textSize="18sp"
-                        app:cardCornerRadius="10dp"
-                        tools:ignore="HardcodedText,RtlSymmetry,TouchTargetSizeCheck" />
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="20dp"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatCheckedTextView
+                            android:id="@+id/id_user_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginTop="25dp"
+                            android:fontFamily="@font/opensans_bold"
+                            android:text="@string/User_Name"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            tools:ignore="HardcodedText,RtlSymmetry" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/user_username"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/id_user_name"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="15dp"
+                            android:background="@drawable/text_bg"
+                            android:fontFamily="@font/opensans_bold"
+                            android:hint="@string/user_name"
+                            android:inputType="text"
+                            android:padding="10dp"
+                            android:paddingStart="15dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/text"
+                            android:textSize="18sp"
+                            app:cardCornerRadius="10dp"
+                            tools:ignore="HardcodedText,RtlSymmetry,TouchTargetSizeCheck" />
+
+                        <androidx.appcompat.widget.AppCompatCheckedTextView
+                            android:id="@+id/id_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/user_username"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginTop="25dp"
+                            android:fontFamily="@font/opensans_bold"
+                            android:text="@string/Address"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            tools:ignore="HardcodedText,RtlSymmetry" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/id_address"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="15dp"
+                            android:background="@drawable/text_bg"
+                            android:fontFamily="@font/opensans_bold"
+                            android:hint="@string/Address"
+                            android:inputType="text"
+                            android:padding="10dp"
+                            android:paddingStart="15dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/text"
+                            android:textSize="18sp"
+                            app:cardCornerRadius="10dp"
+                            tools:ignore="HardcodedText,RtlSymmetry,TouchTargetSizeCheck" />
+
+                        <androidx.appcompat.widget.AppCompatCheckedTextView
+                            android:id="@+id/id_phone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/address"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="25dp"
+                            android:layout_marginTop="25dp"
+                            android:fontFamily="@font/opensans_bold"
+                            android:text="@string/Phone_number"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            tools:ignore="HardcodedText,RtlSymmetry" />
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/id_phone"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/text_bg"
+                            android:fontFamily="@font/opensans_bold"
+                            android:hint="@string/phone_no"
+                            android:inputType="phone"
+                            android:maxLength="10"
+                            android:padding="10dp"
+                            android:paddingStart="15dp"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/text"
+                            android:textSize="18sp"
+                            app:cardCornerRadius="10dp"
+                            tools:ignore="HardcodedText,RtlSymmetry,TouchTargetSizeCheck" />
+
+                    </RelativeLayout>
+
 
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_photo"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="30dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_next"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="25dp"
+                        android:background="@drawable/btn_bg"
+                        android:elevation="@dimen/button_elevation"
+                        android:fontFamily="@font/opensans_bold"
+                        android:gravity="center"
+                        android:shadowColor="@color/black"
+                        android:text="@string/Next"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/button_text_size"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlHardcoded" />
+
+                </RelativeLayout>
 
             </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
-                android:layout_below="@+id/rl_photo">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_next"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginEnd="25dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:background="@drawable/btn_bg"
-                android:elevation="@dimen/button_elevation"
-                android:fontFamily="@font/opensans_bold"
-                android:gravity="center"
-                android:shadowColor="@color/black"
-                android:text="@string/Next"
-                android:textColor="@color/white"
-                android:textSize="@dimen/button_text_size"
-                android:textStyle="bold"
-                tools:ignore="HardcodedText,RtlHardcoded" />
-
-            </RelativeLayout>
-
-        </RelativeLayout>
+        </ScrollView>
 
     </RelativeLayout>
 
