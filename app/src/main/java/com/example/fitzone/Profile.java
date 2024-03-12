@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +24,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Profile extends AppCompatActivity {
     CircleImageView show_image;
     AppCompatTextView show_name,show_username,show_email,show_number,show_address,show_gender,show_age,show_height,show_weight,show_goal,show_level;
-
+ImageView back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,7 @@ public class Profile extends AppCompatActivity {
         show_weight = findViewById(R.id.show_weight);
         show_goal = findViewById(R.id.show_goal);
         show_level = findViewById(R.id.show_level);
+        back = findViewById(R.id.back);
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
@@ -87,6 +89,12 @@ public class Profile extends AppCompatActivity {
 
         CardView editProfile = findViewById(R.id.edit_profile);
         editProfile.setOnClickListener(view -> redirectActivity(Profile.this, UpdateProfile.class));
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     public static void redirectActivity(Activity activity, Class secondActivity) {

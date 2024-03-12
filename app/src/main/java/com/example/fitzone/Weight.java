@@ -47,11 +47,13 @@ public class Weight extends AppCompatActivity {
         weight_num.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                if(weight_num==null)
-                {
-                    weight = 250 ;
-                }
-                else{
+                if (newVal < 30) {
+                    weight = 30;
+                    picker.setValue(30); // Ensure the picker shows the minimum value
+                } else if (newVal > 250) {
+                    weight = 250;
+                    picker.setValue(250); // Ensure the picker shows the maximum value
+                } else {
                     weight = newVal;
                 }
             }

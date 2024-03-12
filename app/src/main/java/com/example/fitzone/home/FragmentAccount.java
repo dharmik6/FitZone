@@ -53,10 +53,8 @@ public class FragmentAccount extends Fragment {
         user_acc_username = view.findViewById(R.id.user_acc_username);
         user_acc_image = view.findViewById(R.id.user_acc_image);
 
-        // Retrieve the UID from arguments bundle
-        if (getArguments() != null) {
-            uid = getArguments().getString("uid");
-        }
+
+        String uid = getArguments().getString("uid");
 
         bookings.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -88,7 +88,7 @@
                     tools:ignore="MissingConstraints,UselessLeaf">
 
                     <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/circleImageView"
+                        android:id="@+id/member_add_image"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
                         android:layout_centerInParent="true"
@@ -96,10 +96,11 @@
                         tools:ignore="ExtraText,UselessParent,ImageContrastCheck" />
 
                     <LinearLayout
+                        android:id="@+id/member_add_camera"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:layout_alignEnd="@+id/circleImageView"
-                        android:layout_alignBottom="@+id/circleImageView"
+                        android:layout_alignEnd="@+id/member_add_image"
+                        android:layout_alignBottom="@+id/member_add_image"
                         android:layout_marginStart="170dp"
                         android:layout_marginBottom="10dp"
                         android:background="@drawable/camera_bg">
@@ -169,6 +170,7 @@
                     tools:ignore="HardcodedText,RtlSymmetry" />
 
                 <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/member_add_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20sp"
@@ -198,6 +200,7 @@
                     tools:ignore="HardcodedText,RtlSymmetry" />
 
                 <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/member_add_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -227,6 +230,7 @@
                     tools:ignore="HardcodedText,RtlSymmetry" />
 
                 <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/member_add_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -256,6 +260,7 @@
                     tools:ignore="HardcodedText,RtlSymmetry" />
 
                 <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/member_add_number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -285,6 +290,7 @@
                     tools:ignore="HardcodedText,RtlSymmetry" />
 
                 <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/member_add_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
@@ -327,6 +333,7 @@
                                 tools:ignore="HardcodedText,RtlSymmetry,TooDeepLayout" />
 
                             <Spinner
+                                android:id="@+id/member_add_gender"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="15dp"
@@ -359,6 +366,7 @@
                                 tools:ignore="HardcodedText,RtlSymmetry" />
 
                             <Spinner
+                                android:id="@+id/member_add_age"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="15dp"
@@ -385,6 +393,7 @@
                         tools:ignore="HardcodedText,RtlSymmetry" />
 
                     <Spinner
+                        android:id="@+id/member_add_level"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
@@ -410,6 +419,7 @@
                         tools:ignore="HardcodedText,RtlSymmetry" />
 
                     <Spinner
+                        android:id="@+id/member_add_goal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="15dp"
@@ -448,6 +458,7 @@
                                 tools:ignore="HardcodedText,RtlSymmetry" />
 
                             <Spinner
+                                android:id="@+id/member_add_height"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
@@ -480,6 +491,7 @@
                                 tools:ignore="HardcodedText,RtlSymmetry" />
 
                             <Spinner
+                                android:id="@+id/member_add_weight"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
@@ -512,6 +524,7 @@
                     tools:ignore="NotSibling,UselessParent">
 
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/member_add_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
