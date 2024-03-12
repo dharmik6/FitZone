@@ -5,6 +5,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatTextView;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -27,6 +28,7 @@ public class Registration extends AppCompatActivity {
     CheckBox member_check;
     AppCompatButton btn_registration;
     FirebaseFirestore db;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,11 @@ public class Registration extends AppCompatActivity {
         // Initialize Firestore
         db = FirebaseFirestore.getInstance();
 
+        // Initialize ProgressDialog
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Registering...");
+        progressDialog.setCancelable(false);
+
         // Find views
         member_name = findViewById(R.id.member_name);
         member_email = findViewById(R.id.member_email);
@@ -43,8 +50,12 @@ public class Registration extends AppCompatActivity {
         member_check = findViewById(R.id.member_check);
         btn_registration = findViewById(R.id.btn_registration);
 
-        btn_registration.setOnClickListener(view -> registerUser());
+        btn_registration.setOnClickListener(view -> {
+            progressDialog.show();
+            registerUser();
+        });
     }
+
     private void registerUser() {
         String name = member_name.getText().toString().trim();
         String email = member_email.getText().toString().trim();
@@ -52,20 +63,24 @@ public class Registration extends AppCompatActivity {
         boolean isChecked = member_check.isChecked();
 
         if (!isChecked) {
+            progressDialog.dismiss();
             Toast.makeText(this, "Please agree to the terms to register.", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(name)) {
+            progressDialog.dismiss();
             member_name.setError("Please enter your name");
             return;
         }
 
         if (TextUtils.isEmpty(email)) {
+            progressDialog.dismiss();
             member_email.setError("Please enter your email");
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
+            progressDialog.dismiss();
             member_pass.setError("Please enter your password");
             return;
         }
@@ -81,21 +96,25 @@ public class Registration extends AppCompatActivity {
                         Map<String, Object> userData = new HashMap<>();
                         userData.put("name", name);
                         userData.put("email", email);
+                        userData.put("password", password);
 
                         // Add the user to Firestore with the generated UID
                         db.collection("users")
                                 .document(userId)
                                 .set(userData)
                                 .addOnSuccessListener(aVoid -> {
+                                    progressDialog.dismiss();
                                     Toast.makeText(Registration.this, "Registration successful", Toast.LENGTH_SHORT).show();
                                     // Redirect to the profile activity
                                     redirectActivity(Registration.this, ProfileUserName.class, userId);
                                 })
                                 .addOnFailureListener(e -> {
+                                    progressDialog.dismiss();
                                     Toast.makeText(Registration.this, "Failed to save user data", Toast.LENGTH_SHORT).show();
                                     // Handle failure
                                 });
                     } else {
+                        progressDialog.dismiss();
                         Toast.makeText(Registration.this, "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });

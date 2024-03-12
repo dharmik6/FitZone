@@ -17,16 +17,20 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.example.fitzone.Feedback;
 import com.example.fitzone.Login;
+import com.example.fitzone.PrivacyPolicy;
 import com.example.fitzone.Profile;
 import com.example.fitzone.R;
+import com.example.fitzone.booking.BookingList;
+import com.example.fitzone.membership.Membership;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class FragmentAccount extends Fragment {
-    RelativeLayout profile, logout;
+    RelativeLayout profile, logout , bookings,membership,rateUs ,feedBack,privacyPolicy;
     AppCompatTextView user_acc_name, user_acc_username;
     ImageView user_acc_image;
     String uid;
@@ -39,6 +43,12 @@ public class FragmentAccount extends Fragment {
         // Initialize views
         profile = view.findViewById(R.id.rl_profile);
         logout = view.findViewById(R.id.rl_logout);
+        bookings = view.findViewById(R.id.rl_bookings);
+        membership = view.findViewById(R.id.rl_membership);
+        privacyPolicy = view.findViewById(R.id.rl_privacy_policy);
+        rateUs = view.findViewById(R.id.rl_rate_us);
+        feedBack = view.findViewById(R.id.rl_feedback);
+
         user_acc_name = view.findViewById(R.id.user_acc_name);
         user_acc_username = view.findViewById(R.id.user_acc_username);
         user_acc_image = view.findViewById(R.id.user_acc_image);
@@ -47,6 +57,42 @@ public class FragmentAccount extends Fragment {
         if (getArguments() != null) {
             uid = getArguments().getString("uid");
         }
+
+        bookings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), BookingList.class);
+                startActivity(intent);
+            }
+        });
+        membership.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), Membership.class);
+                startActivity(intent);
+            }
+        });
+        privacyPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), PrivacyPolicy.class);
+                startActivity(intent);
+            }
+        });
+        rateUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        feedBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), Feedback.class);
+                startActivity(intent);
+            }
+        });
+
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
