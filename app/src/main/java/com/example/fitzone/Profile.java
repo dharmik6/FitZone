@@ -24,7 +24,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Profile extends AppCompatActivity {
     CircleImageView show_image;
     AppCompatTextView show_name,show_username,show_email,show_number,show_address,show_gender,show_age,show_height,show_weight,show_goal,show_level;
-ImageView back;
+    ImageView back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

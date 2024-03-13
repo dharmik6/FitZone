@@ -90,26 +90,6 @@ public class FragmentReports extends Fragment {
             }
         });
 
-        return view;
-    }
-
-    public static void redirectActivity(Activity activity, Class secondActivity) {
-        Intent intent = new Intent(activity, secondActivity);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        activity.startActivity(intent);
-    }
-
-    private float calculateBMIValue(float weight, float height) {
-        return weight / (height * height);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        loadDietData();
-    }
-
-    private void loadDietData() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -202,6 +182,8 @@ public class FragmentReports extends Fragment {
                         bmiCategory = "Severely obese";
                     }
 
+
+
                     // chart
                     cardView.setCardBackgroundColor(color);
                     valueText.setText(bmiCategory);
@@ -256,5 +238,18 @@ public class FragmentReports extends Fragment {
                 }
             });
         }
+
+        return view;
     }
+
+    public static void redirectActivity(Activity activity, Class secondActivity) {
+        Intent intent = new Intent(activity, secondActivity);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        activity.startActivity(intent);
+    }
+
+    private float calculateBMIValue(float weight, float height) {
+        return weight / (height * height);
+    }
+
 }
