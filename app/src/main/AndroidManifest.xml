@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitZone"
         tools:targetApi="31">
+        <activity
+            android:name=".OrderDetail"
+            android:exported="false" />
         <activity
             android:name=".Achievements"
             android:exported="false" />
@@ -38,7 +40,7 @@
             android:name=".membership.Membership"
             android:exported="false" />
         <activity
-            android:name=".UpdateProfile"
+            android:name=".Gender"
             android:exported="false" />
         <activity
             android:name=".Profile"
@@ -98,7 +100,7 @@
             android:name=".Height"
             android:exported="false" />
         <activity
-            android:name=".Gender"
+            android:name=".UpdateProfile"
             android:exported="false" />
         <activity
             android:name=".Weight"
