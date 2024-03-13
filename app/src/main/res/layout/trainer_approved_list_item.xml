@@ -95,26 +95,26 @@
                         android:textSize="12sp"
                         tools:ignore="HardcodedText,SmallSp,TextContrastCheck,TextSizeCheck" />
                 </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/linner2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:background="@drawable/trainer_rating_bg"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginHorizontal="15dp">
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/linner2"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="15dp"-->
+<!--                    android:background="@drawable/trainer_rating_bg"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_marginHorizontal="15dp">-->
 
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tra_review"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="4.45"
-                        android:fontFamily="@font/opensans_bold"
-                        android:textSize="12sp"
-                        android:padding="8dp"
-                        android:textColor="@color/white"
-                        tools:ignore="HardcodedText" />
-                </LinearLayout>
+<!--                    <androidx.appcompat.widget.AppCompatTextView-->
+<!--                        android:id="@+id/tra_review"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="4.45"-->
+<!--                        android:fontFamily="@font/opensans_bold"-->
+<!--                        android:textSize="12sp"-->
+<!--                        android:padding="8dp"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        tools:ignore="HardcodedText" />-->
+<!--                </LinearLayout>-->
 
             </RelativeLayout>
 

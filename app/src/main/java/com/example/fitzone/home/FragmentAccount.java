@@ -80,7 +80,8 @@ public class FragmentAccount extends Fragment {
         rateUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+//                Intent intent = new Intent(getContext(), W.class);
+//                startActivity(intent);
             }
         });
         feedBack.setOnClickListener(new View.OnClickListener() {

@@ -39,7 +39,7 @@
                 tools:ignore="Orientation">
 
             <com.shawnlin.numberpicker.NumberPicker
-                android:id="@+id/weight"
+                android:id="@+id/weight_up_new"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_gravity="center"
@@ -70,7 +70,7 @@
                 android:src="@drawable/ic_polygon"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/weight"
+                android:layout_below="@+id/weight_up_new"
                 tools:ignore="ContentDescription" />
 
             </RelativeLayout>

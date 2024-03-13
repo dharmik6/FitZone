@@ -156,8 +156,8 @@ public class FragmentHome extends Fragment {
         view_exe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), DietList.class);
-//                startActivity(intent);
+                Intent intent = new Intent(getActivity(), WorkoutPlan.class);
+                startActivity(intent);
             }
         });
 

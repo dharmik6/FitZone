@@ -48,6 +48,11 @@ import java.util.List;
 public class FragmentReports extends Fragment {
     TextView show_Weight,show_Height;
     LineChart lineChart;
+    HalfGauge halfGauge;
+    CardView cardView;
+    TextView tvResult;
+    TextView valueText;
+
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +63,10 @@ public class FragmentReports extends Fragment {
         show_Weight=view.findViewById(R.id.show_Weight);
         show_Height=view.findViewById(R.id.show_Height);
         lineChart=view.findViewById(R.id.lineChart);
+        halfGauge = view.findViewById(R.id.halfGauge);
+        cardView = view.findViewById(R.id.tv_result);
+        tvResult = view.findViewById(R.id.totle_bmi_rep);
+        valueText = view.findViewById(R.id.value_text);
 
         // Add click listener to edit_weight ImageView
         ImageView editWeightImageView = view.findViewById(R.id.edit_weight);
@@ -81,8 +90,26 @@ public class FragmentReports extends Fragment {
             }
         });
 
+        return view;
+    }
 
+    public static void redirectActivity(Activity activity, Class secondActivity) {
+        Intent intent = new Intent(activity, secondActivity);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        activity.startActivity(intent);
+    }
 
+    private float calculateBMIValue(float weight, float height) {
+        return weight / (height * height);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        loadDietData();
+    }
+
+    private void loadDietData() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -91,13 +118,14 @@ public class FragmentReports extends Fragment {
                 if (documentSnapshot.exists()) {
                     String memberweight = documentSnapshot.getString("weight");
                     String memberheight = documentSnapshot.getString("height");
+                    String newWeight = documentSnapshot.getString("newWeight");
 
                     show_Weight.setText(memberweight != null ? memberweight : "No weight");
                     show_Height.setText(memberheight != null ? memberheight : "No height");
 
 
                     // Get the weight and height as strings from TextViews
-                    String weightStr = memberweight;
+                    String weightStr = newWeight;
 //                    .getText().toString().trim();
                     String heightStr = memberheight;
 //                    .getText().toString().trim();
@@ -110,12 +138,7 @@ public class FragmentReports extends Fragment {
                     float bmi = calculateBMIValue(weight, height);
 
                     // Display the BMI
-                    TextView tvResult = view.findViewById(R.id.totle_bmi_rep);
                     tvResult.setText("Your BMI : " + bmi);
-
-                    // Setting up HalfGauge and CardView for BMI chart
-                    HalfGauge halfGauge = view.findViewById(R.id.halfGauge);
-                    CardView cardView = view.findViewById(R.id.tv_result);
 
                     double value = bmi; // Set your value here
 
@@ -179,70 +202,59 @@ public class FragmentReports extends Fragment {
                         bmiCategory = "Severely obese";
                     }
 
+                    // chart
                     cardView.setCardBackgroundColor(color);
-                    TextView valueText = view.findViewById(R.id.value_text);
                     valueText.setText(bmiCategory);
 
                     halfGauge.setMinValue(15);
                     halfGauge.setMaxValue(40.0);
                     halfGauge.setValue(value);
+
+                    // Create a list of entries representing the data points on the chart
+                    List<Entry> entries = new ArrayList<>();
+                    entries.add(new Entry(0, 88));
+                    entries.add(new Entry(1, 85));
+                    entries.add(new Entry(2, 78));
+                    entries.add(new Entry(12, weight)); // Use index 3 for the current weight
+                    entries.add(new Entry(14, Float.parseFloat(newWeight))); // Use index 4 for the new weight
+
+                    // Create a dataset from the entries
+                    LineDataSet dataSet = new LineDataSet(entries, "Label for the dataset");
+                    dataSet.setColor(Color.BLUE); // Set the color of the line
+                    dataSet.setValueTextColor(Color.RED); // Set the color of the values
+                    dataSet.setLineWidth(2f); // Set the width of the line
+
+                    // Create a LineData object with the dataset
+                    LineData lineData = new LineData(dataSet);
+
+                    // Set the data to the chart
+                    lineChart.setData(lineData);
+
+                    // Customize the appearance of the chart
+                    lineChart.getDescription().setEnabled(false); // Disable description
+                    lineChart.setTouchEnabled(true); // Enable touch gestures
+                    lineChart.setDragEnabled(true); // Enable drag and drop gestures
+                    lineChart.setScaleEnabled(true); // Enable scaling gestures
+                    lineChart.setPinchZoom(true); // Enable pinch zoom
+                    lineChart.setDrawGridBackground(false); // Disable grid background
+
+                    // Customize the X axis
+                    XAxis xAxis = lineChart.getXAxis();
+                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); // Position at the bottom
+                    xAxis.setGranularity(1f); // Interval between each X axis value
+
+                    // Customize the Y axis
+                    YAxis yAxis = lineChart.getAxisLeft();
+                    yAxis.setGranularity(5f); // Interval between each Y axis value
+
+                    // Disable the right Y axis
+                    lineChart.getAxisRight().setEnabled(false);
+
+                    // Invalidate the chart to refresh
+                    lineChart.invalidate();
+
                 }
             });
         }
-
-        // Create a list of entries representing the data points on the chart
-        List<Entry> entries = new ArrayList<>();
-        entries.add(new Entry(0, 88));
-        entries.add(new Entry(1, 85));
-        entries.add(new Entry(2, 78));
-        entries.add(new Entry(3, 75));
-        entries.add(new Entry(4, 70));
-
-        // Create a dataset from the entries
-        LineDataSet dataSet = new LineDataSet(entries, "Label for the dataset");
-        dataSet.setColor(Color.BLUE); // Set the color of the line
-        dataSet.setValueTextColor(Color.RED); // Set the color of the values
-        dataSet.setLineWidth(2f); // Set the width of the line
-
-        // Create a LineData object with the dataset
-        LineData lineData = new LineData(dataSet);
-
-        // Set the data to the chart
-        lineChart.setData(lineData);
-
-        // Customize the appearance of the chart
-        lineChart.getDescription().setEnabled(false); // Disable description
-        lineChart.setTouchEnabled(true); // Enable touch gestures
-        lineChart.setDragEnabled(true); // Enable drag and drop gestures
-        lineChart.setScaleEnabled(true); // Enable scaling gestures
-        lineChart.setPinchZoom(true); // Enable pinch zoom
-        lineChart.setDrawGridBackground(false); // Disable grid background
-
-        // Customize the X axis
-        XAxis xAxis = lineChart.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM); // Position at the bottom
-        xAxis.setGranularity(1f); // Interval between each X axis value
-
-        // Customize the Y axis
-        YAxis yAxis = lineChart.getAxisLeft();
-        yAxis.setGranularity(5f); // Interval between each Y axis value
-
-        // Disable the right Y axis
-        lineChart.getAxisRight().setEnabled(false);
-
-        // Invalidate the chart to refresh
-        lineChart.invalidate();
-
-        return view;
     }
-
-    public static void redirectActivity(Activity activity, Class secondActivity) {
-        Intent intent = new Intent(activity, secondActivity);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        activity.startActivity(intent);
-    }
-    private float calculateBMIValue(float weight, float height) {
-        return weight / (height * height);
-    }
-
 }

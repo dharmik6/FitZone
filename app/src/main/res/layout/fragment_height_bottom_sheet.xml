@@ -39,7 +39,7 @@
                 tools:ignore="Orientation">
 
                 <com.shawnlin.numberpicker.NumberPicker
-                    android:id="@+id/weight"
+                    android:id="@+id/height_up_new"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
@@ -60,8 +60,7 @@
                     app:np_textAlign="textAlignCenter"
                     app:np_textColor="@color/black"
                     app:np_textSize="30dp"
-                    app:np_value="60"
-                    tools:ignore="SpeakableTextPresentCheck" />
+                    app:np_value="60" />
 
             </RelativeLayout>
 
@@ -71,7 +70,7 @@
                 android:orientation="horizontal">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/exe_delete"
+                    android:id="@+id/exe_het_delete"
                     android:layout_width="140dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="30dp"
@@ -87,7 +86,7 @@
                     tools:ignore="HardcodedText,TouchTargetSizeCheck,TextContrastCheck" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/exe_update"
+                    android:id="@+id/exe_het_update"
                     android:layout_width="140dp"
                     android:layout_height="40dp"
                     android:layout_marginStart="20dp"

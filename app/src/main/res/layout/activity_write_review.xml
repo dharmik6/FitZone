@@ -125,6 +125,7 @@
                             android:layout_below="@+id/rating">
 
                             <androidx.appcompat.widget.AppCompatEditText
+                                android:id="@+id/review_text"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="Review (Optional)"
@@ -160,6 +161,7 @@
                     tools:ignore="NotSibling,UselessParent">
 
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/review_button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"

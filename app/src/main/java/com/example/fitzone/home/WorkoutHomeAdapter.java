@@ -1,4 +1,4 @@
-package com.example.fitzone;
+package com.example.fitzone.home;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,15 +14,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
+import com.example.fitzone.ExercisesAdapter;
+import com.example.fitzone.ExercisesItemList;
+import com.example.fitzone.R;
+import com.example.fitzone.WorkoutPlan;
 
 import java.util.List;
 
-public class ExercisesAdapter extends RecyclerView.Adapter<ExercisesAdapter.ViewHolder> {
+public class WorkoutHomeAdapter  extends RecyclerView.Adapter<WorkoutHomeAdapter.ViewHolder> {
     private List<ExercisesItemList> exercisesItemLists;
     Context context;
 
-    public ExercisesAdapter(Context context, List<ExercisesItemList> exercisesItemLists) {
+    public WorkoutHomeAdapter(Context context, List<ExercisesItemList> exercisesItemLists) {
         this.exercisesItemLists = exercisesItemLists;
         this.context = context;
 
@@ -30,13 +33,13 @@ public class ExercisesAdapter extends RecyclerView.Adapter<ExercisesAdapter.View
 
     @NonNull
     @Override
-    public ExercisesAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public WorkoutHomeAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View tra = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_workout_plans_home_list_item, parent, false);
-        return new ExercisesAdapter.ViewHolder(tra);
+        return new WorkoutHomeAdapter.ViewHolder(tra);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ExercisesAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull WorkoutHomeAdapter.ViewHolder holder, int position) {
         ExercisesItemList member = exercisesItemLists.get(position);
         holder.exename.setText(member.getName());
         holder.exebody.setText(member.getGoal());
@@ -61,12 +64,12 @@ public class ExercisesAdapter extends RecyclerView.Adapter<ExercisesAdapter.View
                 if (position != RecyclerView.NO_POSITION) {
                     ExercisesItemList item = exercisesItemLists.get(position);
 
-                    // Create an intent to start the MembersProfile activity
+//                     Create an intent to start the MembersProfile activity
                     Intent intent = new Intent(context, WorkoutPlan.class);
                     // Pass data to the intent
-//                    intent.putExtra("image", item.getImage());
-//                    intent.putExtra("name", item.getName());
-//                    intent.putExtra("goal", item.getGoal());
+                    intent.putExtra("image", item.getImage());
+                    intent.putExtra("name", item.getName());
+                    intent.putExtra("goal", item.getGoal());
 //                    intent.putExtra("body", item.getBody());
 
                     // Start the activity
