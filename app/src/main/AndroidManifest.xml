@@ -13,6 +13,9 @@
         android:theme="@style/Theme.FitZone"
         tools:targetApi="31">
         <activity
+            android:name=".PaymentCompleted"
+            android:exported="false" />
+        <activity
             android:name=".OrderDetail"
             android:exported="false" />
         <activity
