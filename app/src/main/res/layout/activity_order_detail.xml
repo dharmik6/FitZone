@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue"
+    tools:context=".OrderDetail">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UselessLeaf"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:background="@color/dark_blue"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints,ObsoleteLayoutParam">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_arrow_small_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:layout_toStartOf="@+id/back"
+                android:layout_toEndOf="@+id/back"
+                android:fontFamily="@font/opensans_bold"
+                android:text="Payment"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/back"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/linearLayout"
+                android:background="@color/card_view"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="true"
+                tools:ignore="ObsoleteLayoutParam">
+
+            <RelativeLayout
+                android:id="@+id/rl_al_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                tools:ignore="ObsoleteLayoutParam">
+
+                <LinearLayout
+                    android:id="@+id/rl_Appointment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="vertical"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    tools:ignore="UselessParent">
+
+                    <android.widget.TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Order Details"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:paddingStart="10dp"
+                        android:layout_alignParentStart="true"
+                        android:textColor="@color/black"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/opensans_bold"
+                        android:textSize="20dp"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="35dp"
+                        android:src="@drawable/ic_line"
+                        tools:ignore="ContentDescription" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/nunito_bold"
+                        android:paddingStart="10dp"
+                        android:text="Trainer"
+                        android:textSize="16sp"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="5dp"
+                            android:paddingStart="10dp"
+                            android:layout_marginEnd="30dp"
+                            android:orientation="horizontal"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/app_tre_image"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="5dp"
+                                app:civ_border_width="1dp"
+                                app:civ_border_color="@color/text"
+                                android:src="@drawable/people_imge"
+                                tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck" />
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginStart="70dp"
+                                android:layout_marginEnd="70dp"
+                                android:layout_alignStart="@id/linner2"
+                                android:layout_marginTop="10dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/app_tre_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nunito_bold"
+                                    android:text="trainer_name"
+                                    android:textColor="@color/black"
+                                    android:textSize="14sp"
+                                    android:textStyle="bold"
+                                    tools:ignore="HardcodedText,TextSizeCheck" />
+
+                                <TextView
+                                    android:id="@+id/app_tre_experience"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nunito_bold"
+                                    android:text="High Intensity Training"
+                                    android:layout_below="@+id/app_tre_name"
+                                    android:textColor="@color/greenish_cyan"
+                                    android:textSize="12sp"
+                                    tools:ignore="HardcodedText,SmallSp,TextContrastCheck,TextSizeCheck" />
+                            </RelativeLayout>
+                            <RelativeLayout
+                                android:id="@+id/linner2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="15dp"
+                                android:background="@drawable/trainer_rating_bg"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginHorizontal="15dp">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/app_tre_review"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="4.45"
+                                    android:fontFamily="@font/opensans_bold"
+                                    android:textSize="12sp"
+                                    android:padding="8dp"
+                                    android:textColor="@color/white"
+                                    tools:ignore="HardcodedText" />
+                            </RelativeLayout>
+
+                        </RelativeLayout>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="35dp"
+                            android:src="@drawable/ic_line"
+                            tools:ignore="ContentDescription" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:paddingStart="10dp"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/nunito_regular"
+                            android:text="Date"
+                            android:textColor="@color/text"/>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="10dp"
+                            android:text="20 October 2021 - Wednesday"
+                            android:textSize="18sp"/>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="200dp"
+                                android:paddingStart="10dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentStart="true"
+                                android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Start time"
+                                android:textColor="@color/text"
+                                android:fontFamily="@font/nunito_regular"
+                                android:textSize="14sp"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="09:30 AM"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"/>
+                            </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="200dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentStart="true"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="End time"
+                                    android:textColor="@color/text"
+                                    android:fontFamily="@font/nunito_regular"
+                                    android:textSize="14sp"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="09:30 AM"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"/>
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="35dp"
+                            android:src="@drawable/ic_line"
+                            tools:ignore="ContentDescription" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:orientation="horizontal">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="200dp"
+                                android:paddingStart="10dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentEnd="true"
+                                android:text="Estimated Cost"
+                                android:textSize="14sp"
+                                android:textColor="@color/text"/>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="250dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentEnd="true"
+                                android:text="₹999.00"
+                                android:textSize="14sp"
+                                android:textColor="@color/black">
+
+                            </androidx.appcompat.widget.AppCompatTextView>
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/ic_line"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginEnd="35dp"
+                        tools:ignore="ContentDescription" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginEnd="25dp"
+                        android:layout_marginVertical="30dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentStart="true"
+                        android:background="@drawable/btn_bg"
+                        android:elevation="@dimen/button_elevation"
+                        android:fontFamily="@font/opensans_bold"
+                        android:gravity="center"
+                        android:shadowColor="@color/black"
+                        android:text="Pay now"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/button_text_size"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlHardcoded" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

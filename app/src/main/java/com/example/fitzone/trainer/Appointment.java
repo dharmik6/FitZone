@@ -24,7 +24,7 @@ import java.util.Locale;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Appointment extends AppCompatActivity {
-    TextView selectedTimeTextView;
+    TextView startTime ,endTime;
     CalendarView SelectedCalendarView ;
     CircleImageView app_tre_image;
     TextView app_tre_name,app_tre_specialization,app_tre_experience,app_tre_review;
@@ -34,7 +34,8 @@ public class Appointment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_appointment);
 
-        selectedTimeTextView = findViewById(R.id.selected_time);
+        startTime = findViewById(R.id.strat_time);
+        endTime = findViewById(R.id.end_time);
         SelectedCalendarView = findViewById(R.id.calendarView);
 
         app_tre_review = findViewById(R.id.app_tre_review);
@@ -92,33 +93,67 @@ public class Appointment extends AppCompatActivity {
         });
 
 /////
-        selectedTimeTextView.setOnClickListener(new View.OnClickListener() {
+        startTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showTimePickerDialog();
+                showStrartTimePickerDialog();
+            }
+        });
+        endTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                    showEndTimePickerDialog();
+
             }
         });
     }
 
-    private void showTimePickerDialog() {
+    private void showStrartTimePickerDialog() {
         final Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        int minute = calendar.get(Calendar.MINUTE);
 
-        TimePickerDialog timePickerDialog = new TimePickerDialog(Appointment.this,
-                R.style.MyTimePickerDialogStyle,
+        TimePickerDialog timePickerDialog = new TimePickerDialog(
+                Appointment.this,
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        String selectedTime = hourOfDay + ":" + minute;
+                        String selectedTime = hourOfDay + ":00"; // Set minutes to 00
                         if (validateTime(selectedTime)) {
-                            selectedTimeTextView.setText(selectedTime);
+                            startTime.setText(selectedTime);
                         } else {
                             Toast.makeText(Appointment.this, "Please select time between 7:00 AM and 7:00 PM", Toast.LENGTH_SHORT).show();
-
                         }
                     }
-                }, hour, minute, false);
+                },
+                hour,
+                0, // Set minutes to 0
+                false
+        );
+
+        timePickerDialog.show();
+    }
+    private void showEndTimePickerDialog() {
+        final Calendar calendar = Calendar.getInstance();
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+
+        TimePickerDialog timePickerDialog = new TimePickerDialog(
+                Appointment.this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        String selectedTime = hourOfDay + ":00"; // Set minutes to 00
+                        if (validateTime(selectedTime)) {
+                            endTime.setText(selectedTime);
+                        } else {
+                            Toast.makeText(Appointment.this, "Please select time between 7:00 AM and 7:00 PM", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                hour,
+                0, // Set minutes to 0
+                false
+        );
 
         timePickerDialog.show();
     }
