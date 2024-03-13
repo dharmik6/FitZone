@@ -88,6 +88,7 @@
                 tools:ignore="ObsoleteLayoutParam,UselessLeaf">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/review_show_re"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/opensans_bold"
@@ -130,6 +131,19 @@
                     android:textColor="@color/black"
                     android:text="174 Ratings"
                     tools:ignore="HardcodedText" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/revireshoew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito_regular"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:textColor="@color/black"
+                    android:text="174 Ratings"
+                    tools:ignore="HardcodedText" />
 
             </RelativeLayout>
                 <RelativeLayout
@@ -145,6 +159,7 @@
                     tools:ignore="UselessLeaf">
 
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyc_review"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:scrollbars="vertical"

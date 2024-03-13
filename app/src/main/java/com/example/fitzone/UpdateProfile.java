@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -130,61 +129,98 @@ public class UpdateProfile extends AppCompatActivity {
         member_add_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateProfile();
+                // Retrieve current user information from Firebase Authentication
+                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+                if (currentUser != null) {
+                    // Prepare data to update
+                    String userId = currentUser.getUid();
+                    String name = member_add_name.getText().toString();
+                    String username = member_add_username.getText().toString();
+                    String email = member_add_email.getText().toString();
+                    String phoneNumber = member_add_number.getText().toString();
+                    String address = member_add_address.getText().toString();
+                    String gender = member_add_gender.getSelectedItem().toString();
+                    String age = member_add_age.getSelectedItem().toString();
+                    String height = member_add_height.getSelectedItem().toString();
+                    String weight = member_add_weight.getSelectedItem().toString();
+                    String goal = member_add_goal.getSelectedItem().toString();
+                    String level = member_add_level.getSelectedItem().toString();
+
+                    // Showing progress dialog while uploading
+                    progressDialog = new ProgressDialog(UpdateProfile.this);
+                    progressDialog.setTitle("Uploading");
+                    progressDialog.setMessage("Please wait...");
+                    progressDialog.show();
+
+                    // Upload image to Firebase Storage
+                    final StorageReference imageRef = storageRef.child("profile_images/" + userId + ".jpg");
+                    UploadTask uploadTask = imageRef.putFile(selectedImageUri);
+
+                    uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                        @Override
+                        public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                            if (!task.isSuccessful()) {
+                                throw task.getException();
+                            }
+                            return imageRef.getDownloadUrl();
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri downloadUri) {
+                            // Image uploaded successfully, now update Firestore document with image URL
+                            String imageUrl = downloadUri.toString();
+
+                            // Create a map to store user data
+                            Map<String, Object> userData = new HashMap<>();
+                            userData.put("name", name);
+                            userData.put("username", username);
+                            userData.put("email", email);
+                            userData.put("number", phoneNumber);
+                            userData.put("address", address);
+                            userData.put("gender", gender);
+                            userData.put("age", age);
+                            userData.put("height", height);
+                            userData.put("weight", weight);
+                            userData.put("goal", goal);
+                            userData.put("activity", level);
+                            userData.put("image", imageUrl);
+
+                            // Update Firestore document with the new data
+                            DocumentReference userRef = db.collection("users").document(userId);
+                            userRef.set(userData)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            // Document successfully updated
+                                            progressDialog.dismiss();
+                                            Toast.makeText(UpdateProfile.this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            // Handle errors
+                                            progressDialog.dismiss();
+                                            Toast.makeText(UpdateProfile.this, "Failed to update profile: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            // Handle image upload failure
+                            progressDialog.dismiss();
+                            Toast.makeText(UpdateProfile.this, "Failed to upload image: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                } else {
+                    // User not logged in
+                    Toast.makeText(UpdateProfile.this, "User not logged in", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-    }
-
-    private void updateProfile() {
-        String name = member_add_name.getText().toString().trim();
-        String username = member_add_username.getText().toString().trim();
-        String email = member_add_email.getText().toString().trim();
-        String phoneNumber = member_add_number.getText().toString().trim();
-        String address = member_add_address.getText().toString().trim();
-
-        // Validate name
-        if (TextUtils.isEmpty(name)) {
-            member_add_name.setError("Please enter your name");
-            member_add_name.requestFocus();
-            return;
-        }
-
-        // Validate username
-        if (TextUtils.isEmpty(username)) {
-            member_add_username.setError("Please enter your username");
-            member_add_username.requestFocus();
-            return;
-        }
-
-        // Validate email
-        if (TextUtils.isEmpty(email)) {
-            member_add_email.setError("Please enter your email");
-            member_add_email.requestFocus();
-            return;
-        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            member_add_email.setError("Please enter a valid email address");
-            member_add_email.requestFocus();
-            return;
-        }
-
-        // Validate phoneNumber
-        if (TextUtils.isEmpty(phoneNumber)) {
-            member_add_number.setError("Please enter your phone number");
-            member_add_number.requestFocus();
-            return;
-        }
-
-        // Validate address
-        if (TextUtils.isEmpty(address)) {
-            member_add_address.setError("Please enter your address");
-            member_add_address.requestFocus();
-            return;
-        }
-
-        // If all validations pass, proceed with updating the profile
-        // You can place the existing code for updating the profile here
-        // Example:
-        // uploadProfileData(name, username, email, phoneNumber, address);
     }
 
     // Method to handle image selection result

@@ -42,7 +42,7 @@ public class TrainerApprovedAdapter extends RecyclerView.Adapter<TrainerApproved
         holder.textTname.setText(member.getTname());
         holder.textexperience.setText(member.getExperience());
         holder.textspecialization.setText(member.getSpecialization());
-        holder.textreview.setText(member.getReview());
+//        holder.textreview.setText(member.getReview());
 
         // Check if the context is not null before loading the image
         if (context != null) {
@@ -98,7 +98,7 @@ public class TrainerApprovedAdapter extends RecyclerView.Adapter<TrainerApproved
             textexperience = itemView.findViewById(R.id.tra_experience);
             textspecialization = itemView.findViewById(R.id.tra_specialization);
             textTimage = itemView.findViewById(R.id.tra_image);
-            textreview = itemView.findViewById(R.id.tra_review);
+//            textreview = itemView.findViewById(R.id.tra_review);
         }
     }
 }

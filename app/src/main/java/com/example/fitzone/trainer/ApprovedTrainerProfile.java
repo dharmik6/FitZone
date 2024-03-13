@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.fitzone.R;
@@ -19,20 +20,22 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
 
     ImageView trainer_img_txt;
     Button book_btn_registration;
-    TextView Functional_Strength_txt,trainer_name_txt,trainer_pay_txt,trainer_review_txt,review_show_all,trainer_eee_txt;
+    TextView Functional_Strength_txt,trainer_name_txt,trainer_pay_txt,trainer_review_txt,review_show_allkaku,trainer_eee_txt,kalu;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_approved_trainer_profile);
+
         trainer_img_txt=findViewById(R.id.trainer_img_txt);
         book_btn_registration=findViewById(R.id.book_btn_registration);
         Functional_Strength_txt=findViewById(R.id.Functional_Strength_txt);
         trainer_name_txt=findViewById(R.id.trainer_name_txt);
         trainer_pay_txt=findViewById(R.id.trainer_pay_txt);
         trainer_review_txt=findViewById(R.id.trainer_review_txt);
-        review_show_all=findViewById(R.id.review_show_all);
+        review_show_allkaku=findViewById(R.id.review_show_allkaku);
         trainer_eee_txt=findViewById(R.id.trainer_eee_txt);
+        kalu=findViewById(R.id.kalu);
 
         Intent intent = getIntent();
         String memberid = intent.getStringExtra("name");
@@ -47,26 +50,46 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
                 String emaile = documentSnapshot.getString("pay");
                 String imagee = documentSnapshot.getString("image");
                 String experience = documentSnapshot.getString("experience");
-
+                String treid1 = documentSnapshot.getId();
 //                 Check if the userNameFromIntent matches the user
+
                 if (memberid.equals(namee)) {
                     // Display the data only if they match
                     trainer_name_txt.setText(namee != null ? namee : "No name");
                     trainer_eee_txt.setText(experience != null ? experience : "No name");
-                    Functional_Strength_txt.setText(name != null ? name : "No name");
-                    trainer_review_txt.setText(specializatione != null ? specializatione : "No specialization");
-                    trainer_pay_txt.setText(emaile != null ? emaile : "No email");
+                    Functional_Strength_txt.setText(name != null ? name : "No Functional Strength");
+//                    trainer_review_txt.setText(specializatione != null ? specializatione : "No review");
+                    trainer_pay_txt.setText(emaile != null ? emaile : "No price");
+                    kalu.setText(treid1 != null ? treid1 : "No price");
+
                     if (imagee != null) {
                         Glide.with(ApprovedTrainerProfile.this)
                                 .load(imagee)
                                 .into(trainer_img_txt);
                     }
-                } else {
-                    // userNameFromIntent and user don't match, handle accordingly
-//                    showToast("User data does not match the intent.");
                 }
+                String trid=kalu.getText().toString().trim();
+                FirebaseFirestore db2 = FirebaseFirestore.getInstance();
+                db2.collection("trainers").document(trid).collection("trainers_review").get().addOnSuccessListener(queryDocumentSnapshots1 -> {
+                    for (QueryDocumentSnapshot documentSnapshot1 : queryDocumentSnapshots1) {
+                        String rating = documentSnapshot1.getString("rating");
+                        String review = documentSnapshot1.getString("review");
+                        trainer_review_txt.setText(rating != null ? rating : "No name");
+                    }
+                });
+
+                review_show_allkaku.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent1 = new Intent(ApprovedTrainerProfile.this, Review.class);
+                        intent1.putExtra("treid", trid);
+                        startActivity(intent1);
+                    }
+                });
             }
         });
+//
+//        String treid=kalu.getText().toString().trim();
 
         book_btn_registration.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,11 +105,5 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
             }
         });
 
-        review_show_all.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ApprovedTrainerProfile.this,Review.class));
-            }
-        });
     }
 }
