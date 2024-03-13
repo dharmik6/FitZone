@@ -418,66 +418,7 @@
 
                     </RelativeLayout>
 
-                    <RelativeLayout
-                        android:id="@+id/rl_rate_us"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginTop="40dp"
-                        android:layout_below="@+id/rl_privacy_policy">
 
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            tools:ignore="UselessParent">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:src="@drawable/ic_star"
-                                tools:ignore="ContentDescription" />
-
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <androidx.appcompat.widget.AppCompatTextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="40dp"
-                                android:layout_marginEnd="40dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_alignParentStart="true"
-                                android:fontFamily="@font/nunito_bold"
-                                android:textSize="20sp"
-                                android:textColor="@color/black"
-                                android:text="@string/Rate_us"
-                                tools:ignore="HardcodedText" />
-                        </RelativeLayout>
-
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="1000dp"
-                            android:layout_alignParentTop="true"
-                            android:layout_alignParentEnd="true">
-
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:src="@drawable/ic_angle_small_down"
-                                android:layout_alignParentTop="true"
-                                android:layout_alignParentEnd="true"
-                                tools:ignore="ContentDescription" />
-
-                        </RelativeLayout>
-
-
-                    </RelativeLayout>
 
                     <RelativeLayout
                         android:id="@+id/rl_feedback"
@@ -487,7 +428,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_alignParentEnd="true"
                         android:layout_marginTop="40dp"
-                        android:layout_below="@+id/rl_rate_us">
+                        android:layout_below="@+id/rl_privacy_policy">
 
                         <RelativeLayout
                             android:layout_width="wrap_content"

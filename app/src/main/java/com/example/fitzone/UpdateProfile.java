@@ -37,7 +37,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UpdateProfile extends AppCompatActivity {
     Button member_add_button;
     Spinner member_add_weight,member_add_height,member_add_goal,member_add_level,member_add_age,member_add_gender;
-    EditText member_add_address,member_add_number,member_add_email,member_add_username,member_add_name;
+    EditText member_add_address,member_add_number,member_add_name;
     LinearLayout member_add_camera;
     CircleImageView member_add_image;
     ProgressDialog progressDialog; // Progress dialog for showing upload progress
@@ -62,8 +62,6 @@ public class UpdateProfile extends AppCompatActivity {
 
         member_add_address = findViewById(R.id.member_add_address);
         member_add_number = findViewById(R.id.member_add_number);
-        member_add_email = findViewById(R.id.member_add_email);
-        member_add_username = findViewById(R.id.member_add_username);
         member_add_name = findViewById(R.id.member_add_name);
 
         member_add_camera = findViewById(R.id.member_add_camera);
@@ -136,8 +134,6 @@ public class UpdateProfile extends AppCompatActivity {
                     // Prepare data to update
                     String userId = currentUser.getUid();
                     String name = member_add_name.getText().toString();
-                    String username = member_add_username.getText().toString();
-                    String email = member_add_email.getText().toString();
                     String phoneNumber = member_add_number.getText().toString();
                     String address = member_add_address.getText().toString();
                     String gender = member_add_gender.getSelectedItem().toString();
@@ -174,8 +170,6 @@ public class UpdateProfile extends AppCompatActivity {
                             // Create a map to store user data
                             Map<String, Object> userData = new HashMap<>();
                             userData.put("name", name);
-                            userData.put("username", username);
-                            userData.put("email", email);
                             userData.put("number", phoneNumber);
                             userData.put("address", address);
                             userData.put("gender", gender);

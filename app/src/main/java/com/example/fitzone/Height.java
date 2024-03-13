@@ -41,20 +41,20 @@ public class Height extends AppCompatActivity {
         });
 
         height_num.setValue(150);
-        height=90;
+        height=150;
         height_num.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                if (newVal < 90) {
-                    height = 90;
-                    picker.setValue(90); // Ensure the picker shows the minimum value
-                } else if (newVal > 250) {
-                    height = 250;
-                    picker.setValue(250); // Ensure the picker shows the maximum value
-                } else {
+                if(height_num==null)
+                {
+                    height = 150 ;
+                }
+                else{
                     height = newVal;
                 }
+
             }
+
         });
         next_page.setOnClickListener(new View.OnClickListener() {
             @Override

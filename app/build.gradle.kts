@@ -59,6 +59,10 @@ dependencies {
     // When using the BoM, don't specify versions in Firebase dependencies
     implementation("com.google.firebase:firebase-analytics")
 
+    //razor pay
+
+    implementation ("com.razorpay:checkout:1.5.14")
+
 
 
     implementation("androidx.appcompat:appcompat:1.6.1")

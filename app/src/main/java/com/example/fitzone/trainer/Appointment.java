@@ -10,11 +10,13 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.fitzone.OrderDetail;
 import com.example.fitzone.R;
 
 import java.text.SimpleDateFormat;
@@ -24,9 +26,11 @@ import java.util.Locale;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Appointment extends AppCompatActivity {
-    TextView startTime ,endTime;
+    TextView startTime ,endTime,regiDate;
     CalendarView SelectedCalendarView ;
     CircleImageView app_tre_image;
+    Button btnNext ;
+    String selectedDateString;
     TextView app_tre_name,app_tre_specialization,app_tre_experience,app_tre_review;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -43,18 +47,24 @@ public class Appointment extends AppCompatActivity {
         app_tre_specialization = findViewById(R.id.app_tre_specialization);
         app_tre_name = findViewById(R.id.app_tre_name);
         app_tre_image = findViewById(R.id.app_tre_image);
+        btnNext = findViewById(R.id.btn_next);
+        regiDate = findViewById(R.id.regiDate);
 /////
+
+
+
         Intent intent = getIntent();
         String trainerName = intent.getStringExtra("trainer_name");
         String trainerImage = intent.getStringExtra("trainer_img");
         String trainerReview = intent.getStringExtra("trainer_review");
         String functionalStrength = intent.getStringExtra("Functional_Strength");
-        String exeee = intent.getStringExtra("trainer_eee_txt");
+        String experience = intent.getStringExtra("trainer_eee_txt");
+        String charge = intent.getStringExtra("charge");
 
         app_tre_review.setText(trainerReview);
         app_tre_experience.setText(functionalStrength);
 // Assuming trainer specialization is stored in exeee
-        app_tre_specialization.setText(exeee);
+        app_tre_specialization.setText(experience);
         app_tre_name.setText(trainerName);
 
 // Assuming trainer image is stored as resource ID
@@ -66,15 +76,14 @@ public class Appointment extends AppCompatActivity {
 //        }
 
 
-
         // Get tomorrow's date
-       Calendar tomorrow = Calendar.getInstance();
+        Calendar tomorrow = Calendar.getInstance();
         tomorrow.add(Calendar.DAY_OF_YEAR, 1);
-
-        // Set minimum date for CalendarView
         SelectedCalendarView.setMinDate(tomorrow.getTimeInMillis());
+        // Set minimum date for CalendarView
         // Set up listener for CalendarView
         SelectedCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            // Inside the OnDateChangeListener
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 // Create a Calendar object for the selected date
@@ -86,13 +95,14 @@ public class Appointment extends AppCompatActivity {
                 } else {
                     // Format the selected date
                     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                    String selectedDateString = sdf.format(selectedDate.getTime());
+                    selectedDateString = sdf.format(selectedDate.getTime());
+                    regiDate.setText(selectedDateString); // Set the text here
                     Toast.makeText(Appointment.this, selectedDateString, Toast.LENGTH_SHORT).show();
                 }
             }
+
         });
 
-/////
         startTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,13 +113,91 @@ public class Appointment extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                    showEndTimePickerDialog();
+                showEndTimePickerDialog();
 
             }
         });
-    }
 
-    private void showStrartTimePickerDialog() {
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Check if a date is selected, if not, select tomorrow's date
+                String selectedDate = regiDate.getText().toString();
+                if (selectedDate.isEmpty()) {
+                    // Select tomorrow's date
+                    Calendar tomorrow = Calendar.getInstance();
+                    tomorrow.add(Calendar.DAY_OF_YEAR, 1);
+                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                    selectedDate = sdf.format(tomorrow.getTime());
+                    regiDate.setText(selectedDate);
+                }
+
+                // Check if start time is selected
+                String startTimeText = startTime.getText().toString();
+                if (startTimeText.isEmpty()) {
+                    Toast.makeText(Appointment.this, "Please select start time", Toast.LENGTH_SHORT).show();
+                    return; // Return from the method to prevent further execution
+                }
+
+                // Check if end time is selected
+                String endTimeText = endTime.getText().toString();
+                if (endTimeText.isEmpty()) {
+                    Toast.makeText(Appointment.this, "Please select end time", Toast.LENGTH_SHORT).show();
+                    return; // Return from the method to prevent further execution
+                }
+
+                // Check if end time is greater than start time
+                if (!isEndTimeAfterStartTime(startTimeText, endTimeText)) {
+                    Toast.makeText(Appointment.this, "End time must be after start time", Toast.LENGTH_SHORT).show();
+                    return; // Return from the method to prevent further execution
+                }
+
+                // Calculate the duration in hours
+                double durationHours = calculateDurationHours(startTimeText, endTimeText);
+
+                // Assuming the trainer's hourly rate is stored in the variable "charge"
+                double hourlyCharge = Double.parseDouble(charge);
+
+                // Calculate the total charge
+                double totalCharge = durationHours * hourlyCharge;
+
+                // Proceed to OrderDetail activity
+                Intent intent1 = new Intent(Appointment.this, OrderDetail.class);
+                intent1.putExtra("trainer_name", trainerName);
+                intent1.putExtra("trainer_review", trainerReview);
+                intent1.putExtra("Functional_Strength", functionalStrength);
+                intent1.putExtra("trainer_eee_txt", experience);
+                intent1.putExtra("regi_date", selectedDate);
+                intent1.putExtra("charge", String.valueOf(totalCharge)); // Pass the total charge
+                intent1.putExtra("start_time", startTimeText);
+                intent1.putExtra("end_time", endTimeText);
+                startActivity(intent1);
+            }
+        });
+
+    }
+    private boolean isEndTimeAfterStartTime(String startTime, String endTime) {
+        String[] startTimeParts = startTime.split(":");
+        String[] endTimeParts = endTime.split(":");
+
+        int startHour = Integer.parseInt(startTimeParts[0]);
+        int startMinute = Integer.parseInt(startTimeParts[1]);
+
+        int endHour = Integer.parseInt(endTimeParts[0]);
+        int endMinute = Integer.parseInt(endTimeParts[1]);
+
+        // Check if end hour is greater than start hour
+        if (endHour > startHour) {
+            return true;
+        } else if (endHour == startHour) {
+            // If end hour is equal to start hour, check minutes
+            return endMinute > startMinute;
+        } else {
+            return false;
+        }
+    }
+        private void showStrartTimePickerDialog() {
         final Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
 
@@ -157,6 +245,22 @@ public class Appointment extends AppCompatActivity {
 
         timePickerDialog.show();
     }
+    private double calculateDurationHours(String startTime, String endTime) {
+        String[] startTimeParts = startTime.split(":");
+        String[] endTimeParts = endTime.split(":");
+
+        int startHour = Integer.parseInt(startTimeParts[0]);
+        int startMinute = Integer.parseInt(startTimeParts[1]);
+
+        int endHour = Integer.parseInt(endTimeParts[0]);
+        int endMinute = Integer.parseInt(endTimeParts[1]);
+
+        int totalStartMinutes = startHour * 60 + startMinute;
+        int totalEndMinutes = endHour * 60 + endMinute;
+
+        return (totalEndMinutes - totalStartMinutes) / 60.0;
+    }
+
 
     private boolean validateTime(String time) {
         String[] timeParts = time.split(":");
