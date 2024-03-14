@@ -20,6 +20,7 @@ import com.example.fitzone.R;
 import com.example.fitzone.WorkoutItemList;
 import com.example.fitzone.WorkoutPlan;
 import com.example.fitzone.WorkoutPlanAdapter;
+import com.example.fitzone.WorkoutPlanVatical;
 import com.example.fitzone.diet.DietAdapter;
 import com.example.fitzone.diet.DietItemList;
 import com.example.fitzone.diet.DietList;
@@ -156,7 +157,7 @@ public class FragmentHome extends Fragment {
         view_exe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), WorkoutPlan.class);
+                Intent intent = new Intent(getActivity(), WorkoutPlanVatical.class);
                 startActivity(intent);
             }
         });
