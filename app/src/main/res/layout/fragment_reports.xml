@@ -183,7 +183,6 @@
                                 android:id="@+id/show_Weight"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="60.6kg"
                                 android:textSize="20sp"
                                 android:textColor="@color/black"
                                 android:fontFamily="@font/nunito_bold"
@@ -220,7 +219,6 @@
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="66.00kg"
                                 android:fontFamily="@font/nunito_bold"
                                 android:textColor="@color/black"
                                 android:textSize="14sp"
@@ -253,7 +251,6 @@
                             <androidx.appcompat.widget.AppCompatTextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="66.00kg"
                                 android:fontFamily="@font/nunito_bold"
                                 android:textColor="@color/black"
                                 android:textSize="14sp"

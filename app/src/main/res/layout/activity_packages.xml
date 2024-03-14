@@ -131,7 +131,6 @@
                     app:fontFamily="@font/opensans_bold"
                     android:layout_marginTop="5dp"
                     android:layout_marginStart="10dp"
-                    android:text="9999/-"
                     android:textColor="@color/white"
                     android:textSize="35sp"
                     tools:ignore="HardcodedText,ObsoleteLayoutParam" />
@@ -154,7 +153,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="6 months"
                 android:layout_marginStart="10dp"
                 android:textColor="@color/white"
                 app:fontFamily="@font/nunito_bold"
@@ -174,7 +172,6 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" One Month package offers you premium access to our state-of-the-art fitness facilities and exclusive amenities for a month-long period. Whether you're a fitness enthusiast seeking to achieve your goals or a beginner looking to kickstart your fitness journey, this package provides you with everything you need to succeed. "
                 android:textColor="@color/white"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/nunito_semi_bold"

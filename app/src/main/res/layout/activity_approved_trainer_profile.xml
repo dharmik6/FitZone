@@ -186,6 +186,7 @@
                                 tools:ignore="HardcodedText" />
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tr_bio"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text=" experienced Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -208,7 +209,8 @@
                         android:layout_marginTop="20dp"
                         android:layout_below="@+id/about"
                         android:backgroundTint="@color/card_view"
-                        app:cardCornerRadius="20dp">
+                        app:cardCornerRadius="20dp"
+                        android:visibility="gone">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -342,11 +344,12 @@
                         android:visibility="gone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="174 Ratings kalu"/>
+                        />
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="end"
+                        android:visibility="gone"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentStart="true"
                         android:text="174 Ratings"/>
@@ -376,7 +379,7 @@
                         tools:ignore="HardcodedText,SpUsage" />
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/trainer_pay_txt"
+                        android:id="@+id/charge"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentTop="true"

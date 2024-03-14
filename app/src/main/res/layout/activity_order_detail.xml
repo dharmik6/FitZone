@@ -165,7 +165,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
-                                    android:id="@+id/app_tre_name"
+                                    android:id="@+id/or_tre_name"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/nunito_bold"
@@ -176,12 +176,12 @@
                                     tools:ignore="HardcodedText,TextSizeCheck" />
 
                                 <TextView
-                                    android:id="@+id/app_tre_experience"
+                                    android:id="@+id/or_tre_experience"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/nunito_bold"
                                     android:text="High Intensity Training"
-                                    android:layout_below="@+id/app_tre_name"
+                                    android:layout_below="@+id/or_tre_name"
                                     android:textColor="@color/greenish_cyan"
                                     android:textSize="12sp"
                                     tools:ignore="HardcodedText,SmallSp,TextContrastCheck,TextSizeCheck" />
@@ -196,7 +196,7 @@
                                 android:layout_marginHorizontal="15dp">
 
                                 <androidx.appcompat.widget.AppCompatTextView
-                                    android:id="@+id/app_tre_review"
+                                    android:id="@+id/or_tre_review"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="4.45"
@@ -226,11 +226,12 @@
                             android:fontFamily="@font/nunito_regular"
                             android:text="Date"
                             android:textColor="@color/text"/>
+
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/or_date"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingStart="10dp"
-                            android:text="20 October 2021 - Wednesday"
                             android:textSize="18sp"/>
 
                         <RelativeLayout
@@ -258,9 +259,9 @@
                                 android:textSize="14sp"/>
 
                                 <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/start_time"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="09:30 AM"
                                     android:textColor="@color/black"
                                     android:textSize="18sp"/>
                             </LinearLayout>
@@ -282,9 +283,9 @@
                                     android:textSize="14sp"/>
 
                                 <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/end_time"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="09:30 AM"
                                     android:textColor="@color/black"
                                     android:textSize="18sp"/>
                             </LinearLayout>
@@ -317,13 +318,13 @@
                                 android:textColor="@color/text"/>
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/or_charg"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="250dp"
                                 android:layout_alignParentTop="true"
                                 android:layout_alignParentStart="true"
                                 android:layout_alignParentEnd="true"
-                                android:text="₹999.00"
                                 android:textSize="14sp"
                                 android:textColor="@color/black">
 
@@ -349,8 +350,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true">
-
+                    <TextView
+                        android:id="@+id/paymentIdTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Payment ID: "
+                        android:visibility="gone"
+                        android:layout_toStartOf="@+id/pay_now"
+                        android:layout_centerHorizontal="true"/>
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/pay_now"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
@@ -368,6 +377,7 @@
                         android:textColor="@color/white"
                         android:textSize="@dimen/button_text_size"
                         android:textStyle="bold"
+                        android:onClick="initiatePayment"
                         tools:ignore="HardcodedText,RtlHardcoded" />
                 </RelativeLayout>
 

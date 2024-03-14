@@ -105,7 +105,7 @@
                         android:layout_height="wrap_content"
                         android:text="4.45"
                         android:fontFamily="@font/opensans_bold"
-                        android:textSize="10sp"
+                        android:textSize="12sp"
                         android:padding="5dp"
                         android:textColor="@color/white"
                         tools:ignore="HardcodedText,SmallSp" />
@@ -137,7 +137,6 @@
                     android:layout_marginStart="20dp"
                     android:textColor="@color/black"
                     android:fontFamily="@font/nunito_regular"
-                    android:text="Had such an amazing session with Maria. She instantly picked up on the level of my fitness and adjusted the workout to suit me whilst also pushing me to my limits."
                     tools:ignore="HardcodedText" />
 
             </RelativeLayout>

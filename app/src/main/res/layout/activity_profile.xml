@@ -183,7 +183,6 @@
                                 android:padding="10dp"
                                 android:paddingStart="15dp"
                                 android:textColor="@color/black"
-                                android:text="dharmik@gmail.com"
                                 android:textSize="18sp"
                                 tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck,TextSizeCheck" />
 
@@ -213,7 +212,6 @@
                                 android:layout_marginEnd="15dp"
                                 android:padding="10dp"
                                 android:paddingStart="15dp"
-                                android:text="0000000000"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck,TextSizeCheck" />
@@ -245,7 +243,6 @@
                                 android:layout_marginEnd="15dp"
                                 android:padding="10dp"
                                 android:paddingStart="15dp"
-                                android:text="110, bhaktinagar socity, katargam,surat"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />
@@ -276,7 +273,6 @@
                                 android:layout_marginEnd="15dp"
                                 android:padding="10dp"
                                 android:paddingStart="15dp"
-                                android:text="male"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />
@@ -308,7 +304,6 @@
                                 android:layout_marginEnd="15dp"
                                 android:padding="10dp"
                                 android:paddingStart="15dp"
-                                android:text="19"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />
@@ -340,7 +335,6 @@
                                 android:layout_marginEnd="15dp"
                                 android:padding="10dp"
                                 android:paddingStart="15dp"
-                                android:text="176"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />
@@ -371,7 +365,6 @@
                                 android:layout_marginEnd="15dp"
                                 android:padding="10dp"
                                 android:paddingStart="15dp"
-                                android:text="69.50"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />
@@ -403,7 +396,6 @@
                                 android:layout_marginEnd="15dp"
                                 android:padding="10dp"
                                 android:paddingStart="15dp"
-                                android:text="get fitter"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />
@@ -435,7 +427,6 @@
                                 android:layout_marginBottom="20dp"
                                 android:padding="10dp"
                                 android:paddingStart="15dp"
-                                android:text="Beginner"
                                 android:textColor="@color/black"
                                 android:textSize="18sp"
                                 tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />

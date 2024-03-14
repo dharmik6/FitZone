@@ -249,8 +249,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
-                            android:fontFamily="@font/opensans_bold"
-                            android:text="20 October 2021 - Wednesday"/>
+                            android:fontFamily="@font/opensans_bold" />
 
 
                         <androidx.appcompat.widget.AppCompatTextView
@@ -264,8 +263,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
-                            android:fontFamily="@font/opensans_bold"
-                            android:text="09:30 AM"/>
+                            android:fontFamily="@font/opensans_bold" />
                         </LinearLayout>
 
                     </LinearLayout>

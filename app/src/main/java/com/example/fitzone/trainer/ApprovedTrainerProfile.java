@@ -22,7 +22,7 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
     ImageView trainer_img_txt;
     Button book_btn_registration;
     ProgressDialog progressDialog;
-    TextView Functional_Strength_txt,trainer_name_txt,trainer_pay_txt,trainer_review_txt,review_show_allkaku,trainer_eee_txt,kalu;
+    TextView Functional_Strength_txt,trainer_name_txt,trBio,chargeTx,trainer_review_txt,review_show_allkaku,trainer_eee_txt,kalu;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +33,8 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
         book_btn_registration=findViewById(R.id.book_btn_registration);
         Functional_Strength_txt=findViewById(R.id.Functional_Strength_txt);
         trainer_name_txt=findViewById(R.id.trainer_name_txt);
-        trainer_pay_txt=findViewById(R.id.trainer_pay_txt);
+        chargeTx=findViewById(R.id.charge);
+        trBio=findViewById(R.id.tr_bio);
         trainer_review_txt=findViewById(R.id.trainer_review_txt);
         review_show_allkaku=findViewById(R.id.review_show_allkaku);
         trainer_eee_txt=findViewById(R.id.trainer_eee_txt);
@@ -52,17 +53,20 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
                 String emaile = documentSnapshot.getString("pay");
                 String imagee = documentSnapshot.getString("image");
                 String experience = documentSnapshot.getString("experience");
+                String charge = documentSnapshot.getString("charge");
+                String bio = documentSnapshot.getString("bio");
                 String treid1 = documentSnapshot.getId();
 //                 Check if the userNameFromIntent matches the user
 
                 if (memberid.equals(namee)) {
                     // Display the data only if they match
                     trainer_name_txt.setText(namee != null ? namee : "No name");
-                    trainer_eee_txt.setText(experience != null ? experience : "No name");
-                    Functional_Strength_txt.setText(name != null ? name : "No Functional Strength");
+                    trainer_eee_txt.setText(experience != null ? experience : "No experience");
+                    Functional_Strength_txt.setText(name != null ? name : "Non specialist");
+                    trBio.setText(bio != null ? bio : "No bio");
 //                    trainer_review_txt.setText(specializatione != null ? specializatione : "No review");
-                    trainer_pay_txt.setText(emaile != null ? emaile : "No price");
-                    kalu.setText(treid1 != null ? treid1 : "No price");
+                    chargeTx.setText(charge != null ? charge : "No price");
+                    kalu.setText(treid1 != null ? treid1 : "00.00");
 
                     if (imagee != null) {
                         Glide.with(ApprovedTrainerProfile.this)
@@ -103,6 +107,7 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
                 intent1.putExtra("trainer_review", trainer_review_txt.getText().toString());
                 intent1.putExtra("Functional_Strength", Functional_Strength_txt.getText().toString());
                 intent1.putExtra("trainer_eee_txt", trainer_eee_txt.getText().toString());
+                intent1.putExtra("charge", chargeTx.getText().toString());
                 startActivity(intent1);
             }
         });
