@@ -47,9 +47,11 @@ public class FragmentWeightBottomSheet extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_weight_bottom_sheet, container, false);
         // Initialize views and set up any necessary functionality
-        exe_delete=view.findViewById(R.id.exe_delete);
-        exe_update=view.findViewById(R.id.exe_update);
-        weight_up_new=view.findViewById(R.id.weight_up_new);
+        exe_delete = view.findViewById(R.id.exe_delete);
+        exe_update = view.findViewById(R.id.exe_update);
+        weight_up_new = view.findViewById(R.id.weight_up_new);
+        progressDialog = new ProgressDialog(getActivity()); // Initialize ProgressDialog
+        progressDialog.setMessage("Updating weight..."); // Set message for ProgressDialog
         // Initialize FirebaseFirestore
         db = FirebaseFirestore.getInstance();
 
@@ -67,12 +69,16 @@ public class FragmentWeightBottomSheet extends BottomSheetDialogFragment {
                 int Weight = weight_up_new.getValue();
                 String newWeight = String.valueOf(Weight);
 
+                // Show progressDialog before starting weight update process
+                progressDialog.show();
+
                 // Upload weight to Firestore
                 updateFirestoreDocument(newWeight);
             }
         });
         return view;
     }
+
     private void updateFirestoreDocument(String newWeight) {
         // Create a map with the updated fields
         Map<String, Object> dietData = new HashMap<>();
@@ -89,6 +95,7 @@ public class FragmentWeightBottomSheet extends BottomSheetDialogFragment {
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
+                            progressDialog.dismiss(); // Dismiss progressDialog after the update process completes
                             if (task.isSuccessful()) {
                                 // Document updated successfully
                                 Toast.makeText(getActivity(), "Weight updated successfully", Toast.LENGTH_SHORT).show();

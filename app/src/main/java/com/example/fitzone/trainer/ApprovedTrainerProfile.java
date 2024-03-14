@@ -3,6 +3,7 @@ package com.example.fitzone.trainer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,7 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
 
     ImageView trainer_img_txt;
     Button book_btn_registration;
+    ProgressDialog progressDialog;
     TextView Functional_Strength_txt,trainer_name_txt,trainer_pay_txt,trainer_review_txt,review_show_allkaku,trainer_eee_txt,kalu;
     @SuppressLint("MissingInflatedId")
     @Override

@@ -62,6 +62,7 @@ public class WriteReview extends AppCompatActivity {
                             String newWeight = documentSnapshot.getString("newWeight");
 
                             // Convert float rating to a string
+
                 // Assuming xml_rating_bar.getRating() returns a float value
                 float ratingString = xml_rating_bar.getRating();
 

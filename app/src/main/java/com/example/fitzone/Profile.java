@@ -2,6 +2,7 @@ package com.example.fitzone;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,19 +17,23 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Profile extends AppCompatActivity {
     CircleImageView show_image;
-    AppCompatTextView show_name,show_username,show_email,show_number,show_address,show_gender,show_age,show_height,show_weight,show_goal,show_level;
+    AppCompatTextView show_name, show_username, show_email, show_number, show_address, show_gender, show_age, show_height, show_weight, show_goal, show_level;
     ImageView back;
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        progressDialog = new ProgressDialog(Profile.this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
 
         show_image = findViewById(R.id.show_image);
         show_name = findViewById(R.id.show_name);
@@ -46,9 +51,11 @@ public class Profile extends AppCompatActivity {
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
+            progressDialog.show(); // Show progress dialog before fetching user data
             String userId = currentUser.getUid();
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("users").document(userId).get().addOnSuccessListener(documentSnapshot -> {
+                progressDialog.dismiss(); // Dismiss progress dialog after fetching user data
                 if (documentSnapshot.exists()) {
                     String membername = documentSnapshot.getString("name");
                     String memberusername = documentSnapshot.getString("username");
@@ -81,9 +88,11 @@ public class Profile extends AppCompatActivity {
                     }
                 }
             }).addOnFailureListener(e -> {
+                progressDialog.dismiss(); // Dismiss progress dialog if there is an error
                 Toast.makeText(Profile.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             });
         } else {
+            progressDialog.dismiss(); // Dismiss progress dialog if user is not logged in
             Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
         }
 
