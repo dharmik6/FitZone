@@ -61,7 +61,8 @@
                     android:layout_marginEnd="70dp"
                     android:layout_alignStart="@id/linner2"
                     android:layout_marginTop="0dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    tools:ignore="NotSibling">
 
                     <TextView
                         android:id="@+id/tra_name"

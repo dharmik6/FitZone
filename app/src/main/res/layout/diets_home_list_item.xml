@@ -8,70 +8,73 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="MissingConstraints">
 
         <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints,UselessParent">
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/active_card"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/card_view"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="10dp"
-            app:cardCornerRadius="20dp"
+            android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:background="@color/card_view">
+            android:layout_alignParentBottom="true"
+            tools:ignore="MissingConstraints,UselessParent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/active_card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/card_view"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:background="@color/card_view">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-
                     <ImageView
+                        android:id="@+id/exercises_image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:src="@drawable/healthy_food_img"
-                        tools:ignore="ContentDescription" />
+                        tools:ignore="ContentDescription,ExtraText,ImageContrastCheck,ObsoleteLayoutParam,UselessParent" />
+
+
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
+                    android:layout_marginTop="50dp"
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="center"
-                    android:layout_marginTop="60dp"
                     android:background="@drawable/workout_plans_list_text_bg"
                     android:orientation="vertical"
-                    android:paddingVertical="20dp"
-                    android:paddingStart="5dp">
+                    android:padding="20dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/tv_Workout_plan_name"
+                        android:id="@+id/exercises_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:paddingStart="20dp"
                         android:layout_alignParentStart="true"
                         android:layout_alignParentEnd="true"
-                        android:paddingStart="20dp"
                         android:text="Diet name"
                         android:textColor="@color/white"
                         android:textSize="20dp"
@@ -85,6 +88,7 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
 
 
 

@@ -299,6 +299,7 @@
                     android:background="@drawable/text_bg"
                     android:fontFamily="@font/opensans_bold"
                     android:hint="@string/Address"
+                    android:scrollbars="vertical"
                     android:inputType="textMultiLine"
                     android:padding="10dp"
                     android:paddingStart="15dp"

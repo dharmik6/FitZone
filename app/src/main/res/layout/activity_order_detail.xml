@@ -230,7 +230,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingStart="10dp"
-                            android:text="20 October 2021 - Wednesday"
                             android:textSize="18sp"/>
 
                         <RelativeLayout
@@ -260,7 +259,6 @@
                                 <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="09:30 AM"
                                     android:textColor="@color/black"
                                     android:textSize="18sp"/>
                             </LinearLayout>
@@ -284,7 +282,6 @@
                                 <androidx.appcompat.widget.AppCompatTextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="09:30 AM"
                                     android:textColor="@color/black"
                                     android:textSize="18sp"/>
                             </LinearLayout>
@@ -323,7 +320,6 @@
                                 android:layout_alignParentTop="true"
                                 android:layout_alignParentStart="true"
                                 android:layout_alignParentEnd="true"
-                                android:text="₹999.00"
                                 android:textSize="14sp"
                                 android:textColor="@color/black">
 
