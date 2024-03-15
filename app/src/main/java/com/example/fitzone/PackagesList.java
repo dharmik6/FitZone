@@ -79,7 +79,8 @@ public class PackagesList extends AppCompatActivity {
                 String price = documentSnapshot.getString("price");
                 String duration = documentSnapshot.getString("duration");
                 String description = documentSnapshot.getString("description");
-                PackagesItemList diet = new PackagesItemList(name, price, duration, description);
+                String package_id = documentSnapshot.getId() ;
+                PackagesItemList diet = new PackagesItemList(name, price, duration, description,package_id);
                 dietLists.add(diet);
             }
 
