@@ -88,7 +88,7 @@
             android:name=".Packages"
             android:exported="false" />
         <activity
-            android:name=".PackagesList"
+            android:name=".SplashScreen"
             android:exported="false" />
         <activity
             android:name=".trainer.Appointment"
@@ -118,7 +118,7 @@
             android:name=".home.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".PackagesList"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

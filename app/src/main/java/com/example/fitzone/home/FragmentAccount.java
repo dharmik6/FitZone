@@ -30,7 +30,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class FragmentAccount extends Fragment {
-    RelativeLayout profile, logout , bookings,membership,rateUs ,feedBack,privacyPolicy;
+    RelativeLayout profile, logout , bookings,membership ,feedBack,privacyPolicy;
     AppCompatTextView user_acc_name, user_acc_username;
     ImageView user_acc_image;
     String uid;
@@ -46,7 +46,6 @@ public class FragmentAccount extends Fragment {
         bookings = view.findViewById(R.id.rl_bookings);
         membership = view.findViewById(R.id.rl_membership);
         privacyPolicy = view.findViewById(R.id.rl_privacy_policy);
-        rateUs = view.findViewById(R.id.rl_rate_us);
         feedBack = view.findViewById(R.id.rl_feedback);
 
         user_acc_name = view.findViewById(R.id.user_acc_name);
@@ -77,13 +76,7 @@ public class FragmentAccount extends Fragment {
                 startActivity(intent);
             }
         });
-        rateUs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Intent intent = new Intent(getContext(), W.class);
-//                startActivity(intent);
-            }
-        });
+
         feedBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

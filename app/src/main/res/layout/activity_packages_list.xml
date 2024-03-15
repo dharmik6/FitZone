@@ -82,6 +82,7 @@
                 tools:ignore="UselessLeaf,UselessParent">
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/payment_recyc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scrollbars="vertical"

@@ -46,18 +46,18 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class FragmentReports extends Fragment {
-    TextView show_Weight,show_Height;
+    TextView show_Weight, show_Height;
     LineChart lineChart;
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_reports, container, false);
+        View view = inflater.inflate(R.layout.fragment_reports, container, false);
 
-        show_Weight=view.findViewById(R.id.show_Weight);
-        show_Height=view.findViewById(R.id.show_Height);
-        lineChart=view.findViewById(R.id.lineChart);
+        show_Weight = view.findViewById(R.id.show_Weight);
+        show_Height = view.findViewById(R.id.show_Height);
+        lineChart = view.findViewById(R.id.lineChart);
 
         // Add click listener to edit_weight ImageView
         ImageView editWeightImageView = view.findViewById(R.id.edit_weight);
@@ -81,8 +81,6 @@ public class FragmentReports extends Fragment {
             }
         });
 
-
-
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -91,24 +89,12 @@ public class FragmentReports extends Fragment {
                 if (documentSnapshot.exists()) {
                     String memberweight = documentSnapshot.getString("weight");
                     String memberheight = documentSnapshot.getString("height");
-                    String newWeight = documentSnapshot.getString("newWeight");
-
-                    show_Weight.setText(newWeight != null ? newWeight : (memberweight != null ? memberweight : "No weight"));
-
 
                     show_Height.setText(memberheight != null ? memberheight : "No height");
 
-
                     // Get the weight and height as strings from TextViews
-                    String weightStr;
-                    if (newWeight != null){
-                         weightStr = newWeight;
-                    }else {
-                         weightStr = memberheight;
-                    }
-//                    .getText().toString().trim();
+                    String weightStr = memberweight;
                     String heightStr = memberheight;
-//                    .getText().toString().trim();
 
                     // Parse the strings to floats, if they are numeric
                     float weight = TextUtils.isDigitsOnly(weightStr) ? Float.parseFloat(weightStr) : 0;
@@ -195,8 +181,6 @@ public class FragmentReports extends Fragment {
                     halfGauge.setMaxValue(40.0);
                     halfGauge.setValue(value);
 
-
-
                     // chart code
                     // Create a list of entries representing the data points on the chart
                     List<Entry> entries = new ArrayList<>();
@@ -204,7 +188,6 @@ public class FragmentReports extends Fragment {
                     entries.add(new Entry(11, 85));
                     entries.add(new Entry(12, 78));
                     entries.add(new Entry(13, Float.parseFloat(memberweight)));
-                    entries.add(new Entry(14, Float.parseFloat(newWeight)));
 
                     // Create a dataset from the entries
                     LineDataSet dataSet = new LineDataSet(entries, "Label for the dataset");
@@ -245,7 +228,6 @@ public class FragmentReports extends Fragment {
             });
         }
 
-
         return view;
     }
 
@@ -254,6 +236,7 @@ public class FragmentReports extends Fragment {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         activity.startActivity(intent);
     }
+
     private float calculateBMIValue(float weight, float height) {
         return weight / (height * height);
     }

@@ -27,7 +27,6 @@ public class ActivityLevel extends AppCompatActivity {
     ImageView back;
     // Firestore instance
     private FirebaseFirestore db;
-TextView profile_in;
     @SuppressLint({"NewApi", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +41,7 @@ TextView profile_in;
         Intent intent = getIntent();
         String uid = intent.getStringExtra("uid");
 
-        profile_in = findViewById(R.id.profile_in);
-        profile_in.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectActivity(ActivityLevel.this, Profile.class,uid);
-            }
-        });
+
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +82,7 @@ TextView profile_in;
                     .addOnSuccessListener(documentReference -> {
                         Toast.makeText(ActivityLevel.this, "Activity level saved to Firestore!", Toast.LENGTH_SHORT).show();
                         // Redirect to the next activity
-                        redirectActivity(ActivityLevel.this, MainActivity.class,uid);
+                        redirectActivity(ActivityLevel.this, PackagesList.class);
                     })
                     .addOnFailureListener(e -> {
                         Toast.makeText(ActivityLevel.this, "Error saving activity level to Firestore!", Toast.LENGTH_SHORT).show();
@@ -99,10 +92,8 @@ TextView profile_in;
     }
     // In the Registration activity
     // Change the redirectActivity method to pass the UID instead of the name
-    public static void redirectActivity(Activity activity, Class destination, String uid) {
+    public static void redirectActivity(Activity activity, Class destination) {
         Intent intent = new Intent(activity, destination);
-        intent.putExtra("uid", uid);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
     }
 }

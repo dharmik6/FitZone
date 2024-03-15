@@ -59,43 +59,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginHorizontal="20dp">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/pac_show_name"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_alignParentStart="true"
-                    android:text="Package name"
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
-                    app:fontFamily="@font/nunito_bold"
-                    tools:ignore="HardcodedText" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_alignParentEnd="true"
-                    android:text="Active"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    app:fontFamily="@font/nunito_bold"
-                    tools:ignore="HardcodedText" />
-
-
-            </RelativeLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/pac_show_price"
+                android:id="@+id/pac_show_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/package_name"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                app:fontFamily="@font/nunito_bold"
+                tools:ignore="HardcodedText" />
+
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/price"
@@ -125,6 +104,7 @@
                     tools:ignore="HardcodedText,ObsoleteLayoutParam" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/pac_show_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
@@ -139,7 +119,6 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/pac_show_duration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -150,6 +129,7 @@
                 tools:ignore="HardcodedText" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/pac_show_duration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -160,7 +140,6 @@
                 tools:ignore="HardcodedText" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/pac_show_descri"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -170,6 +149,7 @@
                 tools:ignore="HardcodedText" />
 
             <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/pac_show_descri"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
@@ -181,6 +161,7 @@
 
 
         </LinearLayout>
+
     </ScrollView>
 
     <LinearLayout
@@ -195,7 +176,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_registration"
+            android:id="@+id/btn_buy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
@@ -210,6 +191,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/button_text_size"
+            android:onClick="initiatePayment"
             android:textStyle="normal|bold" />
 
     </LinearLayout>

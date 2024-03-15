@@ -22,6 +22,7 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
     ImageView trainer_img_txt;
     Button book_btn_registration;
     ProgressDialog progressDialog;
+    String treid1 ;
     TextView Functional_Strength_txt,trainer_name_txt,trBio,chargeTx,trainer_review_txt,review_show_allkaku,trainer_eee_txt,kalu;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -50,19 +51,19 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
                 String namee = documentSnapshot.getString("name");
                 String name = documentSnapshot.getString("specialization");
                 String specializatione = documentSnapshot.getString("review");
-                String emaile = documentSnapshot.getString("pay");
+              //  String email = documentSnapshot.getString("pay");
                 String imagee = documentSnapshot.getString("image");
                 String experience = documentSnapshot.getString("experience");
                 String charge = documentSnapshot.getString("charge");
                 String bio = documentSnapshot.getString("bio");
-                String treid1 = documentSnapshot.getId();
+                 treid1 = documentSnapshot.getId();
 //                 Check if the userNameFromIntent matches the user
 
                 if (memberid.equals(namee)) {
                     // Display the data only if they match
                     trainer_name_txt.setText(namee != null ? namee : "No name");
                     trainer_eee_txt.setText(experience != null ? experience : "No experience");
-                    Functional_Strength_txt.setText(name != null ? name : "Non specialist");
+                    Functional_Strength_txt.setText(specializatione != null ? specializatione : "Non specialist");
                     trBio.setText(bio != null ? bio : "No bio");
 //                    trainer_review_txt.setText(specializatione != null ? specializatione : "No review");
                     chargeTx.setText(charge != null ? charge : "No price");
@@ -108,6 +109,7 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
                 intent1.putExtra("Functional_Strength", Functional_Strength_txt.getText().toString());
                 intent1.putExtra("trainer_eee_txt", trainer_eee_txt.getText().toString());
                 intent1.putExtra("charge", chargeTx.getText().toString());
+                intent1.putExtra("trid", treid1);
                 startActivity(intent1);
             }
         });

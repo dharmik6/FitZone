@@ -91,7 +91,9 @@
                   android:orientation="horizontal">
                   <CheckBox
                       android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"/>
+                      android:layout_height="wrap_content"
+                      android:checked="true"
+                      android:backgroundTint="@color/dark_cyan"/>
                   <androidx.appcompat.widget.AppCompatTextView
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
@@ -164,6 +166,7 @@
                             tools:ignore="UselessParent">
 
                             <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/tr_image"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:layout_alignParentTop="true"
@@ -189,6 +192,7 @@
                                 android:orientation="vertical">
 
                                 <TextView
+                                    android:id="@+id/tr_name1"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="10dp"
@@ -211,6 +215,7 @@
                                 android:layout_marginHorizontal="15dp">
 
                                 <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/tr_review"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text="4.45"
@@ -246,24 +251,72 @@
                             android:textSize="12sp"/>
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/add_date"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="16sp"
-                            android:fontFamily="@font/opensans_bold" />
+                            android:fontFamily="@font/opensans_bold"
+                            android:text="20 October 2021 - Wednesday"/>
 
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Time"
-                            android:layout_marginTop="10dp"
-                            android:textSize="12sp"/>
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20dp"
+                                android:orientation="horizontal">
 
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/opensans_bold" />
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginEnd="200dp"
+                                    android:paddingStart="10dp"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentStart="true"
+                                    android:orientation="vertical">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="Start time"
+                                        android:textColor="@color/text"
+                                        android:fontFamily="@font/nunito_regular"
+                                        android:textSize="14sp"/>
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/start_time1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="09:30 AM"
+                                        android:textColor="@color/black"
+                                        android:textSize="18sp"/>
+                                </LinearLayout>
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="200dp"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentStart="true"
+                                    android:orientation="vertical">
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="End time"
+                                        android:textColor="@color/text"
+                                        android:fontFamily="@font/nunito_regular"
+                                        android:textSize="14sp"/>
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/end_time1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="09:30 AM"
+                                        android:textColor="@color/black"
+                                        android:textSize="18sp"/>
+                                </LinearLayout>
+                            </RelativeLayout>
                         </LinearLayout>
 
                     </LinearLayout>

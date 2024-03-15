@@ -60,6 +60,7 @@ public class Appointment extends AppCompatActivity {
         String functionalStrength = intent.getStringExtra("Functional_Strength");
         String experience = intent.getStringExtra("trainer_eee_txt");
         String charge = intent.getStringExtra("charge");
+        String treid = intent.getStringExtra("trid");
 
         app_tre_review.setText(trainerReview);
         app_tre_experience.setText(functionalStrength);
@@ -125,12 +126,9 @@ public class Appointment extends AppCompatActivity {
                 // Check if a date is selected, if not, select tomorrow's date
                 String selectedDate = regiDate.getText().toString();
                 if (selectedDate.isEmpty()) {
-                    // Select tomorrow's date
-                    Calendar tomorrow = Calendar.getInstance();
-                    tomorrow.add(Calendar.DAY_OF_YEAR, 1);
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                    selectedDate = sdf.format(tomorrow.getTime());
-                    regiDate.setText(selectedDate);
+                    // Handle the case where no date is selected
+                    Toast.makeText(Appointment.this, "Please select a date", Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
                 // Check if start time is selected
@@ -153,14 +151,21 @@ public class Appointment extends AppCompatActivity {
                     return; // Return from the method to prevent further execution
                 }
 
+                // Validate and parse charge
+                double totalCharge;
+                try {
+                    totalCharge = Double.parseDouble(charge);
+                } catch (NumberFormatException e) {
+                    // Handle the case where charge is not a valid numerical value
+                    Toast.makeText(Appointment.this, "Invalid charge value", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 // Calculate the duration in hours
                 double durationHours = calculateDurationHours(startTimeText, endTimeText);
 
-                // Assuming the trainer's hourly rate is stored in the variable "charge"
-                double hourlyCharge = Double.parseDouble(charge);
-
                 // Calculate the total charge
-                double totalCharge = durationHours * hourlyCharge;
+                totalCharge *= durationHours;
 
                 // Proceed to OrderDetail activity
                 Intent intent1 = new Intent(Appointment.this, OrderDetail.class);
@@ -172,9 +177,11 @@ public class Appointment extends AppCompatActivity {
                 intent1.putExtra("charge", String.valueOf(totalCharge)); // Pass the total charge
                 intent1.putExtra("start_time", startTimeText);
                 intent1.putExtra("end_time", endTimeText);
+                intent1.putExtra("treid", treid);
                 startActivity(intent1);
             }
         });
+
 
     }
     private boolean isEndTimeAfterStartTime(String startTime, String endTime) {
