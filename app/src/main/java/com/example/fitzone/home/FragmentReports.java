@@ -186,8 +186,8 @@ public class FragmentReports extends Fragment {
                     List<Entry> entries = new ArrayList<>();
                     entries.add(new Entry(10, 88));
                     entries.add(new Entry(11, 85));
-                    entries.add(new Entry(12, 78));
-                    entries.add(new Entry(13, Float.parseFloat(memberweight)));
+                    entries.add(new Entry(13, 78));
+                    entries.add(new Entry(15, Float.parseFloat(memberweight)));
 
                     // Create a dataset from the entries
                     LineDataSet dataSet = new LineDataSet(entries, "Label for the dataset");

@@ -2,7 +2,6 @@ package com.example.fitzone;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,34 +17,34 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
-public class WorkoutPlanVaticalAdapter extends RecyclerView.Adapter<WorkoutPlanVaticalAdapter.ViewHolder> {
-    private List<WorkoutPlanVaticalItemList> exercisesItemLists;
+public class EditWorkoutPlanListAdapter extends RecyclerView.Adapter<EditWorkoutPlanListAdapter.ViewHolder> {
+    private List<EditWorkoutPlanListItem> exercisesItemLists;
     Context context;
 
-    public WorkoutPlanVaticalAdapter(Context context, List<WorkoutPlanVaticalItemList> exercisesItemLists) {
+    public EditWorkoutPlanListAdapter(Context context, List<EditWorkoutPlanListItem> exercisesItemLists){
         this.exercisesItemLists = exercisesItemLists;
-        this.context = context;
+        this.context=context;
 
     }
 
     @NonNull
     @Override
-    public WorkoutPlanVaticalAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View tra = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_workout_plans_home_list_item, parent, false);
-        return new WorkoutPlanVaticalAdapter.ViewHolder(tra);
+    public EditWorkoutPlanListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View tra = LayoutInflater.from(parent.getContext()).inflate(R.layout.exercise_name_list_item, parent, false);
+        return new EditWorkoutPlanListAdapter.ViewHolder(tra);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull WorkoutPlanVaticalAdapter.ViewHolder holder, int position) {
-        WorkoutPlanVaticalItemList member = exercisesItemLists.get(position);
+    public void onBindViewHolder(@NonNull EditWorkoutPlanListAdapter.ViewHolder holder, int position) {
+        EditWorkoutPlanListItem member = exercisesItemLists.get(position);
         holder.exename.setText(member.getName());
-        holder.exebody.setText(member.getGoal());
+        holder.exebody.setText(member.getBody());
 
         // Check if the context is not null before loading the image
         if (context != null) {
             // Load image into CircleImageView using Glide library
             Glide.with(context)
-                    .load(member.getImage()) // Assuming getImage() returns the URL of the image
+                    .load(member.getImageUrl()) // Assuming getImage() returns the URL of the image
                     .apply(RequestOptions.circleCropTransform()) // Apply circle crop transformation for CircleImageView
                     .diskCacheStrategy(DiskCacheStrategy.ALL) // Cache image to disk
                     .into(holder.exeimage); // Load image into CircleImageView
@@ -59,24 +58,21 @@ public class WorkoutPlanVaticalAdapter extends RecyclerView.Adapter<WorkoutPlanV
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
-                    WorkoutPlanVaticalItemList item = exercisesItemLists.get(position);
-
-//                     Create an intent to start the MembersProfile activity
-                    Intent intent = new Intent(context, WorkoutPlan.class);
-                    // Pass data to the intent
-                    intent.putExtra("image", item.getImage());
-                    intent.putExtra("name", item.getName());
-                    intent.putExtra("goal", item.getGoal());
-                    intent.putExtra("wid", item.getWid());
+//                    ExercisesItemList item = exercisesItemLists.get(position);
+//
+////                    // Create an intent to start the MembersProfile activity
+//                    Intent intent = new Intent(context, EditWorkout.class);
+//                    // Pass data to the intent
+//                    intent.putExtra("imageUrl", item.getImageUrl());
+//                    intent.putExtra("name", item.getName());
 //                    intent.putExtra("body", item.getBody());
-
-                    // Start the activity
-                    context.startActivity(intent);
+//
+//                    // Start the activity
+//                    context.startActivity(intent);
                 }
             }
         });
     }
-
     @Override
     public int getItemCount() {
         return exercisesItemLists.size();
@@ -91,9 +87,10 @@ public class WorkoutPlanVaticalAdapter extends RecyclerView.Adapter<WorkoutPlanV
         @SuppressLint("WrongViewCast")
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            exename = itemView.findViewById(R.id.exercises_name);
-            exebody = itemView.findViewById(R.id.exercises_alllist);
-            exeimage = itemView.findViewById(R.id.exercises_image);
+            exename = itemView.findViewById(R.id.exe_name);
+            exebody = itemView.findViewById(R.id.exe_focus);
+            exeimage = itemView.findViewById(R.id.exe_image);
         }
     }
 }
+

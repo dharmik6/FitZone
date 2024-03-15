@@ -21,7 +21,7 @@ import java.util.List;
 public class WorkoutPlanVatical extends AppCompatActivity {
     RecyclerView workoutplanvatical_list;
     private WorkoutPlanVaticalAdapter vaticalAdapter;
-    private List<ExercisesItemList> exeLists;
+    private List<WorkoutPlanVaticalItemList> exeLists;
 
     private ProgressDialog progressDialog;
     @Override
@@ -49,7 +49,8 @@ public class WorkoutPlanVatical extends AppCompatActivity {
                 String name = documentSnapshot.getString("name");
                 String description = documentSnapshot.getString("goal");
                 String image = documentSnapshot.getString("image");
-                ExercisesItemList diet = new ExercisesItemList(name, description, image);
+                String wid=documentSnapshot.getId();
+                WorkoutPlanVaticalItemList diet = new WorkoutPlanVaticalItemList(name, description, image,wid);
                 exeLists.add(diet);
             }
 
