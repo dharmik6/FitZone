@@ -153,6 +153,8 @@ public class Packages extends AppCompatActivity {
                         Toast.makeText(Packages.this, "Error adding purchase", Toast.LENGTH_SHORT).show();
                     }
                 });
+        Intent innt = new Intent(Packages.this , Login.class);
+        startActivity(innt);
     }
 
 
