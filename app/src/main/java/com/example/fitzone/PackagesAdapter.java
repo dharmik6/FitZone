@@ -57,6 +57,7 @@ public class PackagesAdapter extends RecyclerView.Adapter<PackagesAdapter.ViewHo
                     intent.putExtra("price", item.getPrice());
                     intent.putExtra("duration", item.getDuration());
                     intent.putExtra("description", item.getDescription());
+                    intent.putExtra("id", item.getId());
 
                     // Start the activity
                     context.startActivity(intent);

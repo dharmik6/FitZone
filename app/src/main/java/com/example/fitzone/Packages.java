@@ -39,6 +39,8 @@ import java.util.Map;
 
 public class Packages extends AppCompatActivity {
     AppCompatTextView pac_show_descri,pac_show_duration,pac_show_price,pac_show_name;
+    String id ;
+    private static final String TAG = "Packages";
 
 
     @SuppressLint("MissingInflatedId")
@@ -64,6 +66,8 @@ public class Packages extends AppCompatActivity {
                 String description = documentSnapshot.getString("description");
                 String price = documentSnapshot.getString("price");
                 String duration = documentSnapshot.getString("duration");
+                 id = documentSnapshot.getString("id");
+
 //                 Check if the userNameFromIntent matches the user
                 if (pid.equals(name)) {
                     // Display the data only if they match
@@ -109,7 +113,46 @@ public class Packages extends AppCompatActivity {
     public void onPaymentSuccess(String paymentId) {
         // Payment successful, handle success logic here
         Toast.makeText(this, "Payment successful. Payment ID: " + paymentId, Toast.LENGTH_SHORT).show();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String userId = user.getUid();
 
+        // Get current date
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String currentDate = dateFormat.format(new Date());
+
+        // Create a Firestore instance
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        // Create a new purchases collection
+        DocumentReference purchaseRef = db.collection("purchases").document();
+
+        // Create a purchase object with required fields
+        Map<String, Object> purchase = new HashMap<>();
+
+        purchase.put("userId", userId);
+        purchase.put("packageName", pac_show_name.getText().toString()); // Using getText().toString() to get the text from TextView
+        purchase.put("paymentId", paymentId);
+        purchase.put("packageId", id); // Add the package ID
+        purchase.put("purchasesDate", currentDate);
+        purchase.put("duration", pac_show_duration.getText().toString()); // Using getText().toString() to get the text from TextView
+        purchase.put("price", pac_show_price.getText().toString()); // Using getText().toString() to get the text from TextView
+        purchase.put("status", "active");
+
+        purchaseRef.set(purchase)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "Purchase added with ID: " + purchaseRef.getId());
+                        // Now you can navigate to the payment completed activity
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, "Error adding purchase", e);
+                        Toast.makeText(Packages.this, "Error adding purchase", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
 
