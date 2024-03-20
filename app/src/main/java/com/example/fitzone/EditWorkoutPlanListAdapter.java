@@ -2,6 +2,7 @@ package com.example.fitzone;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,17 +59,17 @@ public class EditWorkoutPlanListAdapter extends RecyclerView.Adapter<EditWorkout
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
-//                    ExercisesItemList item = exercisesItemLists.get(position);
-//
-////                    // Create an intent to start the MembersProfile activity
-//                    Intent intent = new Intent(context, EditWorkout.class);
-//                    // Pass data to the intent
+                    EditWorkoutPlanListItem item = exercisesItemLists.get(position);
+
+//                    // Create an intent to start the MembersProfile activity
+                    Intent intent = new Intent(context, Exercises.class);
+                    // Pass data to the intent
 //                    intent.putExtra("imageUrl", item.getImageUrl());
-//                    intent.putExtra("name", item.getName());
+                    intent.putExtra("name", item.getName());
 //                    intent.putExtra("body", item.getBody());
-//
-//                    // Start the activity
-//                    context.startActivity(intent);
+
+                    // Start the activity
+                    context.startActivity(intent);
                 }
             }
         });

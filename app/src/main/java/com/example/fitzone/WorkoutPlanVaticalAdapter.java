@@ -14,15 +14,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
 public class WorkoutPlanVaticalAdapter extends RecyclerView.Adapter<WorkoutPlanVaticalAdapter.ViewHolder> {
-    private List<WorkoutPlanVaticalItemList> exercisesItemLists;
+    private List<ExercisesItemList> exercisesItemLists;
     Context context;
 
-    public WorkoutPlanVaticalAdapter(Context context, List<WorkoutPlanVaticalItemList> exercisesItemLists) {
+    public WorkoutPlanVaticalAdapter(Context context, List<ExercisesItemList> exercisesItemLists) {
         this.exercisesItemLists = exercisesItemLists;
         this.context = context;
 
@@ -37,7 +36,7 @@ public class WorkoutPlanVaticalAdapter extends RecyclerView.Adapter<WorkoutPlanV
 
     @Override
     public void onBindViewHolder(@NonNull WorkoutPlanVaticalAdapter.ViewHolder holder, int position) {
-        WorkoutPlanVaticalItemList member = exercisesItemLists.get(position);
+        ExercisesItemList member = exercisesItemLists.get(position);
         holder.exename.setText(member.getName());
         holder.exebody.setText(member.getGoal());
 
@@ -46,7 +45,7 @@ public class WorkoutPlanVaticalAdapter extends RecyclerView.Adapter<WorkoutPlanV
             // Load image into CircleImageView using Glide library
             Glide.with(context)
                     .load(member.getImage()) // Assuming getImage() returns the URL of the image
-                    .apply(RequestOptions.circleCropTransform()) // Apply circle crop transformation for CircleImageView
+//                    .apply(RequestOptions.circleCropTransform()) // Apply circle crop transformation for CircleImageView
                     .diskCacheStrategy(DiskCacheStrategy.ALL) // Cache image to disk
                     .into(holder.exeimage); // Load image into CircleImageView
         }
@@ -59,16 +58,15 @@ public class WorkoutPlanVaticalAdapter extends RecyclerView.Adapter<WorkoutPlanV
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
-                    WorkoutPlanVaticalItemList item = exercisesItemLists.get(position);
+                    ExercisesItemList item = exercisesItemLists.get(position);
 
 //                     Create an intent to start the MembersProfile activity
-                    Intent intent = new Intent(context, WorkoutPlan.class);
+                    Intent intent = new Intent(context, EditWorkoutPlanList.class);
                     // Pass data to the intent
                     intent.putExtra("image", item.getImage());
                     intent.putExtra("name", item.getName());
                     intent.putExtra("goal", item.getGoal());
                     intent.putExtra("wid", item.getWid());
-//                    intent.putExtra("body", item.getBody());
 
                     // Start the activity
                     context.startActivity(intent);

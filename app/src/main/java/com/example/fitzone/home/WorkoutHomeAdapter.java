@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.fitzone.EditWorkoutPlanList;
 import com.example.fitzone.ExercisesAdapter;
 import com.example.fitzone.ExercisesItemList;
 import com.example.fitzone.R;
@@ -65,12 +66,12 @@ public class WorkoutHomeAdapter  extends RecyclerView.Adapter<WorkoutHomeAdapter
                     ExercisesItemList item = exercisesItemLists.get(position);
 
 //                     Create an intent to start the MembersProfile activity
-                    Intent intent = new Intent(context, WorkoutPlan.class);
+                    Intent intent = new Intent(context, EditWorkoutPlanList.class);
                     // Pass data to the intent
                     intent.putExtra("image", item.getImage());
                     intent.putExtra("name", item.getName());
                     intent.putExtra("goal", item.getGoal());
-//                    intent.putExtra("body", item.getBody());
+                    intent.putExtra("wid", item.getWid());
 
                     // Start the activity
                     context.startActivity(intent);
