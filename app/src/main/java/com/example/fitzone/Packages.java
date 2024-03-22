@@ -88,7 +88,7 @@ public class Packages extends AppCompatActivity {
 
         public void initiatePayment(View view) {
             Checkout checkout = new Checkout();
-            checkout.setKeyID("rzp_test_kwOuQYURkLzLPc"); // Replace with your actual Razorpay key
+            checkout.setKeyID("rzp_test_qUBYsTsQoyEwsF"); // Replace with your actual Razorpay key
 
             // Convert charge from rupees to paise
             double chargeInRupees = Double.parseDouble(pac_show_price.getText().toString());

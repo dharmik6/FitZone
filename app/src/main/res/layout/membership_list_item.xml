@@ -36,10 +36,11 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:paddingVertical="5dp">
+                android:paddingVertical="10dp">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -62,6 +63,7 @@
                         tools:ignore="UselessParent">
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/package_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Package name"
@@ -72,6 +74,7 @@
                             android:textColor="@color/black"
                             tools:ignore="HardcodedText,ObsoleteLayoutParam" />
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/package_time"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="6 months"
@@ -87,20 +90,22 @@
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginStart="250dp"
                     android:layout_alignParentStart="true"
                     android:layout_marginEnd="20dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/package_status"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Expired"
+                        android:textAlignment="textEnd"
                         android:layout_alignParentEnd="true"
                         android:fontFamily="@font/nunito_bold"
                         android:textSize="16sp"
