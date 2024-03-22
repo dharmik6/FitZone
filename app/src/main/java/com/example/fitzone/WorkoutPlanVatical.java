@@ -1,7 +1,9 @@
 package com.example.fitzone;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,24 +21,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WorkoutPlanVatical extends AppCompatActivity {
-    RecyclerView workoutplanvatical_list;
-    private WorkoutPlanVaticalAdapter vaticalAdapter;
-    private List<WorkoutPlanVaticalItemList> exeLists;
+
+    private RecyclerView workout_plan_list;
+
+    private WorkoutPlanVaticalAdapter exeadapter;
+    private List<ExercisesItemList> exeLists;
 
     private ProgressDialog progressDialog;
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_workout_plan_vatical);
-        workoutplanvatical_list=findViewById(R.id.workoutplanvatical_list);
+        workout_plan_list=findViewById(R.id.workout_plan_list);
         // Set horizontal layout manager
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        workoutplanvatical_list.setLayoutManager(layoutManager2);
+        workout_plan_list.setLayoutManager(layoutManager2);
 
         exeLists = new ArrayList<>();
-        vaticalAdapter = new WorkoutPlanVaticalAdapter(this, exeLists);
-        workoutplanvatical_list.setAdapter(vaticalAdapter);
+        exeadapter = new WorkoutPlanVaticalAdapter(this, exeLists);
+        workout_plan_list.setAdapter(exeadapter);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
@@ -49,12 +54,12 @@ public class WorkoutPlanVatical extends AppCompatActivity {
                 String name = documentSnapshot.getString("name");
                 String description = documentSnapshot.getString("goal");
                 String image = documentSnapshot.getString("image");
-                String wid=documentSnapshot.getId();
-                WorkoutPlanVaticalItemList diet = new WorkoutPlanVaticalItemList(name, description, image,wid);
+                String wid = documentSnapshot.getId();
+                ExercisesItemList diet = new ExercisesItemList(name, description, image,wid);
                 exeLists.add(diet);
             }
 
-            vaticalAdapter.notifyDataSetChanged();
+            exeadapter.notifyDataSetChanged();
             if (progressDialog != null && progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
@@ -63,7 +68,6 @@ public class WorkoutPlanVatical extends AppCompatActivity {
                 progressDialog.dismiss();
             }
         });
-
 
     }
 }

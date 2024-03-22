@@ -21,10 +21,8 @@ import com.example.fitzone.WorkoutItemList;
 import com.example.fitzone.WorkoutPlan;
 import com.example.fitzone.WorkoutPlanAdapter;
 import com.example.fitzone.WorkoutPlanVatical;
-import com.example.fitzone.diet.DietAdapter;
 import com.example.fitzone.diet.DietItemList;
 import com.example.fitzone.diet.DietList;
-import com.example.fitzone.trainer.ApprovedTrainerProfile;
 import com.example.fitzone.trainer.TrainerApprovedList;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -181,7 +179,8 @@ public class FragmentHome extends Fragment {
                 String name = documentSnapshot.getString("name");
                 String description = documentSnapshot.getString("goal");
                 String image = documentSnapshot.getString("image");
-                ExercisesItemList diet = new ExercisesItemList(name, description, image);
+                String wid = documentSnapshot.getId();
+                ExercisesItemList diet = new ExercisesItemList(name, description, image,wid);
                 exeLists.add(diet);
             }
 

@@ -69,7 +69,8 @@ public class FragmentWorkout extends Fragment {
                 String name = documentSnapshot.getString("name");
                 String description = documentSnapshot.getString("goal");
                 String image = documentSnapshot.getString("image");
-                ExercisesItemList diet = new ExercisesItemList(name, description, image);
+                String wid = documentSnapshot.getId();
+                ExercisesItemList diet = new ExercisesItemList(name, description, image,wid);
                 exeLists.add(diet);
             }
 

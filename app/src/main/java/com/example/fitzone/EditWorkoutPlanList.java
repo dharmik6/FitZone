@@ -28,10 +28,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EditWorkoutPlanList extends AppCompatActivity {
-RecyclerView wor_plan_recyc;
+    RecyclerView wor_plan_recyc;
     private EditWorkoutPlanListAdapter adapter;
     private List<EditWorkoutPlanListItem> exercisesItemLists;
     private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +44,7 @@ RecyclerView wor_plan_recyc;
 
         Intent intent = getIntent();
         String wid = intent.getStringExtra("wid");
-
+//Log.d("wid",wid);
 
         wor_plan_recyc.setHasFixedSize(true);
         wor_plan_recyc.setLayoutManager(new LinearLayoutManager(this));
@@ -60,14 +61,17 @@ RecyclerView wor_plan_recyc;
 
         fetchAndDisplayExerciseDetails(wid);
 
+
+
         ImageView backPress = findViewById(R.id.back);
         backPress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               onBackPressed();
+                onBackPressed();
             }
         });
     }
+
     private void fetchAndDisplayExerciseDetails(String wid) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("workout_plans")
@@ -80,7 +84,8 @@ RecyclerView wor_plan_recyc;
                             for (String exerciseId : exerciseIds) {
                                 fetchExerciseDetails(exerciseId);
                             }
-
+                            // Update total exercises count
+//                            updateTotalExercises(exerciseIds.size());
                         }
                     }
                 })
@@ -104,4 +109,8 @@ RecyclerView wor_plan_recyc;
                 })
                 .addOnFailureListener(e -> Log.w(TAG, "Error fetching exercise document", e));
     }
+
+//    private void updateTotalExercises(int size) {
+//        totla_exe_plan.setText("Total Exercises: " + size);
+//    }
 }

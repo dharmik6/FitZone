@@ -6,7 +6,12 @@ public class EditWorkoutPlanListItem {
     private String body;
     private String imageUrl;
 
+    // Default constructor
+    public EditWorkoutPlanListItem() {
+        // Required empty constructor
+    }
 
+    // Constructor with parameters
     public EditWorkoutPlanListItem(String name, String body, String imageUrl, String id) {
         this.name = name;
         this.body = body;
@@ -14,11 +19,11 @@ public class EditWorkoutPlanListItem {
         this.id = id;
     }
 
+
     // Getters and setters for the properties
     public String getName() {
         return name;
     }
-
 
     public void setName(String name) {
         this.name = name;

@@ -4,20 +4,26 @@ public class ExercisesItemList {
     private String name;
     private String goal;
     private String image;
+    private String wid;
 
     public ExercisesItemList() {
         // Empty constructor needed for Firestore
     }
 
-    public ExercisesItemList(String name, String goal, String image) {
+    public ExercisesItemList(String name, String goal, String image,String wid) {
         this.name = name;
         this.goal = goal;
         this.image = image;
+        this.wid = wid;
     }
 
     // Getters and setters for the properties
     public String getName() {
         return name;
+    }
+
+    public String getWid() {
+        return wid;
     }
 
     public void setName(String name) {
