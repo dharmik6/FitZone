@@ -18,6 +18,10 @@ import android.widget.Toast;
 
 import com.example.fitzone.OrderDetail;
 import com.example.fitzone.R;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -32,6 +36,12 @@ public class Appointment extends AppCompatActivity {
     Button btnNext ;
     String selectedDateString;
     TextView app_tre_name,app_tre_specialization,app_tre_experience,app_tre_review;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    CollectionReference bookingsCollection = db.collection("bookings");
+
+    String trainerName,trainerImage,trainerReview,functionalStrength,experience,charge,treid;
+
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +64,13 @@ public class Appointment extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        String trainerName = intent.getStringExtra("trainer_name");
-        String trainerImage = intent.getStringExtra("trainer_img");
-        String trainerReview = intent.getStringExtra("trainer_review");
-        String functionalStrength = intent.getStringExtra("Functional_Strength");
-        String experience = intent.getStringExtra("trainer_eee_txt");
-        String charge = intent.getStringExtra("charge");
-        String treid = intent.getStringExtra("trid");
+         trainerName = intent.getStringExtra("trainer_name");
+         trainerImage = intent.getStringExtra("trainer_img");
+         trainerReview = intent.getStringExtra("trainer_review");
+         functionalStrength = intent.getStringExtra("Functional_Strength");
+         experience = intent.getStringExtra("trainer_eee_txt");
+         charge = intent.getStringExtra("charge");
+         treid = intent.getStringExtra("trid");
 
         app_tre_review.setText(trainerReview);
         app_tre_experience.setText(functionalStrength);
@@ -120,6 +130,8 @@ public class Appointment extends AppCompatActivity {
         });
 
 
+
+
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,23 +179,80 @@ public class Appointment extends AppCompatActivity {
                 // Calculate the total charge
                 totalCharge *= durationHours;
 
-                // Proceed to OrderDetail activity
-                Intent intent1 = new Intent(Appointment.this, OrderDetail.class);
-                intent1.putExtra("trainer_name", trainerName);
-                intent1.putExtra("trainer_review", trainerReview);
-                intent1.putExtra("Functional_Strength", functionalStrength);
-                intent1.putExtra("trainer_eee_txt", experience);
-                intent1.putExtra("regi_date", selectedDate);
-                intent1.putExtra("charge", String.valueOf(totalCharge)); // Pass the total charge
-                intent1.putExtra("start_time", startTimeText);
-                intent1.putExtra("end_time", endTimeText);
-                intent1.putExtra("treid", treid);
-                startActivity(intent1);
+                // Check if the selected time slot is available
+                checkAvailability(selectedDate, startTimeText, endTimeText, totalCharge);
             }
         });
 
 
     }
+
+    private void checkAvailability(String selectedDate, String startTime, String endTime, double totalCharge) {
+        // Query Firestore to fetch bookings for the selected date
+        bookingsCollection
+                .whereEqualTo("bookedDate", selectedDate)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        QuerySnapshot querySnapshot = task.getResult();
+                        if (querySnapshot != null && !querySnapshot.isEmpty()) {
+                            // Iterate through the bookings to check for overlapping time slots
+                            for (DocumentSnapshot document : querySnapshot.getDocuments()) {
+                                String dbStartTime = document.getString("startTime");
+                                String dbEndTime = document.getString("endTime");
+
+                                // Check for overlapping time slots
+                                if (isTimeOverlap(startTime, endTime, dbStartTime, dbEndTime)) {
+                                    // Overlapping time slot found, show message and return
+                                    Toast.makeText(Appointment.this, "This time slot is already booked, please select another time", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                            }
+                        }
+
+                        // No overlapping time slot found, proceed to OrderDetail activity
+                        Intent intent1 = new Intent(Appointment.this, OrderDetail.class);
+                        intent1.putExtra("trainer_name", trainerName);
+                        intent1.putExtra("trainer_review", trainerReview);
+                        intent1.putExtra("Functional_Strength", functionalStrength);
+                        intent1.putExtra("trainer_eee_txt", experience);
+                        intent1.putExtra("regi_date", selectedDate);
+                        intent1.putExtra("charge", String.valueOf(totalCharge)); // Pass the total charge
+                        intent1.putExtra("start_time", startTime);
+                        intent1.putExtra("end_time", endTime);
+                        intent1.putExtra("treid", treid);
+                        startActivity(intent1);
+                        finish();
+                    } else {
+                        // Handle errors
+                        Toast.makeText(Appointment.this, "Error checking availability: " + task.getException(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+
+
+    // Method to check if two time ranges overlap
+    private boolean isTimeOverlap(String startTime1, String endTime1, String startTime2, String endTime2) {
+        // Convert time strings to minutes since midnight for easier comparison
+        int start1 = convertTimeToMinutes(startTime1);
+        int end1 = convertTimeToMinutes(endTime1);
+        int start2 = convertTimeToMinutes(startTime2);
+        int end2 = convertTimeToMinutes(endTime2);
+
+        // Check for overlap
+        return (start1 < end2) && (end1 > start2);
+    }
+
+    // Method to convert time string to minutes since midnight
+    private int convertTimeToMinutes(String time) {
+        String[] parts = time.split(":");
+        int hours = Integer.parseInt(parts[0]);
+        int minutes = Integer.parseInt(parts[1]);
+        return hours * 60 + minutes;
+    }
+
+
     private boolean isEndTimeAfterStartTime(String startTime, String endTime) {
         String[] startTimeParts = startTime.split(":");
         String[] endTimeParts = endTime.split(":");

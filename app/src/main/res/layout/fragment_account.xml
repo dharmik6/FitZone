@@ -105,9 +105,10 @@
                             tools:ignore="TooDeepLayout">
 
                             <ImageView
-                                android:id="@+id/user_acc_image"
+                                android:id="@+id/show_image"
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
+                                android:scaleType="centerCrop"
                                 android:src="@drawable/people_imge"
                                 tools:ignore="ContentDescription,TooDeepLayout" />
 

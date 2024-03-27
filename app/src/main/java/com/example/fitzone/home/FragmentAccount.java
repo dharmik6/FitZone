@@ -24,16 +24,17 @@ import com.example.fitzone.Profile;
 import com.example.fitzone.R;
 import com.example.fitzone.booking.BookingList;
 import com.example.fitzone.membership.Membership;
+import com.example.fitzone.membership.MembershipList;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 public class FragmentAccount extends Fragment {
-    RelativeLayout profile, logout , bookings,membership ,feedBack,privacyPolicy;
+    RelativeLayout profile, logout, bookings, membership, feedBack, privacyPolicy;
     AppCompatTextView user_acc_name, user_acc_username;
-    ImageView user_acc_image;
     String uid;
+    ImageView show_image;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,8 +51,7 @@ public class FragmentAccount extends Fragment {
 
         user_acc_name = view.findViewById(R.id.user_acc_name);
         user_acc_username = view.findViewById(R.id.user_acc_username);
-        user_acc_image = view.findViewById(R.id.user_acc_image);
-
+        show_image = view.findViewById(R.id.show_image); // Initialize user_acc_image
 
         String uid = getArguments().getString("uid");
 
@@ -65,7 +65,7 @@ public class FragmentAccount extends Fragment {
         membership.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), Membership.class);
+                Intent intent = new Intent(getContext(), MembershipList.class);
                 startActivity(intent);
             }
         });
@@ -109,9 +109,6 @@ public class FragmentAccount extends Fragment {
             }
         });
 
-        // Check if UID is not null before querying Firestore
-        if (uid != null) {
-            // Query Firestore for data
             FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
             if (currentUser != null) {
                 String userId = currentUser.getUid();
@@ -127,16 +124,16 @@ public class FragmentAccount extends Fragment {
                         if (memberimage != null) {
                             Glide.with(FragmentAccount.this)
                                     .load(memberimage)
-                                    .into(user_acc_image);
+                                    .into(show_image);
                         }
                     }
                 }).addOnFailureListener(e -> {
-//                Toast.makeText(FragmentAccount.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
             } else {
-//            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "User not logged in", Toast.LENGTH_SHORT).show();
             }
-        }
+
 
         return view; // Move the return statement here
     }

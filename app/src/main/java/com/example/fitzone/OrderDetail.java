@@ -75,29 +75,38 @@ public class OrderDetail extends AppCompatActivity {
 
     public void initiatePayment(View view) {
         Checkout checkout = new Checkout();
-        checkout.setKeyID("rzp_test_kwOuQYURkLzLPc"); // Replace with your actual Razorpay key
+        checkout.setKeyID("rzp_test_qUBYsTsQoyEwsF"); // Replace with your actual Razorpay key
 
         // Convert charge from rupees to paise
         double chargeInRupees = Double.parseDouble(charge);
         int amountInPaise = (int) (chargeInRupees * 100); // Convert rupees to paise
 
-        try {
-            JSONObject options = new JSONObject();
-            options.put("name", "FitZone");
-            options.put("description", "Purchase Description");
-            options.put("currency", "INR");
-            options.put("amount", amountInPaise); // Amount in paise (e.g., ₹500 = 50000)
-            options.put("prefill", new JSONObject().put("email", "customer@example.com"));
+// Inside your onCreate() method or wherever appropriate
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
 
-            checkout.open(this, options);
-        } catch (Exception e) {
-            Log.e("RazorpayError", "Error in starting Razorpay Checkout", e);
+        if (currentUser != null) {
+            String userEmail = currentUser.getEmail();
+            try {
+                JSONObject options = new JSONObject();
+                options.put("name", "FitZone");
+                options.put("description", "Purchase Description");
+                options.put("currency", "INR");
+                options.put("amount", amountInPaise); // Amount in paise (e.g., ₹500 = 50000)
+                options.put("prefill", new JSONObject().put("email", userEmail)); // Set current user's email
+                checkout.open(this, options);
+            } catch (Exception e) {
+                Log.e("RazorpayError", "Error in starting Razorpay Checkout", e);
+            }
+        } else {
+            // User not logged in, handle this case accordingly
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
         }
     }
 
 
 
-    public void onPaymentSuccess(String paymentId) {
+        public void onPaymentSuccess(String paymentId) {
         // Payment successful, handle success logic here
         Toast.makeText(this, "Payment successful. Payment ID: " + paymentId, Toast.LENGTH_SHORT).show();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -122,6 +131,7 @@ public class OrderDetail extends AppCompatActivity {
         booking.put("paymentId", paymentId);
         booking.put("charge", charge); // Add the charge value here
         booking.put("bookingDate", currentDate); // Add current date
+        booking.put("bookedDate", or_date.getText()); // Add current date
         booking.put("paymentStatus", "pending"); // Add payment status
 
         // Add the booking object to Firestore with the generated ID
@@ -141,6 +151,7 @@ public class OrderDetail extends AppCompatActivity {
                         intsuc.putExtra("treid", treid);
                         intsuc.putExtra("charge", charge); // Pass charge to PaymentCompleted activity
                         startActivity(intsuc);
+                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
