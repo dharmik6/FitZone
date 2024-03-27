@@ -1,6 +1,7 @@
 package com.example.fitzone.trainer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.fitzone.AchievementsList;
 import com.example.fitzone.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -23,6 +25,7 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
     Button book_btn_registration;
     ProgressDialog progressDialog;
     String treid1 ;
+    CardView achieve;
     TextView Functional_Strength_txt,trainer_name_txt,trBio,chargeTx,trainer_review_txt,review_show_allkaku,trainer_eee_txt,kalu;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -40,6 +43,8 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
         review_show_allkaku=findViewById(R.id.review_show_allkaku);
         trainer_eee_txt=findViewById(R.id.trainer_eee_txt);
         kalu=findViewById(R.id.kalu);
+        achieve=findViewById(R.id.achieve);
+
 
         Intent intent = getIntent();
         String memberid = intent.getStringExtra("name");
@@ -91,6 +96,14 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
                         Intent intent1 = new Intent(ApprovedTrainerProfile.this, Review.class);
                         intent1.putExtra("treid", trid);
                         startActivity(intent1);
+                    }
+                });
+                achieve.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent2=new Intent(ApprovedTrainerProfile.this, AchievementsList.class);
+                        intent2.putExtra("treid", trid);
+                        startActivity(intent2);
                     }
                 });
             }

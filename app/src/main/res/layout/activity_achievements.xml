@@ -79,6 +79,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
                     <TextView
+
+                        android:id="@+id/certificates_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="20sp"
@@ -90,6 +92,7 @@
                 </RelativeLayout>
 
                 <ImageView
+                    android:id="@+id/certificates_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/default_image"
@@ -118,6 +121,7 @@
                     tools:ignore="HardcodedText" />
 
                 <TextView
+                    android:id="@+id/certificates_dec"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
