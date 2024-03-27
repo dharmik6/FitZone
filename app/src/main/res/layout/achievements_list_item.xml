@@ -43,6 +43,7 @@
 
 
                     <ImageView
+                        android:id="@+id/Achievements_image"
                         android:layout_width="300dp"
                         android:layout_height="200dp"
                         android:layout_gravity="center"
@@ -69,6 +70,7 @@
                     android:padding="10dp">
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/Achievements_name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingStart="20dp"

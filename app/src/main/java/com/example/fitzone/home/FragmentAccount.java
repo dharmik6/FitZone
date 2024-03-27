@@ -36,6 +36,7 @@ public class FragmentAccount extends Fragment {
     String uid;
     ImageView show_image;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,7 +52,7 @@ public class FragmentAccount extends Fragment {
 
         user_acc_name = view.findViewById(R.id.user_acc_name);
         user_acc_username = view.findViewById(R.id.user_acc_username);
-        show_image = view.findViewById(R.id.show_image); // Initialize user_acc_image
+        show_image = view.findViewById(R.id.user_acc_image); // Initialize user_acc_image
 
         String uid = getArguments().getString("uid");
 
@@ -109,30 +110,41 @@ public class FragmentAccount extends Fragment {
             }
         });
 
-            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-            if (currentUser != null) {
-                String userId = currentUser.getUid();
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-                db.collection("users").document(userId).get().addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        String membername = documentSnapshot.getString("name");
-                        String memberusername = documentSnapshot.getString("username");
-                        String memberimage = documentSnapshot.getString("image");
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db.collection("users").document(userId).get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) {
+                    String membername = documentSnapshot.getString("name");
+                    String memberusername = documentSnapshot.getString("username");
+                    String memberimage = documentSnapshot.getString("image");
 
-                        user_acc_name.setText(membername != null ? membername : "No name");
-                        user_acc_username.setText(memberusername != null ? memberusername : "No username");
-                        if (memberimage != null) {
-                            Glide.with(FragmentAccount.this)
-                                    .load(memberimage)
-                                    .into(show_image);
-                        }
+                    if (membername != null && memberusername != null) {
+                        user_acc_name.setText(membername);
+                        user_acc_username.setText(memberusername);
+                    } else {
+                        user_acc_name.setText("No name");
+                        user_acc_username.setText("No username");
                     }
-                }).addOnFailureListener(e -> {
-                    Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
-            } else {
-                Toast.makeText(getContext(), "User not logged in", Toast.LENGTH_SHORT).show();
-            }
+
+                    if (memberimage != null) {
+                        Glide.with(requireContext())
+                                .load(memberimage)
+                                .into(show_image);
+                    } else {
+                        // If image URL is null, you can set a placeholder image here
+                        // show_image.setImageResource(R.drawable.placeholder_image);
+                    }
+                } else {
+                    Toast.makeText(getContext(), "Document does not exist", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnFailureListener(e -> {
+                Toast.makeText(getContext(), "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+        } else {
+            Toast.makeText(getContext(), "User not logged in", Toast.LENGTH_SHORT).show();
+        }
 
 
         return view; // Move the return statement here

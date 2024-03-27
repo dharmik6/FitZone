@@ -222,6 +222,7 @@
                                 android:fontFamily="@font/nunito_bold"
                                 android:textColor="@color/black"
                                 android:textSize="14sp"
+                                android:text="100 kg"
                                 android:layout_marginEnd="20dp"
                                 android:layout_alignParentEnd="true"
                                 android:layout_alignParentBottom="true"
@@ -249,10 +250,12 @@
                                 android:textSize="14sp"
                                 tools:ignore="HardcodedText,TooDeepLayout" />
                             <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvlightest"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/nunito_bold"
                                 android:textColor="@color/black"
+                                android:text="50 kg"
                                 android:textSize="14sp"
                                 android:layout_marginEnd="20dp"
                                 android:layout_alignParentEnd="true"

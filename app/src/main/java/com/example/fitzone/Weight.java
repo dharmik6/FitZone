@@ -15,6 +15,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.shawnlin.numberpicker.NumberPicker;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Weight extends AppCompatActivity {
     ImageView backButton;
     NumberPicker weight_num ;
@@ -68,13 +73,24 @@ public class Weight extends AppCompatActivity {
         // Get the UID from the Intent extras
         Intent intent = getIntent();
         String uid = intent.getStringExtra("uid");
+        // Create a map with the updated fields
+        Map<String, Object> weightData = new HashMap<>();
+
+        // Get current date
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String currentDate = dateFormat.format(new Date());
+
+        weightData.put("weight", weight);
+        weightData.put("date", currentDate);
 
         // Assuming you have a Firestore collection named "users"
         // Replace 'users' with your desired collection name
         // Save the weight to Firestore for the user with userId
         db.collection("users")
                 .document(uid)
-                .update("weight", weight)
+                .collection("weight")
+                .document(currentDate)
+                .set(weightData)
                 .addOnSuccessListener(aVoid -> {
                     // Handle success
                     // Redirect to the next activity if needed
