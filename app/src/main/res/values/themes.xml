@@ -25,6 +25,7 @@
 
     <style name="bottom_nav" parent="Base.Theme.FitZone" >
         <item name="colorAccent">@color/dark_blue</item>
+        <item name="colorPrimary">@color/dark_blue</item>
     </style>
 
 </resources>
