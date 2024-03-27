@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,7 +27,8 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
     ProgressDialog progressDialog;
     String treid1 ;
     CardView achieve;
-    TextView Functional_Strength_txt,trainer_name_txt,trBio,chargeTx,trainer_review_txt,review_show_allkaku,trainer_eee_txt,kalu;
+    RatingBar xml3_rating_bar;
+    TextView trainer_review_txt3,Functional_Strength_txt,trainer_name_txt,trBio,chargeTx,review_show_allkaku,trainer_eee_txt,kalu;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +41,18 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
         trainer_name_txt=findViewById(R.id.trainer_name_txt);
         chargeTx=findViewById(R.id.charge);
         trBio=findViewById(R.id.tr_bio);
-        trainer_review_txt=findViewById(R.id.trainer_review_txt);
         review_show_allkaku=findViewById(R.id.review_show_allkaku);
         trainer_eee_txt=findViewById(R.id.trainer_eee_txt);
         kalu=findViewById(R.id.kalu);
         achieve=findViewById(R.id.achieve);
+        trainer_review_txt3=findViewById(R.id.trainer_review_txt3);
+        xml3_rating_bar=findViewById(R.id.xml3_rating_bar);
 
+        // Initialize ProgressDialog
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show(); // Show ProgressDialog
 
         Intent intent = getIntent();
         String memberid = intent.getStringExtra("name");
@@ -54,15 +62,12 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
         db.collection("trainers").get().addOnSuccessListener(queryDocumentSnapshots -> {
             for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                 String namee = documentSnapshot.getString("name");
-                String name = documentSnapshot.getString("specialization");
-                String specializatione = documentSnapshot.getString("review");
-              //  String email = documentSnapshot.getString("pay");
+                String specializatione = documentSnapshot.getString("specialization");
                 String imagee = documentSnapshot.getString("image");
                 String experience = documentSnapshot.getString("experience");
                 String charge = documentSnapshot.getString("charge");
                 String bio = documentSnapshot.getString("bio");
-                 treid1 = documentSnapshot.getId();
-//                 Check if the userNameFromIntent matches the user
+                treid1 = documentSnapshot.getId();
 
                 if (memberid.equals(namee)) {
                     // Display the data only if they match
@@ -70,9 +75,7 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
                     trainer_eee_txt.setText(experience != null ? experience : "No experience");
                     Functional_Strength_txt.setText(specializatione != null ? specializatione : "Non specialist");
                     trBio.setText(bio != null ? bio : "No bio");
-//                    trainer_review_txt.setText(specializatione != null ? specializatione : "No review");
                     chargeTx.setText(charge != null ? charge : "No price");
-                    kalu.setText(treid1 != null ? treid1 : "00.00");
 
                     if (imagee != null) {
                         Glide.with(ApprovedTrainerProfile.this)
@@ -80,45 +83,70 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
                                 .into(trainer_img_txt);
                     }
                 }
-                String trid=kalu.getText().toString().trim();
-                FirebaseFirestore db2 = FirebaseFirestore.getInstance();
-                db2.collection("trainers").document(trid).collection("trainers_review").get().addOnSuccessListener(queryDocumentSnapshots1 -> {
-                    for (QueryDocumentSnapshot documentSnapshot1 : queryDocumentSnapshots1) {
-                        String rating = documentSnapshot1.getString("rating");
-                        String review = documentSnapshot1.getString("review");
-                        trainer_review_txt.setText(rating != null ? rating : "No name");
-                    }
-                });
 
-                review_show_allkaku.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent1 = new Intent(ApprovedTrainerProfile.this, Review.class);
-                        intent1.putExtra("treid", trid);
-                        startActivity(intent1);
+                FirebaseFirestore db3 = FirebaseFirestore.getInstance();
+                db3.collection("trainers").document(treid1).collection("trainers_review").get().addOnSuccessListener(queryDocumentSnapshots3 -> {
+                    float totalRating = 0;
+                    int reviewCount = 0;
+
+                    for (QueryDocumentSnapshot documentSnapshot3 : queryDocumentSnapshots3) {
+                        String rating = documentSnapshot3.getString("rating");
+
+                        if (rating != null) {
+                            totalRating += Float.parseFloat(rating);
+                            reviewCount++;
+                        }
                     }
-                });
-                achieve.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent2=new Intent(ApprovedTrainerProfile.this, AchievementsList.class);
-                        intent2.putExtra("treid", trid);
-                        startActivity(intent2);
+
+                    if (reviewCount > 0) {
+                        float averageRating = totalRating / reviewCount;
+                        xml3_rating_bar.setRating(averageRating);
+                        trainer_review_txt3.setText(String.valueOf(averageRating));
                     }
+
+                    // Dismiss ProgressDialog when data is loaded
+                    progressDialog.dismiss();
+                }).addOnFailureListener(e -> {
+                    // Handle failures
+                    progressDialog.dismiss();
                 });
             }
         });
-//
-//        String treid=kalu.getText().toString().trim();
+
+        review_show_allkaku.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1 = new Intent(ApprovedTrainerProfile.this, Review.class);
+                intent1.putExtra("treid", treid1);
+                startActivity(intent1);
+            }
+        });
+
+        achieve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2=new Intent(ApprovedTrainerProfile.this, AchievementsList.class);
+                intent2.putExtra("treid", treid1);
+                startActivity(intent2);
+            }
+        });
+
+        ImageView back=findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         book_btn_registration.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
                 Intent intent1 = new Intent(ApprovedTrainerProfile.this, Appointment.class);
                 // Use different keys for each putExtra statement
                 intent1.putExtra("trainer_name", trainer_name_txt.getText().toString());
-//                intent1.putExtra("trainer_img", trainer_img_txt.getText().toString());
-                intent1.putExtra("trainer_review", trainer_review_txt.getText().toString());
+                intent1.putExtra("trainer_review", trainer_review_txt3.getText().toString());
                 intent1.putExtra("Functional_Strength", Functional_Strength_txt.getText().toString());
                 intent1.putExtra("trainer_eee_txt", trainer_eee_txt.getText().toString());
                 intent1.putExtra("charge", chargeTx.getText().toString());
@@ -126,6 +154,5 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
                 startActivity(intent1);
             }
         });
-
     }
 }

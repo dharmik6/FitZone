@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.fitzone.R;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -63,6 +65,13 @@ public class TrainerApprovedList extends AppCompatActivity {
 
             if (progressDialog != null && progressDialog.isShowing()) {
                 progressDialog.dismiss();
+            }
+        });
+        ImageView back=findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
             }
         });
     }
