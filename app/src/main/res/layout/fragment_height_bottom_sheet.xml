@@ -63,6 +63,15 @@
                     app:np_value="60"
                     tools:ignore="SpeakableTextPresentCheck" />
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|top"
+                    android:src="@drawable/ic_polygon"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/height_up_new"
+                    tools:ignore="ContentDescription" />
             </RelativeLayout>
 
             <LinearLayout

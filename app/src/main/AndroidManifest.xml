@@ -118,6 +118,14 @@
             android:name=".home.MainActivity"
             android:exported="false" />
         <activity
+            android:name=".EditWorkoutPlanList"
+            android:exported="false" />
+        <activity
+            android:name=".WorkoutPlanVatical"
+            android:exported="false">
+        </activity>
+
+        <activity
             android:name=".SplashScreen"
             android:exported="true">
             <intent-filter>

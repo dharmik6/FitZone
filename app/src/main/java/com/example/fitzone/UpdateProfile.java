@@ -182,7 +182,7 @@ public class UpdateProfile extends AppCompatActivity {
 
                             // Update Firestore document with the new data
                             DocumentReference userRef = db.collection("users").document(userId);
-                            userRef.set(userData)
+                            userRef.update(userData)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {

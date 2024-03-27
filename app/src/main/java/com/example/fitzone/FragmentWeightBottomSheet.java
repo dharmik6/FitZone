@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 //import android.widget.NumberPicker;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import android.widget.Toast;
 
 
@@ -81,8 +83,14 @@ public class FragmentWeightBottomSheet extends BottomSheetDialogFragment {
 
     private void updateFirestoreDocument(String newWeight) {
         // Create a map with the updated fields
-        Map<String, Object> dietData = new HashMap<>();
-        dietData.put("newWeight", newWeight);
+        Map<String, Object> weightData = new HashMap<>();
+
+        // Get current date
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String currentDate = dateFormat.format(new Date());
+
+        weightData.put("weight", newWeight);
+        weightData.put("date", currentDate);
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
@@ -91,18 +99,20 @@ public class FragmentWeightBottomSheet extends BottomSheetDialogFragment {
             // Update the document in Firestore
             db.collection("users")
                     .document(userId)
-                    .update(dietData)
+                    .collection("weight")
+                    .document(currentDate)
+                    .set(weightData)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             progressDialog.dismiss(); // Dismiss progressDialog after the update process completes
                             if (task.isSuccessful()) {
                                 // Document updated successfully
-                                Toast.makeText(getActivity(), "Weight updated successfully", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Weight date updated successfully", Toast.LENGTH_SHORT).show();
                                 dismiss(); // Dismiss the bottom sheet after successful update
                             } else {
                                 // Error updating document
-                                Toast.makeText(getActivity(), "Failed to update weight: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Failed to update weight date: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
