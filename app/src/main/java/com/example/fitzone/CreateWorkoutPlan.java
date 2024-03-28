@@ -20,6 +20,8 @@ import androidx.cardview.widget.CardView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -111,7 +113,7 @@ public class CreateWorkoutPlan extends AppCompatActivity {
             progressDialog.show();
 
             // Get reference to Firebase Storage and set the path for the image
-            StorageReference imageRef = storageRef.child("workout_plan_images/" + UUID.randomUUID().toString());
+            StorageReference imageRef = storageRef.child("user_workout_plan_images/" + UUID.randomUUID().toString());
 
             // Upload the image to Firebase Storage
             imageRef.putFile(selectedImageUri)
@@ -143,16 +145,25 @@ public class CreateWorkoutPlan extends AppCompatActivity {
         }
     }
     private void saveDataToFirestore(String planName, String planGoal, String imageUrl) {
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db.collection("users").document(userId).get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) {
+                    String membername = documentSnapshot.getId();
+
         // Create a new document in the "workout_plans" collection with the provided data
         Map<String, Object> workoutPlan = new HashMap<>();
         workoutPlan.put("name", planName);
         workoutPlan.put("goal", planGoal);
+//        workoutPlan.put("create", membername);
         if (imageUrl != null) {
             workoutPlan.put("image", imageUrl); // Add the image URL to the document if it exists
         }
         String name = plan_name.getText().toString();
         // Add the workout plan data to Firestore
-        db.collection("workout_plans").document(name)
+        db.collection("users").document(membername).collection("user_workout_plans").document(planName)
                 .set(workoutPlan)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -172,6 +183,9 @@ public class CreateWorkoutPlan extends AppCompatActivity {
                         Toast.makeText(CreateWorkoutPlan.this, "Failed to add workout plan: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+                }
+            });
+        }
     }
 
 }

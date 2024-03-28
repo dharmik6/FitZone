@@ -60,6 +60,7 @@
                         tools:ignore="UselessParent">
 
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/myworkout_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Workout plan name"
@@ -70,6 +71,7 @@
                             android:textColor="@color/black"
                             tools:ignore="HardcodedText,ObsoleteLayoutParam" />
                         <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/workout_exe"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="0 exercises"
@@ -115,7 +117,7 @@
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/img_user"
+                    android:id="@+id/img_mywor"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_alignParentTop="true"

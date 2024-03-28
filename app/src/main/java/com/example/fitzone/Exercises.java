@@ -2,6 +2,7 @@ package com.example.fitzone;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,12 +23,13 @@ public class Exercises extends AppCompatActivity {
     TextView exercised_body,exercised_equipment,exercised_description;
     ProgressDialog progressDialog;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercises);
 
-        exe_image = findViewById(R.id.exe_image);
+        exe_image = findViewById(R.id.exe_image2);
         exercised_name = findViewById(R.id.exercised_name);
         exercised_body = findViewById(R.id.exercised_body);
         exercised_equipment = findViewById(R.id.exercised_equipment);

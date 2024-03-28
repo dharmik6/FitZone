@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark_blue"
-    tools:context=".MyWorkoutPlansList">
+    android:background="@color/back_ground"
+    tools:context=".WorkoutExercisesList">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,12 +18,12 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/linearLayout"
-            android:background="@color/dark_blue"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
+            android:layout_height="?attr/actionBarSize"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:background="@color/dark_blue"
             android:orientation="horizontal"
             tools:ignore="MissingConstraints">
 
@@ -44,11 +44,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
-                android:gravity="center"
                 android:layout_toStartOf="@+id/back"
                 android:layout_toEndOf="@+id/back"
                 android:fontFamily="@font/opensans_bold"
-                android:text="@string/My_workout_plans_list"
+                android:gravity="center"
+                android:text="WorkoutExercisesList"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -58,92 +58,60 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <RelativeLayout
+            android:id="@+id/ll_Search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linearLayout"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints,UselessParent">
+
+
+        </RelativeLayout>
+
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/ll_Search"
+            android:layout_marginTop="20dp"
             android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:background="@color/back_ground">
+            android:layout_alignParentEnd="true">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            tools:ignore="ObsoleteLayoutParam,ScrollViewSize">
 
             <RelativeLayout
-                android:id="@+id/workout_plans"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginTop="20dp"
+                android:id="@+id/rl_exercises"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                tools:ignore="UselessLeaf,UselessParent">
+                tools:ignore="ObsoleteLayoutParam">
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     tools:ignore="UselessLeaf,UselessParent">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/myworkout_recyc"
+                        android:id="@+id/edit_exe_tr"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:scrollbars="vertical"
-                        tools:listitem="@layout/my_workout_plans_list_item" />
+                        tools:listitem="@layout/exercise_name_list_item" />
                 </LinearLayout>
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/workout_plans"
-                tools:ignore="NotSibling">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/add_my_workout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="40dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:backgroundTint="@color/dark_cyan"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="10dp"
-                    tools:ignore="MissingConstraints"
-                    android:layout_marginVertical="10dp"
-                    android:layout_marginHorizontal="10dp">
-
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/ic_new"
-                        android:layout_gravity="center"
-                        tools:ignore="ContentDescription" />
-                </androidx.cardview.widget.CardView>
-
 
             </RelativeLayout>
-
-
-    </RelativeLayout>
 
         </ScrollView>
-
     </RelativeLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

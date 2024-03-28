@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,8 +14,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.fitzone.CreateWorkoutPlan;
 import com.example.fitzone.ExercisesAdapter;
 import com.example.fitzone.ExercisesItemList;
+import com.example.fitzone.MyWorkoutPlansList;
 import com.example.fitzone.R;
 import com.example.fitzone.WorkoutPlan;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -28,7 +31,7 @@ public class FragmentWorkout extends Fragment {
 
     private RecyclerView workoutList;
     private TextView emptyView;
-
+CardView active_card;
     private WorkoutHomeAdapter exeadapter;
     private List<ExercisesItemList> exeLists;
 
@@ -39,6 +42,7 @@ public class FragmentWorkout extends Fragment {
     View view = inflater.inflate(R.layout.fragment_workout, container, false);
 
         workoutList = view.findViewById(R.id.workout_list);
+        active_card = view.findViewById(R.id.active_card);
 
 //        emptyView = view.findViewById(R.id.empty_text_view);
 
@@ -83,7 +87,13 @@ public class FragmentWorkout extends Fragment {
                 progressDialog.dismiss();
             }
         });
-
+        active_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent1=new Intent(getContext(), MyWorkoutPlansList.class);
+                startActivity(intent1);
+            }
+        });
         return view;
     }
 }
