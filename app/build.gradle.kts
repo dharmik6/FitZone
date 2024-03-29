@@ -41,6 +41,7 @@ dependencies {
 
     //image circle
     implementation("de.hdodenhof:circleimageview:3.1.0")
+    implementation ("com.github.Drjacky:ImagePicker:2.3.22")
 
     //number picker
     implementation ("io.github.ShawnLin013:number-picker:2.4.13")
