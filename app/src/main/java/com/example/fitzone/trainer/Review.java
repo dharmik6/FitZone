@@ -75,7 +75,8 @@ public class Review extends AppCompatActivity {
 
                 String review = documentSnapshot.getString("review");
                 String name = documentSnapshot.getString("review_name");
-                TrainerReviewList member = new TrainerReviewList(rating, review, name);
+                String image = documentSnapshot.getString("review_image");
+                TrainerReviewList member = new TrainerReviewList(rating, review, name,image);
                 trainersLists.add(member);
             }
 

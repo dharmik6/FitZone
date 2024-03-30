@@ -65,8 +65,7 @@ public class WriteReview extends AppCompatActivity {
                     db1.collection("users").document(userId).get().addOnSuccessListener(documentSnapshot -> {
                         if (documentSnapshot.exists()) {
                             String name = documentSnapshot.getString("name");
-                            String memberheight = documentSnapshot.getString("height");
-                            String newWeight = documentSnapshot.getString("newWeight");
+                            String image = documentSnapshot.getString("image");
 
                             // Convert float rating to a string
 
@@ -76,7 +75,7 @@ public class WriteReview extends AppCompatActivity {
                 String rating = String.valueOf(ratingString);
                 String review = review_text.getText().toString();
                 progressDialog.show(); // Show progressDialog
-                addCertificateToFirestore(review, rating,name);
+                addCertificateToFirestore(review, rating,name,image);
                 // Get the review details
                         }
                     });
@@ -84,7 +83,7 @@ public class WriteReview extends AppCompatActivity {
             }
         });
     }
-    private void addCertificateToFirestore(String review, String rating,String name) {
+    private void addCertificateToFirestore(String review, String rating,String name,String image) {
 
                     // Retrieve treid from intent
                     Intent intent = getIntent();
@@ -94,6 +93,7 @@ public class WriteReview extends AppCompatActivity {
                     Map<String, Object> reviewData = new HashMap<>();
                     reviewData.put("rating", rating);
                     reviewData.put("review", review);
+                    reviewData.put("review_image", image);
                     reviewData.put("review_name", name);
 
                     db.collection("trainers")

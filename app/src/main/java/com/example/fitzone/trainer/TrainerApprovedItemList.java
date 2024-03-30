@@ -1,15 +1,20 @@
 package com.example.fitzone.trainer;
 
 public class TrainerApprovedItemList {
-    private String tname, timage,review;
+    private String tname, timage,review,id;
     private String temail, tnumber, tgender, tboi, taddress,specialization, experience, tjoidate;
 
-    public TrainerApprovedItemList(String tname, String experience, String timage,String specialization,String review) {
+    public TrainerApprovedItemList(String tname, String experience, String timage,String specialization,String review,String id) {
         this.tname = tname;
         this.experience =experience;
         this.timage=timage;
         this.review=review;
         this.specialization=specialization;
+        this.id=id;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getTname() {return tname;}

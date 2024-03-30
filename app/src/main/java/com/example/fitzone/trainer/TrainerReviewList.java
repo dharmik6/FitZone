@@ -1,16 +1,21 @@
 package com.example.fitzone.trainer;
 
 public class TrainerReviewList {
-    private String rating, review,name;
-    public TrainerReviewList(String review, String rating,String name) {
+    private String rating, review,name,image;
+    public TrainerReviewList(String review, String rating,String name,String image) {
         this.review = review;
         this.rating =rating;
         this.name =name;
+        this.image =image;
 
     }
 
     public String getReview() {return review;}
     public String getRating() {return rating;}
+
+    public String getImage() {
+        return image;
+    }
 
     public String getName() {
         return name;

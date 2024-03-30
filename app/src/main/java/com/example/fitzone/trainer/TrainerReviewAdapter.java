@@ -2,6 +2,7 @@ package com.example.fitzone.trainer;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,15 @@ public class TrainerReviewAdapter extends RecyclerView.Adapter<TrainerReviewAdap
         holder.review_show.setText(member.getReview());
         holder.rating_show.setText(member.getRating());
         holder.name_of_review.setText(member.getName());
+        if (context != null) {
+            // Load image into CircleImageView using Glide library
+            Glide.with(context)
+                    .load(member.getImage()) // Assuming getImage() returns the URL of the image
+                    .apply(RequestOptions.circleCropTransform()) // Apply circle crop transformation for CircleImageView
+                    .diskCacheStrategy(DiskCacheStrategy.ALL) // Cache image to disk
+                    .into(holder.review_image); // Load image into CircleImageView
+        }
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,12 +85,14 @@ public class TrainerReviewAdapter extends RecyclerView.Adapter<TrainerReviewAdap
         public TextView review_show;
         public TextView rating_show;
         public TextView name_of_review;
+        public CircleImageView review_image;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             review_show = itemView.findViewById(R.id.review_show);
             rating_show = itemView.findViewById(R.id.rating_show);
             name_of_review = itemView.findViewById(R.id.name_of_review);
+            review_image = itemView.findViewById(R.id.review_image);
         }
     }
 }
