@@ -5,18 +5,21 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatEditText;
+import com.github.drjacky.imagepicker.ImagePicker;
+import com.github.drjacky.imagepicker.constant.ImageProvider;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import java.util.HashMap;
 import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
+import kotlin.Unit;
+import kotlin.jvm.functions.Function1;
 
 public class ProfileUserName extends AppCompatActivity {
     CircleImageView user_image;
@@ -42,8 +45,18 @@ public class ProfileUserName extends AppCompatActivity {
         findViewById(R.id.user_camera).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent iuser = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(iuser, PICK_IMAGE_REQUEST);
+                // Use ImagePicker to select an image from camera or gallery
+                ImagePicker.Companion.with(ProfileUserName.this)
+                        .crop()         // Enable cropping
+                        .cropOval()     // Crop shape to oval
+                        .provider(ImageProvider.BOTH) // Or bothCameraGallery()
+                        .createIntentFromDialog(new Function1<Intent, Unit>() {
+                            @Override
+                            public Unit invoke(Intent it) {
+                                startActivityForResult(it, PICK_IMAGE_REQUEST);
+                                return null;
+                            }
+                        });
             }
         });
         btn_next = findViewById(R.id.btn_next);

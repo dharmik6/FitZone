@@ -3,6 +3,7 @@ package com.example.fitzone;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.AutoCompleteTextView;
@@ -11,6 +12,7 @@ public class PaymentCompleted extends AppCompatActivity {
 
     AppCompatTextView tr_name , tr_image , tr_review , date , start_time ,end_time;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
