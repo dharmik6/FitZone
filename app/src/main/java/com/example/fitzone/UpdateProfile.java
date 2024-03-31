@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -189,6 +190,7 @@ public class UpdateProfile extends AppCompatActivity {
                                             // Document successfully updated
                                             progressDialog.dismiss();
                                             Toast.makeText(UpdateProfile.this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
+                                            finish();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -215,6 +217,38 @@ public class UpdateProfile extends AppCompatActivity {
                 }
             }
         });
+
+        // Retrieve intent extras
+        Intent intent = getIntent();
+        if (intent != null) {
+            String name = intent.getStringExtra("name");
+            String username = intent.getStringExtra("username");
+            String email = intent.getStringExtra("email");
+            String number = intent.getStringExtra("number");
+            String address = intent.getStringExtra("address");
+            String gender = intent.getStringExtra("gender");
+            String age = intent.getStringExtra("age");
+            String height = intent.getStringExtra("height");
+            String weight = intent.getStringExtra("weight");
+            String goal = intent.getStringExtra("goal");
+            String level = intent.getStringExtra("level");
+
+            String imageUriString = intent.getStringExtra("imageUri");
+            if (imageUriString != null) {
+                // Convert string URI to URI object
+                selectedImageUri = Uri.parse(imageUriString);
+
+                // Display the selected image
+                Glide.with(this)
+                        .load(selectedImageUri)
+                        .into(member_add_image);
+            }
+            // Set retrieved data to corresponding views
+            member_add_name.setText(name);
+            member_add_number.setText(number);
+            member_add_address.setText(address);
+            // Set other fields similarly...
+        }
     }
 
     // Method to handle image selection result

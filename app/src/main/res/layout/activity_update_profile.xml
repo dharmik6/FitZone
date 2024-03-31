@@ -212,6 +212,7 @@
                     android:hint="Mobile"
                     android:inputType="phone"
                     android:padding="10dp"
+                    android:maxLength="10"
                     android:paddingStart="15dp"
                     android:textColor="@color/black"
                     android:textColorHint="@color/text"

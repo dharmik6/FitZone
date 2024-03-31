@@ -48,7 +48,7 @@
             android:layout_toStartOf="@+id/back"
             android:layout_toEndOf="@+id/back"
             android:fontFamily="@font/opensans_bold"
-            android:text="workout_plans"
+            android:text="@string/Workout_plans"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -160,144 +160,7 @@
 
         </RelativeLayout>
         
-        <RelativeLayout
-            android:id="@+id/plan_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/rl_workout_name">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/information2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true"
-                android:backgroundTint="@color/card_view"
-                app:cardCornerRadius="20dp"
-                tools:ignore="ObsoleteLayoutParam">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentTop="true"
-                        android:orientation="vertical"
-                        tools:ignore="UselessParent">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="30dp"
-                            android:layout_marginTop="20dp"
-                            android:fontFamily="@font/opensans_condensed_regular"
-                            android:text="created"
-                            android:textColor="@color/text"
-                            android:textSize="16sp"
-                            tools:ignore="HardcodedText,SpUsage" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/created_date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginEnd="15dp"
-                            android:text="User"
-                            android:fontFamily="@font/nunito_regular"
-                            android:padding="10dp"
-                            android:paddingStart="15dp"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck,TextSizeCheck" />
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="10dp"
-                            android:src="@drawable/ic_line"
-                            tools:ignore="ContentDescription" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="30dp"
-                            android:layout_marginTop="20dp"
-                            android:fontFamily="@font/opensans_condensed_regular"
-                            android:text="difficulty_level"
-                            android:textColor="@color/text"
-                            android:textSize="16sp"
-                            tools:ignore="HardcodedText,SpUsage" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/created_level"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginEnd="15dp"
-                            android:fontFamily="@font/nunito_regular"
-                            android:padding="10dp"
-                            android:paddingStart="15dp"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck,TextSizeCheck" />
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="10dp"
-                            android:src="@drawable/ic_line"
-                            tools:ignore="ContentDescription" />
-
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="30dp"
-                            android:layout_marginTop="20dp"
-                            android:fontFamily="@font/opensans_condensed_regular"
-                            android:text="created_date"
-                            android:textColor="@color/text"
-                            android:textSize="16sp"
-                            tools:ignore="HardcodedText,SpUsage" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:text="15-03-2024"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="20dp"
-                            android:layout_marginEnd="15dp"
-                            android:fontFamily="@font/nunito_regular"
-                            android:padding="10dp"
-                            android:paddingStart="15dp"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />
-
-                        </LinearLayout>
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </RelativeLayout>
 
             <RelativeLayout
                 android:id="@+id/rl_exercises"
@@ -305,7 +168,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_below="@+id/plan_info">
+                android:layout_below="@+id/rl_workout_name">
 
 
                 <LinearLayout
