@@ -100,31 +100,34 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             if (!task.getResult().isEmpty()) {
-                                // Email exists in the database, proceed with signing in the user
-                                mAuth.signInWithEmailAndPassword(email, password)
-                                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                                pd.dismiss(); // Dismiss the progress dialog
-                                                if (task.isSuccessful()) {
-
-                                                    SharedPreferences pref = getSharedPreferences("login",MODE_PRIVATE);
-                                                    SharedPreferences.Editor editor = pref.edit();
-
-                                                    editor.putBoolean("flag" ,true);
-                                                    editor.apply();
-
-                                                    Intent intent = new Intent(Login.this, MainActivity.class);
-                                                    startActivity(intent);
-                                                    finish(); // Close the login activity
-                                                    // Sign in success, update UI with the signed-in user's information
-                                                    Toast.makeText(Login.this, "Sign in Successful!", Toast.LENGTH_SHORT).show();
-                                                } else {
-                                                    // If sign in fails, display a message to the user.
-                                                    Toast.makeText(Login.this, "Please Enter the Correct Email id and Password", Toast.LENGTH_SHORT).show();
+                                boolean isActive = task.getResult().getDocuments().get(0).getBoolean("is_active");
+                                if (isActive) {
+                                    // User account is active, proceed with signing in the user
+                                    mAuth.signInWithEmailAndPassword(email, password)
+                                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                                    pd.dismiss(); // Dismiss the progress dialog
+                                                    if (task.isSuccessful()) {
+                                                        // User logged in successfully
+                                                        setLoggedInFlag();
+                                                        startActivity(new Intent(Login.this, MainActivity.class));
+                                                        finish(); // Close the login activity
+                                                        Toast.makeText(Login.this, "Sign in Successful!", Toast.LENGTH_SHORT).show();
+                                                    } else {
+                                                        // If sign in fails, display a message to the user.
+                                                        Toast.makeText(Login.this, "Please Enter the Correct Email id and Password", Toast.LENGTH_SHORT).show();
+                                                    }
                                                 }
-                                            }
-                                        });
+                                            });
+                                } else {
+                                    // User account is not active
+                                    pd.dismiss(); // Dismiss the progress dialog
+                                    // Redirect to PackagesList activity
+                                    Intent intent = new Intent(Login.this, PackagesList.class);
+                                    startActivity(intent);
+                                    Toast.makeText(Login.this, "You do not have any active plan", Toast.LENGTH_SHORT).show();
+                                }
                             } else {
                                 // Email doesn't exist in the database
                                 Toast.makeText(Login.this, "Email doesn't exist", Toast.LENGTH_SHORT).show();
@@ -137,6 +140,7 @@ public class Login extends AppCompatActivity {
                         }
                     }
                 });
+
     }
 
     private void resetPassword() {

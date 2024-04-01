@@ -121,8 +121,15 @@ public class ProfileUserName extends AppCompatActivity {
         String userName = user_username.getText().toString().trim();
         String addressText = address.getText().toString().trim();
         String phoneText = phone.getText().toString().trim();
+        String usernamePattern = "^[a-z0-9_]+$"; // Pattern to allow lowercase letters, numbers, and underscores, but no spaces
+
         if (userName.isEmpty()) {
             user_username.setError("Username is required");
+            user_username.requestFocus();
+            return false;
+        }
+        if (!userName.matches(usernamePattern)) {
+            user_username.setError("Username must contain only lowercase letters (a-z), numbers, and underscores (_), and no spaces");
             user_username.requestFocus();
             return false;
         }
@@ -143,6 +150,7 @@ public class ProfileUserName extends AppCompatActivity {
         }
         return true;
     }
+
 
     public static void redirectActivity(Activity activity, Class destination, String uid) {
         Intent intent = new Intent(activity, destination);
