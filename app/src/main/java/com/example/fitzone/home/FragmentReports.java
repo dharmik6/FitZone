@@ -2,6 +2,7 @@ package com.example.fitzone.home;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -43,11 +44,13 @@ import java.util.List;
 public class FragmentReports extends Fragment {
     TextView show_Weight, show_Height,tvlightest,tvHeaviest;
     LineChart lineChart;
+    View view; // Declare view variable here
+    ProgressDialog progressDialog;
 
     @SuppressLint("MissingInflatedId")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_reports, container, false);
+        view = inflater.inflate(R.layout.fragment_reports, container, false); // Initialize view here
 
         tvHeaviest = view.findViewById(R.id.tvHeaviest);
         tvlightest = view.findViewById(R.id.tvlightest);
@@ -60,13 +63,40 @@ public class FragmentReports extends Fragment {
         editWeightImageView.setOnClickListener(v -> {
             FragmentWeightBottomSheet bottomSheet = new FragmentWeightBottomSheet();
             bottomSheet.show(getChildFragmentManager(), bottomSheet.getTag());
+            if (bottomSheet.getDialog() != null) {
+                bottomSheet.getDialog().setOnDismissListener(dialog -> fetchDataAndUpdateUI()); // Set the listener for the dialog
+            }
         });
 
         ImageView editHeightImageView = view.findViewById(R.id.edit_height);
         editHeightImageView.setOnClickListener(v -> {
             FragmentHeightBottomSheet bottomSheet = new FragmentHeightBottomSheet();
             bottomSheet.show(getChildFragmentManager(), bottomSheet.getTag());
+            if (bottomSheet.getDialog() != null) {
+                bottomSheet.getDialog().setOnDismissListener(dialog -> fetchDataAndUpdateUI()); // Refresh on dismiss
+            }
         });
+
+        // Initialize ProgressDialog
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Loading..."); // Set your message
+        progressDialog.setCancelable(false); // Set if dialog is cancelable or not
+
+        return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        fetchDataAndUpdateUI();
+    }
+
+    public void onDismiss() {
+        fetchDataAndUpdateUI(); // Refresh UI when bottom sheet is dismissed
+    }
+
+    public void fetchDataAndUpdateUI() {
+        progressDialog.show(); // Show progress dialog
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
@@ -191,13 +221,12 @@ public class FragmentReports extends Fragment {
                             halfGauge.setValue(value);
                         }
                         setChart(entries);
+                        progressDialog.dismiss();
                     });
                     show_Height.setText(memberheight != null ? memberheight : "No height");
                 }
             });
         }
-
-        return view;
     }
 
     private void setChart(List<Entry> entries) {

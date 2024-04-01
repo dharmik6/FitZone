@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,11 +31,14 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class OrderDetail extends AppCompatActivity {
     private static final String TAG = "OrderDetail";
     private AppCompatTextView tr_reting, or_date, or_start, or_end,or_charge;
     TextView tr_name, tr_spec;
+    CircleImageView app_tre_image;
     String charge ,treid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,7 @@ public class OrderDetail extends AppCompatActivity {
 
         Intent intent = getIntent();
         String trainerName = intent.getStringExtra("trainer_name");
+        String trainerImage = intent.getStringExtra("trainer_image");
         String functionalStrength = intent.getStringExtra("Functional_Strength");
         String trainerReview = intent.getStringExtra("trainer_review");
         String appDate = intent.getStringExtra("regi_date");
@@ -58,6 +63,7 @@ public class OrderDetail extends AppCompatActivity {
         or_start = findViewById(R.id.start_time);
         or_end = findViewById(R.id.end_time);
         or_charge = findViewById(R.id.or_charg);
+        app_tre_image = findViewById(R.id.app_tre_image);
 
         tr_name.setText(trainerName);
         tr_spec.setText(functionalStrength);
@@ -68,6 +74,15 @@ public class OrderDetail extends AppCompatActivity {
         or_charge.setText(charge);
 
 
+        if (trainerImage != null) {
+            Glide.with(this)
+                    .load(trainerImage)// Error image if loading fails
+                    .into(app_tre_image);
+        } else {
+            // If trainer image is stored as a resource ID or another format, handle it accordingly
+        }
+
+
 
 
         Checkout.preload(getApplicationContext());
@@ -76,6 +91,7 @@ public class OrderDetail extends AppCompatActivity {
     public void initiatePayment(View view) {
         Checkout checkout = new Checkout();
         checkout.setKeyID("rzp_test_qUBYsTsQoyEwsF"); // Replace with your actual Razorpay key
+        checkout.setImage(R.drawable.ic_logo_round_edge);
 
         // Convert charge from rupees to paise
         double chargeInRupees = Double.parseDouble(charge);
@@ -94,6 +110,7 @@ public class OrderDetail extends AppCompatActivity {
                 options.put("currency", "INR");
                 options.put("amount", amountInPaise); // Amount in paise (e.g., ₹500 = 50000)
                 options.put("prefill", new JSONObject().put("email", userEmail)); // Set current user's email
+                options.put("theme.color", "#029791");
                 checkout.open(this, options);
             } catch (Exception e) {
                 Log.e("RazorpayError", "Error in starting Razorpay Checkout", e);
@@ -152,6 +169,7 @@ public class OrderDetail extends AppCompatActivity {
                         intsuc.putExtra("charge", charge); // Pass charge to PaymentCompleted activity
                         startActivity(intsuc);
                         finish();
+
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

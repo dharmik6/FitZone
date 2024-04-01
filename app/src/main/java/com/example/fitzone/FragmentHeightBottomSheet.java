@@ -1,6 +1,6 @@
 package com.example.fitzone;
-
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,9 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-//import android.widget.NumberPicker;
 import android.widget.Toast;
 
+import com.example.fitzone.home.FragmentReports;
 import com.shawnlin.numberpicker.NumberPicker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -25,14 +25,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentHeightBottomSheet#} factory method to
- * create an instance of this fragment.
- */
 public class FragmentHeightBottomSheet extends BottomSheetDialogFragment {
     NumberPicker height_up_new;
-    Button exe_het_update,exe_het_delete;
+    Button exe_het_update, exe_het_delete;
     ProgressDialog progressDialog; // Progress dialog for showing upload progress
     private FirebaseFirestore db;
 
@@ -41,9 +36,9 @@ public class FragmentHeightBottomSheet extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_height_bottom_sheet, container, false);
         // Initialize views and set up any necessary functionality
-        exe_het_delete=view.findViewById(R.id.exe_het_delete);
-        exe_het_update=view.findViewById(R.id.exe_het_update);
-        height_up_new=view.findViewById(R.id.height_up_new);
+        exe_het_delete = view.findViewById(R.id.exe_het_delete);
+        exe_het_update = view.findViewById(R.id.exe_het_update);
+        height_up_new = view.findViewById(R.id.height_up_new);
         // Initialize FirebaseFirestore
         db = FirebaseFirestore.getInstance();
 
@@ -73,6 +68,7 @@ public class FragmentHeightBottomSheet extends BottomSheetDialogFragment {
         });
         return view;
     }
+
     private void updateFirestoreDocument(String newHeight) {
         // Create a map with the updated fields
         Map<String, Object> dietData = new HashMap<>();
@@ -110,5 +106,13 @@ public class FragmentHeightBottomSheet extends BottomSheetDialogFragment {
                         }
                     });
         }
+    }
+
+    // This method is called when the BottomSheet is dismissed
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        super.onDismiss(dialog);
+        // Trigger refresh of the page in the parent fragment/activity
+        ((FragmentReports) getParentFragment()).fetchDataAndUpdateUI();
     }
 }

@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -34,6 +35,14 @@ public class Diet extends AppCompatActivity {
         progressDialog.setMessage("Deleting...");
         progressDialog.setCancelable(false);
 
+        ImageView backPress = findViewById(R.id.back);
+        backPress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
         // Query Firestore for data
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("diets").get().addOnSuccessListener(queryDocumentSnapshots -> {
@@ -58,4 +67,5 @@ public class Diet extends AppCompatActivity {
             }
         });
     }
+
 }

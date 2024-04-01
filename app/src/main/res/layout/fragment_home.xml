@@ -36,7 +36,7 @@
                     tools:ignore="MissingConstraints">
 
                     <TextView
-                        android:id="@+id/text_title"
+                        android:id="@+id/greeting"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
