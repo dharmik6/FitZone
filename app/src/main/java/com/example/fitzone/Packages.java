@@ -163,6 +163,7 @@ public class Packages extends AppCompatActivity {
                         // Now you can navigate to the payment completed activity
                         Intent intent = new Intent(Packages.this, MainActivity.class);
                         startActivity(intent);
+                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
