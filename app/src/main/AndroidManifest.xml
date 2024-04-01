@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- Add the following uses-permission if not already present -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -15,6 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FitZone"
         tools:targetApi="31">
+        <activity
+            android:name=".GetStarted"
+            android:exported="false" />
+        <activity
+            android:name=".OnboardingScreen"
+            android:exported="false" />
         <activity
             android:name=".PaymentCompleted"
             android:exported="false" />
@@ -122,25 +127,19 @@
             android:exported="false" />
         <activity
             android:name=".WorkoutPlanVatical"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".CreateWorkoutPlan"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".WorkoutPlans"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".EditWorkout"
-            android:exported="false">
-        </activity>
-<activity
+            android:exported="false" />
+        <activity
             android:name=".WorkoutExercisesList"
-            android:exported="false">
-        </activity>
-
+            android:exported="false" />
         <activity
             android:name=".SplashScreen"
             android:exported="true">
@@ -149,19 +148,17 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <!-- Add android:exported="true" for CheckoutActivity -->
+        </activity> <!-- Add android:exported="true" for CheckoutActivity -->
         <activity
             android:name="com.razorpay.CheckoutActivity"
             android:exported="true">
-            <!-- Other attributes -->
-        </activity>
 
-        <!-- Add android:exported="true" for RzpTokenReceiver -->
+            <!-- Other attributes -->
+        </activity> <!-- Add android:exported="true" for RzpTokenReceiver -->
         <receiver
             android:name="com.razorpay.RzpTokenReceiver"
             android:exported="true">
+
             <!-- Other attributes -->
         </receiver>
     </application>
