@@ -58,8 +58,6 @@ public class WorkoutPlans extends AppCompatActivity {
         edit_plan_tr = findViewById(R.id.edit_plan_tr);
         totla_exe_plan = findViewById(R.id.totla_exe_plan);
 
-        created_date = findViewById(R.id.created_date);
-        created_level = findViewById(R.id.created_level);
 
 
         plan_name_exe = findViewById(R.id.plan_name_exe);
