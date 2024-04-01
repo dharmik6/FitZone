@@ -1,15 +1,15 @@
 package com.example.fitzone;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WorkoutExercisesList extends AppCompatActivity {
-
     RecyclerView edit_exe_tr;
 
     private WorkoutExercisesListAdapter adapter;
@@ -34,7 +33,6 @@ public class WorkoutExercisesList extends AppCompatActivity {
 
         Intent intent = getIntent();
         String wid = intent.getStringExtra("wid");
-
 
         edit_exe_tr.setHasFixedSize(true);
         edit_exe_tr.setLayoutManager(new LinearLayoutManager(this));
@@ -118,14 +116,10 @@ public class WorkoutExercisesList extends AppCompatActivity {
         });
     }
 
-
-    private void filter(String query) {
-        List<WorkoutExercisesListItem> filteredList = new ArrayList<>();
-        for (WorkoutExercisesListItem member : exercisesItemLists) {
-            if (member.getName().toLowerCase().contains(query.toLowerCase())) {
-                filteredList.add(member);
-            }
-        }
-        adapter.filterList(filteredList);
+    @Override
+    public void onBackPressed() {
+        finish();
+        super.onBackPressed();
     }
+
 }

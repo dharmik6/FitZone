@@ -18,7 +18,7 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.List;
 
-public class WorkoutPlansShowAdapter extends RecyclerView.Adapter<WorkoutPlansShowAdapter.ViewHolder> {
+public class WorkoutPlansShowAdapter  extends RecyclerView.Adapter<WorkoutPlansShowAdapter.ViewHolder> {
     private List<WorExercisesItemList> exercisesItemLists;
     Context context;
 
@@ -30,13 +30,13 @@ public class WorkoutPlansShowAdapter extends RecyclerView.Adapter<WorkoutPlansSh
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public WorkoutPlansShowAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View tra = LayoutInflater.from(parent.getContext()).inflate(R.layout.exercise_name_list_item, parent, false);
-        return new ViewHolder(tra);
+        return new WorkoutPlansShowAdapter.ViewHolder(tra);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull WorkoutPlansShowAdapter.ViewHolder holder, int position) {
         WorExercisesItemList member = exercisesItemLists.get(position);
         holder.exename.setText(member.getName());
         holder.exebody.setText(member.getBody());

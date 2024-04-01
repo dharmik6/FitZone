@@ -2,10 +2,21 @@ package com.example.fitzone;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,18 +24,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +93,6 @@ public class WorkoutPlans extends AppCompatActivity {
         progressDialog.setCancelable(false);
 //        progressDialog.show();
 
-        fetchAndDisplayExerciseDetails(wid);
         edit_plan_tr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,43 +110,44 @@ public class WorkoutPlans extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                 if (currentUser != null) {
+                    progressDialog.show(); // Show progress dialog before fetching user data
                     String userId = currentUser.getUid();
                     FirebaseFirestore db2 = FirebaseFirestore.getInstance();
                     db2.collection("users").document(userId).get().addOnSuccessListener(documentSnapshot2 -> {
+                        progressDialog.dismiss(); // Dismiss progress dialog after fetching user data
                         if (documentSnapshot2.exists()) {
-                            String membername = documentSnapshot2.getId();
+                            String uid = documentSnapshot2.getId();
 
                             // Get the Firestore instance
-                            FirebaseFirestore db = FirebaseFirestore.getInstance();
-                            progressDialog.show();
-                            // Access the collection and delete the document
-                            db.collection("users").document(membername).collection("user_workout_plans").document(eid)
-                                    .delete()
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void aVoid) {
-                                            // Document successfully deleted
-                                            progressDialog.dismiss();
-                                            Toast.makeText(WorkoutPlans.this, "Document deleted successfully", Toast.LENGTH_SHORT).show();
-                                            Intent intent1 = new Intent(WorkoutPlans.this, MyWorkoutPlansList.class);
-                                            startActivity(intent1);
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            // Handle any errors
-                                            progressDialog.dismiss();
-                                            Log.e("Firestore", "Error deleting document", e);
-                                            Toast.makeText(WorkoutPlans.this, "Failed to delete document", Toast.LENGTH_SHORT).show();
-                                        }
-                                    });
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                progressDialog.show();
+                // Access the collection and delete the document
+                db.collection("users").document(uid).collection("user_workout_plans").document(eid)
+                        .delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                // Document successfully deleted
+                                progressDialog.dismiss();
+                                Toast.makeText(WorkoutPlans.this, "Document deleted successfully", Toast.LENGTH_SHORT).show();
+                                Intent intent1=new Intent(WorkoutPlans.this, MyWorkoutPlansList.class);
+                                startActivity(intent1);
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Handle any errors
+                                progressDialog.dismiss();
+                                Log.e("Firestore", "Error deleting document", e);
+                                Toast.makeText(WorkoutPlans.this, "Failed to delete document", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                         }
                     });
                 }
             }
         });
-
         ImageView backPress = findViewById(R.id.back);
         backPress.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -152,17 +158,34 @@ public class WorkoutPlans extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Retrieve the workout ID from Intent extras
+        Intent intent = getIntent();
+        String wid = intent.getStringExtra("id");
+
+        // Clear the existing list of exercises before reloading
+        exercisesItemLists.clear();
+
+        // Fetch and display exercise details
+        fetchAndDisplayExerciseDetails(wid);
+    }
+
     private void fetchAndDisplayExerciseDetails(String wid) {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
+            progressDialog.show(); // Show progress dialog before fetching user data
             String userId = currentUser.getUid();
             FirebaseFirestore db2 = FirebaseFirestore.getInstance();
             db2.collection("users").document(userId).get().addOnSuccessListener(documentSnapshot2 -> {
+                progressDialog.dismiss(); // Dismiss progress dialog after fetching user data
                 if (documentSnapshot2.exists()) {
-                    String membername = documentSnapshot2.getId();
+                    String uid = documentSnapshot2.getId();
 
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
-                    db.collection("users").document(membername).collection("user_workout_plans")
+                    db.collection("users").document(uid).collection("user_workout_plans")
                             .document(wid)
                             .get()
                             .addOnSuccessListener(documentSnapshot -> {
@@ -182,6 +205,7 @@ public class WorkoutPlans extends AppCompatActivity {
             });
         }
     }
+
 
     // Function to fetch exercise details
     private void fetchExerciseDetails(String exerciseId) {

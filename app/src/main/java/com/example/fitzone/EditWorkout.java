@@ -2,6 +2,12 @@ package com.example.fitzone;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -10,11 +16,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatTextView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -68,7 +70,7 @@ public class EditWorkout extends AppCompatActivity {
         adapter = new EditWorkoutAdapter(this, exercisesItemLists,wid);
         wor_plan_recyc.setAdapter(adapter);
 
-       Log.d("wid",wid);
+        Log.d("wid",wid);
         img_wor_plan_name.setText(name);
         // Load image into ImageView using Glide library
         Glide.with(this)
@@ -82,15 +84,17 @@ public class EditWorkout extends AppCompatActivity {
         if (id != null) {
             FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
             if (currentUser != null) {
+                progressDialog.show(); // Show progress dialog before fetching user data
                 String userId = currentUser.getUid();
                 FirebaseFirestore db2 = FirebaseFirestore.getInstance();
                 db2.collection("users").document(userId).get().addOnSuccessListener(documentSnapshot2 -> {
+                    progressDialog.dismiss(); // Dismiss progress dialog after fetching user data
                     if (documentSnapshot2.exists()) {
-                        String membername = documentSnapshot2.getId();
+                        String uid = documentSnapshot2.getId();
 
-                        // Update Firestore document with the new exercise ID
+                        // Check if the workout plan document exists before updating
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
-                        db.collection("users").document(membername).collection("user_workout_plans")
+                        db.collection("users").document(uid).collection("user_workout_plans")
                                 .document(wid)
                                 .get()
                                 .addOnSuccessListener(documentSnapshot -> {
@@ -104,49 +108,65 @@ public class EditWorkout extends AppCompatActivity {
                                         // Update the Firestore document with the updated array
                                         Map<String, Object> data = new HashMap<>();
                                         data.put("exename", exerciseIds);
-                                        db.collection("users").document(membername).collection("user_workout_plans")
+                                        db.collection("users").document(uid).collection("user_workout_plans")
                                                 .document(wid)
                                                 .set(data, SetOptions.merge())
                                                 .addOnSuccessListener(aVoid -> Log.d(TAG, "DocumentSnapshot successfully updated!"))
                                                 .addOnFailureListener(e -> Log.w(TAG, "Error updating document", e));
                                     } else {
-                                        Log.d(TAG, "No such document");
+                                        Log.d(TAG, "Workout plan document does not exist");
+                                        // Handle the case where the workout plan document does not exist
+                                        Toast.makeText(EditWorkout.this, "Workout plan not found", Toast.LENGTH_SHORT).show();
                                     }
                                 })
-                                .addOnFailureListener(e -> Log.w(TAG, "Error fetching document", e));
+                                .addOnFailureListener(e -> Log.w(TAG, "Error fetching workout plan document", e));
                     }
                 });
             }
         }
 
+
         progressDialog.show();
 
-        // Fetch exercise details
-        fetchAndDisplayExerciseDetails(wid, id);
 
         add_wor_pan.setOnClickListener(v -> {
             Intent intent1 = new Intent(EditWorkout.this, WorkoutExercisesList.class);
             intent1.putExtra("wid", wid);
             startActivity(intent1);
+            finish();
         });
         add_wor_plan_but.setOnClickListener(v -> onBackPressed());
 
         ImageView backPress = findViewById(R.id.back);
         backPress.setOnClickListener(view -> onBackPressed());
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Retrieve the workout ID from Intent extras
+        Intent intent = getIntent();
+        String wid = intent.getStringExtra("wid");
 
-    // Function to fetch and display exercise details
-    private void fetchAndDisplayExerciseDetails(String wid, String id) {
+        // Clear the existing list of exercises before reloading
+        exercisesItemLists.clear();
+
+        // Fetch and display exercise details
+        fetchAndDisplayExerciseDetails(wid);
+    }
+
+    private void fetchAndDisplayExerciseDetails(String wid) {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
+            progressDialog.show(); // Show progress dialog before fetching user data
             String userId = currentUser.getUid();
             FirebaseFirestore db2 = FirebaseFirestore.getInstance();
             db2.collection("users").document(userId).get().addOnSuccessListener(documentSnapshot2 -> {
+                progressDialog.dismiss(); // Dismiss progress dialog after fetching user data
                 if (documentSnapshot2.exists()) {
-                    String membername = documentSnapshot2.getId();
+                    String uid = documentSnapshot2.getId();
 
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
-                    db.collection("users").document(membername).collection("user_workout_plans")
+                    db.collection("users").document(uid).collection("user_workout_plans")
                             .document(wid)
                             .get()
                             .addOnSuccessListener(documentSnapshot -> {
@@ -160,16 +180,13 @@ public class EditWorkout extends AppCompatActivity {
                                         updateTotalExercises(exerciseIds.size());
                                     }
                                 }
-                                progressDialog.dismiss();
                             })
-                            .addOnFailureListener(e -> {
-                                Log.w(TAG, "Error fetching workout document", e);
-                                progressDialog.dismiss();
-                            });
+                            .addOnFailureListener(e -> Log.w(TAG, "Error fetching workout document", e));
                 }
             });
         }
     }
+
 
     // Function to fetch exercise details
     private void fetchExerciseDetails(String exerciseId) {

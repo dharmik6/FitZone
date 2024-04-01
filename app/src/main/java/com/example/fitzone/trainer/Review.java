@@ -23,7 +23,7 @@ import java.util.List;
 
 public class Review extends AppCompatActivity {
     Button Write_a_Review;
-    TextView revireshoew,review_show_re;
+    TextView revireshoew, review_show_re, all_review; // Added all_review
     RecyclerView recyc_review;
     private TrainerReviewAdapter adapter;
     private List<TrainerReviewList> trainersLists;
@@ -41,6 +41,7 @@ public class Review extends AppCompatActivity {
         revireshoew = findViewById(R.id.revireshoew);
         xml2_rating_bar = findViewById(R.id.xml2_rating_bar);
         review_show_re = findViewById(R.id.review_show_re);
+        all_review = findViewById(R.id.all_rating); // Updated all_rating to all_review
 
         Intent intent1 = getIntent();
         String treid = intent1.getStringExtra("treid");
@@ -68,23 +69,30 @@ public class Review extends AppCompatActivity {
             for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                 String rating = documentSnapshot.getString("rating");
 
+                // Handle cases where rating is null
+                float currentRating = 0;
                 if (rating != null) {
-                    totalRating += Float.parseFloat(rating);
+                    currentRating = Float.parseFloat(rating);
+                    totalRating += currentRating;
                     reviewCount++;
                 }
 
                 String review = documentSnapshot.getString("review");
                 String name = documentSnapshot.getString("review_name");
                 String image = documentSnapshot.getString("review_image");
-                TrainerReviewList member = new TrainerReviewList(rating, review, name,image);
+                TrainerReviewList member = new TrainerReviewList(String.valueOf(currentRating), review, name, image); // Use currentRating here
                 trainersLists.add(member);
             }
 
+            // If there are reviews with ratings
             if (reviewCount > 0) {
                 float averageRating = totalRating / reviewCount;
                 xml2_rating_bar.setRating(averageRating);
                 review_show_re.setText(String.valueOf(averageRating));
-
+            } else {
+                // If there are no reviews with ratings, set default rating to 0
+                xml2_rating_bar.setRating(0);
+                review_show_re.setText("0");
             }
 
             adapter.notifyDataSetChanged();
@@ -92,19 +100,24 @@ public class Review extends AppCompatActivity {
             if (progressDialog != null && progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
+
+            // Set text for all_review TextView
+            all_review.setText("All Reviews (" + reviewCount + ")");
         }).addOnFailureListener(e -> {
             // Handle failures
             if (progressDialog != null && progressDialog.isShowing()) {
                 progressDialog.dismiss();
             }
         });
-        ImageView back=findViewById(R.id.back);
+
+        ImageView back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
+
         Write_a_Review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

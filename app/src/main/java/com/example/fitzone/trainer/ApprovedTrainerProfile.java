@@ -152,6 +152,9 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
                         if (rating != null) {
                             totalRating += Float.parseFloat(rating);
                             reviewCount++;
+                        } else {
+                            // Handle null ratings by incrementing the review count
+                            reviewCount++;
                         }
                     }
 
@@ -159,6 +162,10 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
                         float averageRating = totalRating / reviewCount;
                         xml3_rating_bar.setRating(averageRating);
                         trainer_review_txt3.setText(String.valueOf(averageRating));
+                    } else {
+                        // If there are no reviews, set default rating to 0
+                        xml3_rating_bar.setRating(0);
+                        trainer_review_txt3.setText("0");
                     }
 
                     // Dismiss ProgressDialog when data is loaded
