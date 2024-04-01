@@ -9,6 +9,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.fitzone.OrderDetail;
 import com.example.fitzone.R;
 import com.google.firebase.firestore.CollectionReference;
@@ -65,7 +67,7 @@ public class Appointment extends AppCompatActivity {
 
         Intent intent = getIntent();
          trainerName = intent.getStringExtra("trainer_name");
-         trainerImage = intent.getStringExtra("trainer_img");
+         trainerImage = intent.getStringExtra("image_url");
          trainerReview = intent.getStringExtra("trainer_review");
          functionalStrength = intent.getStringExtra("Functional_Strength");
          experience = intent.getStringExtra("trainer_eee_txt");
@@ -78,13 +80,14 @@ public class Appointment extends AppCompatActivity {
         app_tre_specialization.setText(experience);
         app_tre_name.setText(trainerName);
 
-// Assuming trainer image is stored as resource ID
-//        if (trainerImage != null) {
-//            int resourceId = Integer.parseInt(trainerImage); // Assuming trainerImage is a resource ID
-//            app_tre_image.setImageResource(resourceId);
-//        } else {
-//            // If trainer image is stored as a URL or another format, handle it accordingly
-//        }
+        if (trainerImage != null) {
+            Glide.with(this)
+                    .load(trainerImage)// Error image if loading fails
+                    .into(app_tre_image);
+        } else {
+            // If trainer image is stored as a resource ID or another format, handle it accordingly
+        }
+
 
 
         // Get tomorrow's date
@@ -214,6 +217,7 @@ public class Appointment extends AppCompatActivity {
                         Intent intent1 = new Intent(Appointment.this, OrderDetail.class);
                         intent1.putExtra("trainer_name", trainerName);
                         intent1.putExtra("trainer_review", trainerReview);
+                        intent1.putExtra("trainer_image", trainerImage);
                         intent1.putExtra("Functional_Strength", functionalStrength);
                         intent1.putExtra("trainer_eee_txt", experience);
                         intent1.putExtra("regi_date", selectedDate);

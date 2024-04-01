@@ -2,6 +2,7 @@ package com.example.fitzone;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import java.util.Date;
 import android.widget.Toast;
 
 
+import com.example.fitzone.home.FragmentReports;
 import com.shawnlin.numberpicker.NumberPicker;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -32,11 +34,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link FragmentWeightBottomSheet#} factory method to
- * create an instance of this fragment.
- */
 public class FragmentWeightBottomSheet extends BottomSheetDialogFragment {
     NumberPicker weight_up_new;
     Button exe_update,exe_delete;
@@ -118,4 +115,17 @@ public class FragmentWeightBottomSheet extends BottomSheetDialogFragment {
                     });
         }
     }
+
+    // This method is called when the BottomSheet is dismissed
+    // This method is called when the BottomSheet is dismissed
+    @Override
+    public void onDismiss(@NonNull DialogInterface dialog) {
+        super.onDismiss(dialog);
+        // Trigger refresh of the page in the parent fragment/activity if the parent is FragmentReports
+        Fragment parentFragment = getParentFragment();
+        if (parentFragment instanceof FragmentReports) {
+            ((FragmentReports) parentFragment).fetchDataAndUpdateUI();
+        }
+    }
+
 }

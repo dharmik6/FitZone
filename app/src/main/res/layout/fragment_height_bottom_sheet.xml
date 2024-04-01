@@ -60,7 +60,7 @@
                     app:np_textAlign="textAlignCenter"
                     app:np_textColor="@color/black"
                     app:np_textSize="30dp"
-                    app:np_value="60"
+                    app:np_value="150"
                     tools:ignore="SpeakableTextPresentCheck" />
 
                 <ImageView

@@ -69,7 +69,8 @@ public class Feedback extends AppCompatActivity {
                                         public void onSuccess(Void aVoid) {
                                             // Document successfully updated
                                             progressDialog.dismiss();
-                                            Toast.makeText(Feedback.this, "Profile updated successfully", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Feedback.this, "Thank You for feedback", Toast.LENGTH_SHORT).show();
+                                            finish();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -77,7 +78,7 @@ public class Feedback extends AppCompatActivity {
                                         public void onFailure(@NonNull Exception e) {
                                             // Handle errors
                                             progressDialog.dismiss();
-                                            Toast.makeText(Feedback.this, "Failed to update profile: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(Feedback.this, "Failed to send feedback: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
                                     });
                         }

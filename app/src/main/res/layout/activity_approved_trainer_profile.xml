@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:orientation="vertical"
+        android:src="@drawable/people_imge"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -101,7 +102,6 @@
                                 android:layout_alignParentStart="true"
                                 android:layout_alignParentEnd="true"
                                 android:fontFamily="@font/opensans_extrabold"
-                                android:text="Jennifer James"
                                 android:textColor="@color/black"
                                 android:textSize="22sp"
                                 android:textStyle="bold"
@@ -115,7 +115,6 @@
                                 android:layout_alignParentStart="true"
                                 android:layout_alignParentEnd="true"
                                 android:fontFamily="@font/nunito_medium"
-                                android:text="Functional Strength"
                                 android:textColor="@color/dark_cyan"
                                 android:textSize="16sp"
                                 android:textStyle="bold"
@@ -133,6 +132,7 @@
                             tools:ignore="Orientation">
 
                            <ImageView
+                               android:id="@+id/btn_call"
                                android:layout_width="wrap_content"
                                android:layout_height="wrap_content"
                                android:src="@drawable/ic_chat"
@@ -177,7 +177,6 @@
                                 android:id="@+id/trainer_eee_txt"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="6 years"
                                 android:layout_alignParentStart="true"
                                 android:layout_alignParentEnd="true"
                                 android:layout_alignParentTop="true"
@@ -190,7 +189,6 @@
                                 android:id="@+id/tr_bio"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text=" experienced Lorem ipsum dolor sit amet, consectetur adipiscing elit."
                                 android:layout_alignParentStart="true"
                                 android:layout_alignParentEnd="true"
                                 android:layout_alignParentTop="true"
@@ -331,9 +329,7 @@
                             android:id="@+id/xml3_rating_bar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:numStars="5"
-                            android:stepSize="0.5"
-                            android:rating="2.5"
+                            android:isIndicator="true"
                             android:layout_marginBottom="16dp"
                             android:progressTint="@color/dark_cyan"/>
                     </RelativeLayout>
@@ -400,7 +396,6 @@
                         android:layout_marginTop="0dp"
                         android:layout_marginEnd="24dp"
                         android:layout_marginBottom="0dp"
-                        android:text="999"
                         android:textSize="22sp"
                         tools:ignore="HardcodedText" />
 

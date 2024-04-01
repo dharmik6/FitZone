@@ -1,6 +1,7 @@
 package com.example.fitzone;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -31,13 +32,13 @@ public class WorkoutExercisesListAdapter  extends RecyclerView.Adapter<WorkoutEx
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public WorkoutExercisesListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View tra = LayoutInflater.from(parent.getContext()).inflate(R.layout.exercise_name_list_item, parent, false);
-        return new ViewHolder(tra);
+        return new WorkoutExercisesListAdapter.ViewHolder(tra);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull WorkoutExercisesListAdapter.ViewHolder holder, int position) {
         WorkoutExercisesListItem member = exercisesItemLists.get(position);
         holder.exename.setText(member.getName());
         holder.exebody.setText(member.getBody());
@@ -70,10 +71,11 @@ public class WorkoutExercisesListAdapter  extends RecyclerView.Adapter<WorkoutEx
                     intent.putExtra("wid", item.getWid());
                     Log.d("wid adpter", item.getWid());
                     Log.d("id adpter", item.getId());
-//                    intent.putExtra("body", item.getBody());
-//                    intent.putExtra("id" , item.getId());
+                    intent.putExtra("w_name", item.getW_name());
+                    intent.putExtra("w_image" , item.getW_image());
                     // Start the activity
                     context.startActivity(intent);
+                    ((Activity) context).finish();
                 }
             }
         });

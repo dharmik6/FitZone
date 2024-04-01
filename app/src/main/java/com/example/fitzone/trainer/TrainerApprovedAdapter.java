@@ -71,6 +71,7 @@ public class TrainerApprovedAdapter extends RecyclerView.Adapter<TrainerApproved
                     intent.putExtra("name", item.getTname());
                     intent.putExtra("specialization", item.getSpecialization());
                     intent.putExtra("experience", item.getExperience());
+                    intent.putExtra("id", item.getId());
 
                     // Start the activity
                     context.startActivity(intent);

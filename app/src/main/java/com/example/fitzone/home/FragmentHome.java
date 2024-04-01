@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -28,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class FragmentHome extends Fragment {
@@ -56,6 +58,12 @@ public class FragmentHome extends Fragment {
                 startActivity(new Intent(getActivity(), TrainerApprovedList.class));
             }
         });
+
+        TextView greeting = view.findViewById(R.id.greeting);
+
+        String greetingMessage = greeting();
+
+        greeting.setText(greetingMessage);
 
 
         // Workout List
@@ -194,5 +202,21 @@ public class FragmentHome extends Fragment {
             }
         });
         return view;
+    }
+    public  String greeting()
+    {
+        Calendar calendar = Calendar.getInstance();
+        int time = calendar.get(Calendar.HOUR_OF_DAY);
+        String greeting ;
+        if (time >= 0 && time <12)
+        {
+            greeting = "Good Morning";
+        } else if (time >= 12 && time < 17) {
+            greeting = "Good Afternoon";
+        } else {
+            greeting = "Good Evening";
+        }
+
+        return greeting ;
     }
 }

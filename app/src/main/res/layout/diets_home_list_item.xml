@@ -30,9 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:backgroundTint="@color/card_view"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
+              android:layout_margin="20dp"
                 app:cardCornerRadius="20dp"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true"
@@ -45,6 +43,7 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:scaleType="centerCrop"
                         android:id="@+id/diet_image"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

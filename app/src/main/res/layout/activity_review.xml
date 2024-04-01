@@ -111,10 +111,8 @@
                         android:id="@+id/xml2_rating_bar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:numStars="5"
-                        android:stepSize="0.5"
-                        android:rating="2.5"
                         android:layout_marginBottom="16dp"
+                        android:isIndicator="true"
                         android:progressTint="@color/dark_cyan"/>
                 </RelativeLayout>
 
@@ -130,6 +128,7 @@
                 tools:ignore="UselessLeaf">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/all_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nunito_regular"
@@ -138,7 +137,7 @@
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentEnd="true"
                     android:textColor="@color/black"
-                    android:text="174 Ratings"
+                    android:text=""
                     tools:ignore="HardcodedText" />
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/revireshoew"

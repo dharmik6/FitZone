@@ -97,6 +97,7 @@ public class Registration extends AppCompatActivity {
                         userData.put("name", name);
                         userData.put("email", email);
                         userData.put("password", password);
+                        userData.put("is_active", false); // Set is_active to false by default
 
                         // Add the user to Firestore with the generated UID
                         db.collection("users")
@@ -119,6 +120,7 @@ public class Registration extends AppCompatActivity {
                     }
                 });
     }
+
 
     public static void redirectActivity(Activity activity, Class destination, String name) {
         Intent intent = new Intent(activity, destination);

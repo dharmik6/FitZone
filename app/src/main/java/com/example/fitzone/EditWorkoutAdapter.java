@@ -19,6 +19,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -62,29 +64,38 @@ public class EditWorkoutAdapter extends RecyclerView.Adapter<EditWorkoutAdapter.
             public void onClick(View v) {
                 int position = holder.getAdapterPosition();
                 WorExercisesItemList itemToDelete = worExercisesItemLists.get(position);
-
-                // Get the reference to the document
-                db.collection("workout_plans")
-                        .document(wid)
-                        .update("exename", FieldValue.arrayRemove(itemToDelete.getName()))
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                Log.d(TAG, "DocumentSnapshot successfully updated!");
-                                // Remove the item from the list
-                                worExercisesItemLists.remove(position);
-                                // Notify adapter about data change
-                                notifyItemRemoved(position);
-                                notifyItemRangeChanged(position, worExercisesItemLists.size());
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w(TAG, "Error updating document", e);
-                                // Handle failure
-                            }
-                        });
+                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                if (currentUser != null) {
+                    String userId = currentUser.getUid();
+                    FirebaseFirestore db2 = FirebaseFirestore.getInstance();
+                    db2.collection("users").document(userId).get().addOnSuccessListener(documentSnapshot2 -> {
+                        if (documentSnapshot2.exists()) {
+                            String uid = documentSnapshot2.getId();
+                            // Get the reference to the document
+                            db.collection("users").document(uid).collection("user_workout_plans")
+                                    .document(wid)
+                                    .update("exename", FieldValue.arrayRemove(itemToDelete.getName()))
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "DocumentSnapshot successfully updated!");
+                                            // Remove the item from the list
+                                            worExercisesItemLists.remove(position);
+                                            // Notify adapter about data change
+                                            notifyItemRemoved(position);
+                                            notifyItemRangeChanged(position, worExercisesItemLists.size());
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error updating document", e);
+                                            // Handle failure
+                                        }
+                                    });
+                        }
+                    });
+                }
             }
         });
     }

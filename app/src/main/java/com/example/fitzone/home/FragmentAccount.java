@@ -1,7 +1,9 @@
 package com.example.fitzone.home;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -98,17 +100,29 @@ public class FragmentAccount extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences pref = getContext().getSharedPreferences("login", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = pref.edit();
-                editor.putBoolean("flag", false);
-                editor.apply();
+                // Create and show an AlertDialog
+                new AlertDialog.Builder(getContext())
+                        .setTitle("Logout")
+                        .setMessage("Are you sure you want to logout?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // User confirmed, logout
+                                SharedPreferences pref = getContext().getSharedPreferences("login", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = pref.edit();
+                                editor.putBoolean("flag", false);
+                                editor.apply();
 
-                // After logging out, navigate to the LoginActivity
-                Intent intent = new Intent(getContext(), Login.class);
-                startActivity(intent);
-                getActivity().finish(); // Close the current activity
+                                // After logging out, navigate to the LoginActivity
+                                Intent intent = new Intent(getContext(), Login.class);
+                                startActivity(intent);
+                                getActivity().finish(); // Close the current activity
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, null) // Do nothing if user cancels
+                        .show();
             }
         });
+
 
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {

@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.fitzone.home.MainActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -89,7 +90,7 @@ public class Packages extends AppCompatActivity {
         public void initiatePayment(View view) {
             Checkout checkout = new Checkout();
             checkout.setKeyID("rzp_test_qUBYsTsQoyEwsF"); // Replace with your actual Razorpay key
-
+            checkout.setImage(R.drawable.ic_logo_round_edge);
             // Convert charge from rupees to paise
             double chargeInRupees = Double.parseDouble(pac_show_price.getText().toString());
             int amountInPaise = (int) (chargeInRupees * 100); // Convert rupees to paise
@@ -101,13 +102,13 @@ public class Packages extends AppCompatActivity {
                 options.put("currency", "INR");
                 options.put("amount", amountInPaise); // Amount in paise (e.g., ₹500 = 50000)
                 options.put("prefill", new JSONObject().put("email", "customer@example.com"));
+                options.put("theme.color", R.color.dark_blue); // Set theme color
 
                 checkout.open(this, options);
             } catch (Exception e) {
                 Log.e("RazorpayError", "Error in starting Razorpay Checkout", e);
             }
         }
-
 
 
     public void onPaymentSuccess(String paymentId) {
@@ -123,19 +124,35 @@ public class Packages extends AppCompatActivity {
         // Create a Firestore instance
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        // Create a new purchases collection
+        // Update the is_active field for the current user
+        db.collection("users").document(userId)
+                .update("is_active", true)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "is_active field updated successfully for user: " + userId);
+                        // Handle the navigation or UI update here after updating the is_active field
+                        // For example, you can navigate to a success screen or update UI elements
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, "Error updating is_active field for user: " + userId, e);
+                        Toast.makeText(Packages.this, "Error updating is_active field", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        // Create a new purchases collection and add purchase details
         DocumentReference purchaseRef = db.collection("purchases").document();
-
-        // Create a purchase object with required fields
         Map<String, Object> purchase = new HashMap<>();
-
         purchase.put("userId", userId);
-        purchase.put("packageName", pac_show_name.getText().toString()); // Using getText().toString() to get the text from TextView
+        purchase.put("packageName", pac_show_name.getText().toString());
         purchase.put("paymentId", paymentId);
-        purchase.put("packageId", id); // Add the package ID
+        purchase.put("packageId", id);
         purchase.put("purchasesDate", currentDate);
-        purchase.put("duration", pac_show_duration.getText().toString()); // Using getText().toString() to get the text from TextView
-        purchase.put("price", pac_show_price.getText().toString()); // Using getText().toString() to get the text from TextView
+        purchase.put("duration", pac_show_duration.getText().toString());
+        purchase.put("price", pac_show_price.getText().toString());
         purchase.put("status", "active");
 
         purchaseRef.set(purchase)
@@ -144,6 +161,9 @@ public class Packages extends AppCompatActivity {
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "Purchase added with ID: " + purchaseRef.getId());
                         // Now you can navigate to the payment completed activity
+                        Intent intent = new Intent(Packages.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -153,8 +173,6 @@ public class Packages extends AppCompatActivity {
                         Toast.makeText(Packages.this, "Error adding purchase", Toast.LENGTH_SHORT).show();
                     }
                 });
-        Intent innt = new Intent(Packages.this , Login.class);
-        startActivity(innt);
     }
 
 

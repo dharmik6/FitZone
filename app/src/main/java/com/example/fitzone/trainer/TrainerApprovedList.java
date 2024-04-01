@@ -49,8 +49,10 @@ public class TrainerApprovedList extends AppCompatActivity {
                 String timage = documentSnapshot.getString("image");
                 String specialization = documentSnapshot.getString("specialization");
                 String review = documentSnapshot.getString("review");
+                String id = documentSnapshot.getId();
+
 //                memberList.add(new MemberList(name, email,image));
-                TrainerApprovedItemList member = new TrainerApprovedItemList(tname, experience,timage,specialization,review);
+                TrainerApprovedItemList member = new TrainerApprovedItemList(tname, experience,timage,specialization,review,id);
                 trainersLists.add(member);
 //                originalMemberList.add(member); // Add to both lists
             }
