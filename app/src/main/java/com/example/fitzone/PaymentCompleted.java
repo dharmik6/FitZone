@@ -5,12 +5,28 @@ import androidx.appcompat.widget.AppCompatTextView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
-import android.widget.AutoCompleteTextView;
+import android.os.Environment;
+import android.print.PrintAttributes;
+import android.print.pdf.PrintedPdfDocument;
+import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class PaymentCompleted extends AppCompatActivity {
 
-    AppCompatTextView tr_name , tr_image , tr_review , date , start_time ,end_time;
+    AppCompatTextView tr_name, tr_review, date, start_time, end_time;
+
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -36,5 +52,12 @@ public class PaymentCompleted extends AppCompatActivity {
         date.setText(appDate);
         start_time.setText(startTime);
         end_time.setText(endTime);
+
+
     }
+
+    // Method to generate PDF
+
+
+
 }

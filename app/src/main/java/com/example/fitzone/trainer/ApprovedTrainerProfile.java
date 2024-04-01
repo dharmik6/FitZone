@@ -4,8 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,10 +24,12 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
 
     ImageView trainer_img_txt;
     Button book_btn_registration;
-    ProgressDialog progressDialog;
     String treid1;
     CardView achieve;
+    String phone ;
     RatingBar xml3_rating_bar;
+    ImageView call ;
+    String image ;
     TextView trainer_review_txt3, Functional_Strength_txt, trainer_name_txt, trBio, chargeTx, review_show_allkaku, trainer_eee_txt, kalu;
 
     @SuppressLint("MissingInflatedId")
@@ -48,54 +50,10 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
         achieve = findViewById(R.id.achieve);
         trainer_review_txt3 = findViewById(R.id.trainer_review_txt3);
         xml3_rating_bar = findViewById(R.id.xml3_rating_bar);
+        call = findViewById(R.id.btn_call);
 
-        // Initialize ProgressDialog
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.setCancelable(false);
-        progressDialog.show(); // Show ProgressDialog
-
-        Intent intent = getIntent();
-        String id = intent.getStringExtra("id");
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("trainers").document(id).get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        String name = documentSnapshot.getString("name");
-                        String specialization = documentSnapshot.getString("specialization");
-                        String image = documentSnapshot.getString("image");
-                        String experience = documentSnapshot.getString("experience");
-                        String charge = documentSnapshot.getString("charge");
-                        String bio = documentSnapshot.getString("bio");
-                        treid1 = documentSnapshot.getId();
-
-                        // Display the data
-                        trainer_name_txt.setText(name != null ? name : "No name");
-                        trainer_eee_txt.setText(experience != null ? experience : "No experience");
-                        Functional_Strength_txt.setText(specialization != null ? specialization : "Non specialist");
-                        trBio.setText(bio != null ? bio : "No bio");
-                        chargeTx.setText(charge != null ? charge : "No price");
-
-                        if (image != null) {
-                            Glide.with(ApprovedTrainerProfile.this)
-                                    .load(image)
-                                    .into(trainer_img_txt);
-                        }
-
-                        // Retrieve and display reviews
-                        retrieveAndDisplayReviews(treid1);
-                    } else {
-                        // Handle document not found
-                        progressDialog.dismiss();
-                        Toast.makeText(ApprovedTrainerProfile.this, "Trainer not found", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    // Handle errors
-                    progressDialog.dismiss();
-                    Toast.makeText(ApprovedTrainerProfile.this, "Error loading trainer profile", Toast.LENGTH_SHORT).show();
-                });
+        // Load data
+        reloadData();
 
         review_show_allkaku.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +81,58 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Reload data
+        reloadData();
+    }
+
+    private void reloadData() {
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("id");
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("trainers").document(id).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String name = documentSnapshot.getString("name");
+                        String specialization = documentSnapshot.getString("specialization");
+                         image = documentSnapshot.getString("image");
+                        String experience = documentSnapshot.getString("experience");
+                        String charge = documentSnapshot.getString("charge");
+                        String bio = documentSnapshot.getString("bio");
+                         phone = documentSnapshot.getString("number");
+                        treid1 = documentSnapshot.getId();
+
+                        // Display the data
+                        trainer_name_txt.setText(name != null ? name : "No name");
+                        trainer_eee_txt.setText(experience != null ? experience : "No experience");
+                        Functional_Strength_txt.setText(specialization != null ? specialization : "Non specialist");
+                        trBio.setText(bio != null ? bio : "No bio");
+                        chargeTx.setText(charge != null ? charge : "No price");
+
+                        if (image != null) {
+                            Glide.with(ApprovedTrainerProfile.this)
+                                    .load(image)
+                                    .into(trainer_img_txt);
+                        }
+
+                        // Retrieve and display reviews
+                        retrieveAndDisplayReviews(treid1);
+                    } else {
+                        // Handle document not found
+                        Toast.makeText(ApprovedTrainerProfile.this, "Trainer not found", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    // Handle errors
+                    Toast.makeText(ApprovedTrainerProfile.this, "Error loading trainer profile", Toast.LENGTH_SHORT).show();
+                });
+
         book_btn_registration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,10 +144,27 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
                 intent1.putExtra("trainer_eee_txt", trainer_eee_txt.getText().toString());
                 intent1.putExtra("charge", chargeTx.getText().toString());
                 intent1.putExtra("trid", treid1);
+                intent1.putExtra("image_url", image);
+
+
+
                 startActivity(intent1);
             }
         });
+
+
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Create an implicit intent to open the phone dialer with the phone number populated
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:" + phone));
+                startActivity(intent);
+            }
+        });
     }
+
 
     private void retrieveAndDisplayReviews(String trainerId) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -167,13 +194,9 @@ public class ApprovedTrainerProfile extends AppCompatActivity {
                         xml3_rating_bar.setRating(0);
                         trainer_review_txt3.setText("0");
                     }
-
-                    // Dismiss ProgressDialog when data is loaded
-                    progressDialog.dismiss();
                 })
                 .addOnFailureListener(e -> {
                     // Handle failures
-                    progressDialog.dismiss();
                     Toast.makeText(ApprovedTrainerProfile.this, "Error loading reviews", Toast.LENGTH_SHORT).show();
                 });
     }

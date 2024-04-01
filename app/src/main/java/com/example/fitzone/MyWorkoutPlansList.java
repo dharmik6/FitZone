@@ -26,6 +26,7 @@ public class MyWorkoutPlansList extends AppCompatActivity {
     private MyWorkoutPlansAdapter adapter;
     private List<MyWorkoutPlansItemList> exercisesItemLists;
     private ProgressDialog progressDialog;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,35 @@ public class MyWorkoutPlansList extends AppCompatActivity {
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);
         progressDialog.show();
+
+        // Load data initially
+        loadData();
+
+        ImageView backPress = findViewById(R.id.back);
+        backPress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+        CardView add_my_workout = findViewById(R.id.add_my_workout);
+        add_my_workout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MyWorkoutPlansList.this,CreateWorkoutPlan.class));
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Reload data when activity is resumed
+        loadData();
+    }
+
+    private void loadData() {
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -56,6 +86,7 @@ public class MyWorkoutPlansList extends AppCompatActivity {
                     // Query Firestore for data
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
                     db.collection("users").document(membername).collection("user_workout_plans").get().addOnSuccessListener(queryDocumentSnapshots -> {
+                        exercisesItemLists.clear(); // Clear the previous data
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                             String name = documentSnapshot.getString("name");
                             String body = documentSnapshot.getString("goal");
@@ -80,20 +111,5 @@ public class MyWorkoutPlansList extends AppCompatActivity {
                 }
             });
         }
-
-        ImageView backPress = findViewById(R.id.back);
-        backPress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-        CardView add_my_workout = findViewById(R.id.add_my_workout);
-        add_my_workout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MyWorkoutPlansList.this,CreateWorkoutPlan.class));
-            }
-        });
     }
 }
