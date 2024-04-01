@@ -89,7 +89,7 @@ public class Packages extends AppCompatActivity {
         public void initiatePayment(View view) {
             Checkout checkout = new Checkout();
             checkout.setKeyID("rzp_test_qUBYsTsQoyEwsF"); // Replace with your actual Razorpay key
-
+            checkout.setImage(R.drawable.ic_logo_round_edge);
             // Convert charge from rupees to paise
             double chargeInRupees = Double.parseDouble(pac_show_price.getText().toString());
             int amountInPaise = (int) (chargeInRupees * 100); // Convert rupees to paise
@@ -101,13 +101,13 @@ public class Packages extends AppCompatActivity {
                 options.put("currency", "INR");
                 options.put("amount", amountInPaise); // Amount in paise (e.g., ₹500 = 50000)
                 options.put("prefill", new JSONObject().put("email", "customer@example.com"));
+                options.put("theme.color", R.color.dark_blue); // Set theme color
 
                 checkout.open(this, options);
             } catch (Exception e) {
                 Log.e("RazorpayError", "Error in starting Razorpay Checkout", e);
             }
         }
-
 
 
     public void onPaymentSuccess(String paymentId) {
