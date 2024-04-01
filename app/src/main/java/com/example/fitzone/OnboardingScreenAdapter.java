@@ -16,7 +16,7 @@ public class OnboardingScreenAdapter extends PagerAdapter {
     int sliderAllImages[] = {
             R.drawable.onboardingscreen1,
             R.drawable.onboardingscreen2,
-            R.drawable.upload,
+            R.drawable.onboardingscreen3,
     };
     int sliderAllTitle[] = {
             R.string.screen1,

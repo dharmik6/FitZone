@@ -41,7 +41,7 @@ public class OnboardingScreen extends AppCompatActivity {
             } else {
                 backButton.setVisibility(View.INVISIBLE);
             }
-            if (position == 2) {
+            if (position == 3) {
                 nextButton.setText("Finish");
             } else {
                 nextButton.setText("Next");
@@ -106,7 +106,7 @@ public class OnboardingScreen extends AppCompatActivity {
             dots[i].setTextColor(getResources().getColor(R.color.grey, getApplicationContext().getTheme()));
             dotIndicator.addView(dots[i]);
         }
-        dots[position].setTextColor(getResources().getColor(R.color.lavender, getApplicationContext().getTheme()));
+        dots[position].setTextColor(getResources().getColor(R.color.dark_cyan, getApplicationContext().getTheme()));
     }
 
     private int getItem(int i) {
