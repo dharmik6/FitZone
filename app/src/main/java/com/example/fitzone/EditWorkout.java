@@ -60,6 +60,8 @@ public class EditWorkout extends AppCompatActivity {
         String wid = intent.getStringExtra("wid");
         String name = intent.getStringExtra("name");
         String ima = intent.getStringExtra("image");
+        String w_image = intent.getStringExtra("w_image");
+        String w_name = intent.getStringExtra("w_name");
 
         String id = intent.getStringExtra("id");
 
@@ -71,15 +73,57 @@ public class EditWorkout extends AppCompatActivity {
         wor_plan_recyc.setAdapter(adapter);
 
         Log.d("wid",wid);
-        img_wor_plan_name.setText(name);
+        String nameToDisplay = name != null ? name : w_name;
+        img_wor_plan_name.setText(nameToDisplay);
+
         // Load image into ImageView using Glide library
+        String imageToLoad = ima != null ? ima : w_image;
         Glide.with(this)
-                .load(ima)
+                .load(imageToLoad)
                 .into(img_wor_plan_image);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
         progressDialog.setCancelable(false);
+
+        // Fetch workout plan details and update document if necessary
+        updateWorkoutPlanDocument();
+
+        add_wor_pan.setOnClickListener(v -> {
+            Intent intent1 = new Intent(EditWorkout.this, WorkoutExercisesList.class);
+            intent1.putExtra("wid", wid);
+            intent1.putExtra("w_name", name);
+            intent1.putExtra("w_image", ima);
+            startActivity(intent1);
+            finish();
+        });
+        add_wor_plan_but.setOnClickListener(v -> onBackPressed());
+
+        ImageView backPress = findViewById(R.id.back);
+        backPress.setOnClickListener(view -> onBackPressed());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Retrieve the workout ID from Intent extras
+        Intent intent = getIntent();
+        String wid = intent.getStringExtra("wid");
+
+        // Clear the existing list of exercises before reloading
+        exercisesItemLists.clear();
+
+        // Fetch and display exercise details
+        fetchAndDisplayExerciseDetails(wid);
+
+        // Fetch workout plan details and update document if necessary
+        updateWorkoutPlanDocument();
+    }
+
+    private void updateWorkoutPlanDocument() {
+        Intent intent = getIntent();
+        String wid = intent.getStringExtra("wid");
+        String id = intent.getStringExtra("id");
 
         if (id != null) {
             FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -124,34 +168,6 @@ public class EditWorkout extends AppCompatActivity {
                 });
             }
         }
-
-
-        progressDialog.show();
-
-
-        add_wor_pan.setOnClickListener(v -> {
-            Intent intent1 = new Intent(EditWorkout.this, WorkoutExercisesList.class);
-            intent1.putExtra("wid", wid);
-            startActivity(intent1);
-            finish();
-        });
-        add_wor_plan_but.setOnClickListener(v -> onBackPressed());
-
-        ImageView backPress = findViewById(R.id.back);
-        backPress.setOnClickListener(view -> onBackPressed());
-    }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // Retrieve the workout ID from Intent extras
-        Intent intent = getIntent();
-        String wid = intent.getStringExtra("wid");
-
-        // Clear the existing list of exercises before reloading
-        exercisesItemLists.clear();
-
-        // Fetch and display exercise details
-        fetchAndDisplayExerciseDetails(wid);
     }
 
     private void fetchAndDisplayExerciseDetails(String wid) {
@@ -186,7 +202,6 @@ public class EditWorkout extends AppCompatActivity {
             });
         }
     }
-
 
     // Function to fetch exercise details
     private void fetchExerciseDetails(String exerciseId) {

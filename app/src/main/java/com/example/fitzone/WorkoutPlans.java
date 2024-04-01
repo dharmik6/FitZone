@@ -66,13 +66,11 @@ public class WorkoutPlans extends AppCompatActivity {
         Intent intent = getIntent();
         String eid = intent.getStringExtra("name");
         String edd = intent.getStringExtra("image");
-        String level = intent.getStringExtra("body");
 
         String wid = intent.getStringExtra("id");
 
         Log.d("wid" , wid);
         plan_name_exe.setText(eid);
-        created_level.setText(level);
         // Load image into ImageView using Glide library
         Glide.with(this)
                 .load(edd)

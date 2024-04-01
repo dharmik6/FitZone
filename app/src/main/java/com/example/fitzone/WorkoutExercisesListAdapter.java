@@ -71,8 +71,8 @@ public class WorkoutExercisesListAdapter  extends RecyclerView.Adapter<WorkoutEx
                     intent.putExtra("wid", item.getWid());
                     Log.d("wid adpter", item.getWid());
                     Log.d("id adpter", item.getId());
-//                    intent.putExtra("body", item.getBody());
-//                    intent.putExtra("id" , item.getId());
+                    intent.putExtra("w_name", item.getW_name());
+                    intent.putExtra("w_image" , item.getW_image());
                     // Start the activity
                     context.startActivity(intent);
                     ((Activity) context).finish();

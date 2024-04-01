@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -33,6 +35,8 @@ public class WorkoutExercisesList extends AppCompatActivity {
 
         Intent intent = getIntent();
         String wid = intent.getStringExtra("wid");
+        String w_image = intent.getStringExtra("w_image");
+        String w_name = intent.getStringExtra("w_name");
 
         edit_exe_tr.setHasFixedSize(true);
         edit_exe_tr.setLayoutManager(new LinearLayoutManager(this));
@@ -55,15 +59,24 @@ public class WorkoutExercisesList extends AppCompatActivity {
                 String body = documentSnapshot.getString("body");
                 String image = documentSnapshot.getString("imageUrl");
                 String id = documentSnapshot.getId();
-                WorkoutExercisesListItem exe = new WorkoutExercisesListItem(name, body, image, id,wid);
+                WorkoutExercisesListItem exe = new WorkoutExercisesListItem(name, body, image, id,wid,w_name,w_image);
                 exercisesItemLists.add(exe);
             }
 
             // Now that we have fetched all exercises, let's filter out the ones that are already in the workout plan
             List<WorkoutExercisesListItem> filteredExercises = new ArrayList<>();
             if (wid != null) {
+                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                if (currentUser != null) {
+                    progressDialog.show(); // Show progress dialog before fetching user data
+                    String userId = currentUser.getUid();
+                    FirebaseFirestore db2 = FirebaseFirestore.getInstance();
+                    db2.collection("users").document(userId).get().addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            String uid = documentSnapshot.getId();
+
                 // Fetch the exename array of the workout plan
-                db.collection("workout_plans").document(wid).get().addOnSuccessListener(workoutPlanDocument -> {
+                db.collection("users").document(uid).collection("user_workout_plans").document(wid).get().addOnSuccessListener(workoutPlanDocument -> {
                     if (workoutPlanDocument.exists()) {
                         List<String> exename = (List<String>) workoutPlanDocument.get("exename");
                         if (exename != null) {
@@ -92,6 +105,9 @@ public class WorkoutExercisesList extends AppCompatActivity {
                         progressDialog.dismiss();
                     }
                 });
+                        }
+                    });
+                }
             } else {
                 // If wid is null, add all exercises to the filtered list
                 filteredExercises.addAll(exercisesItemLists);

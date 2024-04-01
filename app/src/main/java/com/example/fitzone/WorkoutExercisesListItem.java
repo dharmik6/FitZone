@@ -5,13 +5,24 @@ public class WorkoutExercisesListItem {
     private String id,wid;
     private String body;
     private String imageUrl;
+    private String w_image,w_name;
 
-    public WorkoutExercisesListItem(String name, String body, String imageUrl, String id,String wid) {
+    public WorkoutExercisesListItem(String name, String body, String imageUrl, String id,String wid,String w_name,String w_image) {
         this.name = name;
         this.body = body;
         this.imageUrl = imageUrl;
         this.id = id;
         this.wid = wid;
+        this.w_image = w_image;
+        this.w_name = w_name;
+    }
+
+    public String getW_image() {
+        return w_image;
+    }
+
+    public String getW_name() {
+        return w_name;
     }
 
     // Getters and setters for the properties
