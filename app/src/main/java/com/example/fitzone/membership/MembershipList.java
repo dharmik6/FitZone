@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.fitzone.R;
 import com.example.fitzone.booking.BookingItemList;
@@ -17,6 +19,8 @@ import java.util.List;
 
 public class MembershipList extends AppCompatActivity {
     RecyclerView recyc_membership ;
+
+    ImageView back ;
    private MembershipAdapter adapter ;
    private List<MembershipItemList> membershiplist ;
 
@@ -24,6 +28,7 @@ public class MembershipList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_membership_list);
+        back = findViewById(R.id.back);
 
         recyc_membership = findViewById(R.id.membership);
         recyc_membership.setHasFixedSize(true);
@@ -33,11 +38,22 @@ public class MembershipList extends AppCompatActivity {
         adapter = new MembershipAdapter(this,membershiplist);
 
         recyc_membership.setAdapter(adapter);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
     }
+
     protected void onResume() {
         super.onResume();
         loadDietData();
     }
+
+
 
     private void loadDietData() {
         membershiplist.clear(); // Clear the previous list

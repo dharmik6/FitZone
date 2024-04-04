@@ -43,12 +43,24 @@ public class Packages extends AppCompatActivity {
     String id ;
     private static final String TAG = "Packages";
 
+    ImageView back ;
+
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_packages);
+
+        back = findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
 
         pac_show_name = findViewById(R.id.pac_show_name);
         pac_show_price = findViewById(R.id.pac_show_price);

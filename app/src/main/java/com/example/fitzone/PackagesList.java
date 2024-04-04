@@ -20,6 +20,8 @@ import java.util.List;
 public class PackagesList extends AppCompatActivity {
 
     RecyclerView payment_recyc;
+
+    ImageView back ;
     private PackagesAdapter adapter;
     private List<PackagesItemList> dietLists;
     private ProgressDialog progressDialog;
@@ -28,6 +30,16 @@ public class PackagesList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_packages_list);
+
+        back = findViewById(R.id.back);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
 
         payment_recyc = findViewById(R.id.payment_recyc);
 

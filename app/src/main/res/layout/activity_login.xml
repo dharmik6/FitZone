@@ -28,32 +28,17 @@
             android:orientation="horizontal"
             tools:ignore="MissingConstraints">
 
-            <ImageView
-                android:id="@+id/back"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="10dp"
-                android:src="@drawable/ic_arrow_small_left"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription" />
-
             <TextView
                 android:id="@+id/text_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="10dp"
                 android:gravity="center"
-                android:layout_toStartOf="@+id/back"
-                android:layout_toEndOf="@+id/back"
                 android:fontFamily="@font/opensans_bold"
                 android:text="@string/Welcome_to_fitZone"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/back"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:ignore="HardcodedText" />
 

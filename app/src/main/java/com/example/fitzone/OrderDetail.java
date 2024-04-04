@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,10 +41,21 @@ public class OrderDetail extends AppCompatActivity {
     TextView tr_name, tr_spec;
     CircleImageView app_tre_image;
     String charge ,treid;
+
+    ImageView back ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
+
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
 
         Intent intent = getIntent();
         String trainerName = intent.getStringExtra("trainer_name");

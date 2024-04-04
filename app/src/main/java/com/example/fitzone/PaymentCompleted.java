@@ -16,6 +16,7 @@ import android.print.PrintAttributes;
 import android.print.pdf.PrintedPdfDocument;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ import java.io.IOException;
 public class PaymentCompleted extends AppCompatActivity {
 
     AppCompatTextView tr_name, tr_review, date, start_time, end_time;
+    ImageView back ;
 
 
     @SuppressLint("WrongViewCast")
@@ -33,6 +35,15 @@ public class PaymentCompleted extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_completed);
+
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
 
         tr_name = findViewById(R.id.tr_name1);
         tr_review = findViewById(R.id.tr_review);

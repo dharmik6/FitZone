@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,13 +44,25 @@ public class BookingDetail extends AppCompatActivity {
     private boolean isPdfCreated = false;
     private ProgressDialog progressDialog;
     private FirebaseFirestore db;
+
     private AppCompatTextView booking_id, trainer_name, booking_date, start_time, end_time, book_status, pay_id, amounT, date, member_name;
     private TextView invoice;
+
+    ImageView back ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_detail);
+
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");

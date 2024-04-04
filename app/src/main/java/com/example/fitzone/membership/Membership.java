@@ -8,6 +8,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.fitzone.R;
@@ -20,6 +22,7 @@ import com.google.firebase.storage.FirebaseStorage;
 
 public class Membership extends AppCompatActivity {
     FirebaseFirestore db;
+    ImageView back ;
 
     ProgressDialog progressDialog;
 
@@ -34,6 +37,8 @@ public class Membership extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_membership);
+
+        back = findViewById(R.id.back);
 
 
         progressDialog = new ProgressDialog(this);
@@ -65,6 +70,14 @@ public class Membership extends AppCompatActivity {
         pkgStatus.setText(status);
 
         db = FirebaseFirestore.getInstance();
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
 
         db.collection("purchases").document(id).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
