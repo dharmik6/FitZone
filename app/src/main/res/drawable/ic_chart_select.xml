@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item  android:state_checked="true" >
+        <vector android:height="24dp" android:viewportHeight="30"
+            android:viewportWidth="30" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+            <group>
+                <clip-path android:pathData="M0,0h30v30h-30z"/>
+                <path android:fillColor="@color/greenish_cyan" android:pathData="M15,30C12.938,30 11.25,28.313 11.25,26.25V3.75C11.25,1.688 12.938,0 15,0C17.063,0 18.75,1.688 18.75,3.75V26.25C18.75,28.313 17.063,30 15,30ZM26.25,30C24.188,30 22.5,28.313 22.5,26.25V11.25C22.5,9.188 24.188,7.5 26.25,7.5C28.313,7.5 30,9.188 30,11.25V26.25C30,28.313 28.313,30 26.25,30ZM3.75,30C1.688,30 0,28.313 0,26.25V18.75C0,16.688 1.688,15 3.75,15C5.813,15 7.5,16.688 7.5,18.75V26.25C7.5,28.313 5.813,30 3.75,30Z"/>
+            </group>
+        </vector>
+    </item>
+
+    <!-- Default icon -->
+    <item >
+        <vector xmlns:android="http://schemas.android.com/apk/res/android"
+            android:width="24dp"
+            android:height="24dp"
+            android:viewportWidth="30"
+            android:viewportHeight="30">
+            <group>
+                <clip-path
+                    android:pathData="M0,0h30v30h-30z"/>
+                <path
+                    android:pathData="M15,0C12.938,0 11.25,1.688 11.25,3.75V26.25C11.25,28.313 12.938,30 15,30C17.063,30 18.75,28.313 18.75,26.25V3.75C18.75,1.688 17.063,0 15,0ZM16.25,26.25C16.25,26.938 15.688,27.5 15,27.5C14.313,27.5 13.75,26.938 13.75,26.25V3.75C13.75,3.063 14.313,2.5 15,2.5C15.688,2.5 16.25,3.063 16.25,3.75V26.25ZM26.25,7.5C24.188,7.5 22.5,9.188 22.5,11.25V26.25C22.5,28.313 24.188,30 26.25,30C28.313,30 30,28.313 30,26.25V11.25C30,9.188 28.313,7.5 26.25,7.5ZM27.5,26.25C27.5,26.938 26.938,27.5 26.25,27.5C25.563,27.5 25,26.938 25,26.25V11.25C25,10.563 25.563,10 26.25,10C26.938,10 27.5,10.563 27.5,11.25V26.25ZM3.75,15C1.688,15 0,16.688 0,18.75V26.25C0,28.313 1.688,30 3.75,30C5.813,30 7.5,28.313 7.5,26.25V18.75C7.5,16.688 5.813,15 3.75,15ZM5,26.25C5,26.938 4.438,27.5 3.75,27.5C3.063,27.5 2.5,26.938 2.5,26.25V18.75C2.5,18.063 3.063,17.5 3.75,17.5C4.438,17.5 5,18.063 5,18.75V26.25Z"
+                    android:fillColor="@color/white"/>
+            </group>
+        </vector>
+    </item>
+
+</selector>

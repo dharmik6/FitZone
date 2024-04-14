@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue"
+    tools:context=".booking.BookingDetail">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UselessLeaf">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:background="@color/dark_blue"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_arrow_small_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:layout_toStartOf="@+id/back"
+                android:layout_toEndOf="@+id/back"
+                android:fontFamily="@font/opensans_bold"
+                android:text="@string/Bookings_details"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/back"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/linearLayout"
+            android:layout_alignParentEnd="true"
+            android:paddingBottom="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:background="@color/back_ground">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                tools:ignore="ObsoleteLayoutParam,ScrollViewSize">
+
+                <LinearLayout
+                    android:id="@+id/ll_booking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    tools:ignore="UselessLeaf,UselessParent">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/information"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ll_booking"
+                        android:layout_marginTop="20dp"
+                        android:backgroundTint="@color/card_view"
+                        app:cardCornerRadius="20dp"
+                        tools:ignore="ObsoleteLayoutParam">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentTop="true"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="30dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/opensans_bold"
+                                    android:text="Booking details"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="30dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/opensans_bold"
+                                    android:text="Booking Id"
+                                    android:textColor="@color/text"
+                                    android:textSize="16sp"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/booking_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:fontFamily="@font/nunito_regular"
+                                    android:padding="10dp"
+                                    android:paddingStart="15dp"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"
+                                    tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck,TextSizeCheck" />
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:src="@drawable/ic_line"
+                                    tools:ignore="ContentDescription" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="30dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/opensans_bold"
+                                    android:text="Trainer name"
+                                    android:textColor="@color/text"
+                                    android:textSize="16sp"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/trainer_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:fontFamily="@font/nunito_regular"
+                                    android:padding="10dp"
+                                    android:paddingStart="15dp"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"
+                                    tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck,TextSizeCheck" />
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:src="@drawable/ic_line"
+                                    tools:ignore="ContentDescription" />
+
+
+
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="30dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/opensans_bold"
+                                    android:text="Booking date"
+                                    android:textColor="@color/text"
+                                    android:textSize="16sp"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/booking_date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:fontFamily="@font/nunito_regular"
+                                    android:padding="10dp"
+                                    android:paddingStart="15dp"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"
+                                    tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:src="@drawable/ic_line"
+                                    tools:ignore="ContentDescription" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="30dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/opensans_bold"
+                                    android:text="@string/Booking_start_time"
+                                    android:textColor="@color/text"
+                                    android:textSize="16sp"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/start_time"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:fontFamily="@font/nunito_regular"
+                                    android:padding="10dp"
+                                    android:paddingStart="15dp"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"
+                                    tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:src="@drawable/ic_line"
+                                    tools:ignore="ContentDescription" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="30dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/opensans_bold"
+                                    android:text="@string/Booking_end_time"
+                                    android:textColor="@color/text"
+                                    android:textSize="16sp"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/end_time"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:fontFamily="@font/nunito_regular"
+                                    android:padding="10dp"
+                                    android:paddingStart="15dp"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"
+                                    tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:src="@drawable/ic_line"
+                                    tools:ignore="ContentDescription" />
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="30dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/opensans_bold"
+                                    android:text="Status"
+                                    android:textColor="@color/text"
+                                    android:textSize="16sp"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/book_status"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:layout_marginBottom="20dp"
+                                    android:fontFamily="@font/nunito_regular"
+                                    android:padding="10dp"
+                                    android:paddingStart="15dp"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"
+                                    tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck,TextSizeCheck" />
+
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/information2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ll_booking"
+                        android:layout_marginTop="20dp"
+                        android:backgroundTint="@color/card_view"
+                        app:cardCornerRadius="20dp"
+                        tools:ignore="ObsoleteLayoutParam">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentTop="true"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="30dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/opensans_bold"
+                                    android:text="Payments details"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="30dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/opensans_bold"
+                                    android:text="Payment Id"
+                                    android:textColor="@color/text"
+                                    android:textSize="16sp"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/pay_id"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:fontFamily="@font/nunito_regular"
+                                    android:padding="10dp"
+                                    android:paddingStart="15dp"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"
+                                    tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck,TextSizeCheck" />
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:src="@drawable/ic_line"
+                                    tools:ignore="ContentDescription" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="30dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/opensans_bold"
+                                    android:text="Member name"
+                                    android:textColor="@color/text"
+                                    android:textSize="16sp"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/member_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:fontFamily="@font/nunito_regular"
+                                    android:padding="10dp"
+                                    android:paddingStart="15dp"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"
+                                    tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck,TextSizeCheck" />
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:src="@drawable/ic_line"
+                                    tools:ignore="ContentDescription" />
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="30dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/opensans_bold"
+                                    android:text="Amount"
+                                    android:textColor="@color/text"
+                                    android:textSize="16sp"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/amount"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:fontFamily="@font/nunito_regular"
+                                    android:padding="10dp"
+                                    android:paddingStart="15dp"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"
+                                    tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck" />
+
+                                <ImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_line"
+                                    android:layout_marginStart="5dp"
+                                    tools:ignore="ContentDescription" />
+
+
+
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="30dp"
+                                    android:layout_marginTop="20dp"
+                                    android:fontFamily="@font/opensans_bold"
+                                    android:text="Payment date"
+                                    android:textColor="@color/text"
+                                    android:textSize="16sp"
+                                    tools:ignore="HardcodedText,SpUsage" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:id="@+id/date"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginTop="10dp"
+                                    android:layout_marginEnd="15dp"
+                                    android:layout_marginBottom="20dp"
+                                    android:fontFamily="@font/nunito_regular"
+                                    android:padding="10dp"
+                                    android:paddingStart="15dp"
+                                    android:textColor="@color/black"
+                                    android:textSize="18sp"
+                                    tools:ignore="HardcodedText,RtlSymmetry,SpUsage,TouchTargetSizeCheck,TextSizeCheck" />
+
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                   <TextView
+                       android:id="@+id/invoice"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:text="Download invoice"
+                       android:textSize="25sp"
+                       android:padding="30dp"
+                       android:layout_marginBottom="30dp"
+                       android:fontFamily="@font/opensans_extrabold"
+                       android:textColor="@color/dark_cyan"
+                       />
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

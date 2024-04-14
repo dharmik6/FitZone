@@ -2,8 +2,30 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.FitZone" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+         <item name="colorPrimary">@color/dark_blue</item> -->
+        <item name="colorAccent">@color/dark_cyan</item>
     </style>
 
     <style name="Theme.FitZone" parent="Base.Theme.FitZone" />
+
+
+    <style name="MyWeekDayTextAppearance" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:textColor">@color/dark_cyan</item> <!-- Set text color for week days -->
+
+        <item name="colorAccent">@color/dark_cyan</item><!-- Set text color for week days -->
+        <!-- Add more attributes as needed -->
+    </style>
+
+
+    <style name="MyTimePickerDialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/dark_cyan</item>
+        <item name="android:text">@color/black</item>
+    </style>
+
+
+    <style name="bottom_nav" parent="Base.Theme.FitZone" >
+        <item name="colorAccent">@color/dark_blue</item>
+        <item name="colorPrimary">@color/dark_blue</item>
+    </style>
+
 </resources>

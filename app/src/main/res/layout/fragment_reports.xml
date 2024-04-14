@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/back_ground"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".home.FragmentReports">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        tools:ignore="MissingConstraints,ObsoleteLayoutParam,ScrollViewSize,UselessLeaf">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:background="@color/dark_blue"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_reports"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:paddingStart="20dp"
+                android:fontFamily="@font/opensans_bold"
+                android:text="@string/reports"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_below="@+id/linearLayout"
+            android:layout_marginHorizontal="20dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_my_weight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/My_weight"
+                android:layout_marginEnd="200dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:fontFamily="@font/opensans_bold"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/edit_weight"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_edit"
+                android:layout_gravity="center"
+                android:layout_marginStart="280dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                tools:ignore="ContentDescription" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_chart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/rl_my_weight">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_Weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:layout_marginBottom="20dp"
+                app:cardCornerRadius="25dp"
+                android:backgroundTint="@color/card_view"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                app:cardElevation="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/rl_all_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/Weight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="-1dp"
+                        android:fontFamily="@font/nunito_bold"
+                        android:text="@string/Weight"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/Weight"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        tools:ignore="UselessLeaf">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="200dp"
+                            android:orientation="vertical"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            tools:ignore="UselessParent">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvCurrent"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/Current"
+                                android:textSize="14sp"
+                                android:textColor="@color/text"
+                                android:fontFamily="@font/nunito_bold"
+                                android:layout_marginStart="20dp"
+                                android:layout_alignParentStart="true"
+                                tools:ignore="HardcodedText,TooDeepLayout" />
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/show_Weight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="20sp"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/nunito_bold"
+                                android:layout_marginStart="20dp"
+                                android:layout_below="@+id/tvCurrent"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentBottom="true"
+                                tools:ignore="HardcodedText,TooDeepLayout" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_hori_he"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="180dp"
+                            android:orientation="horizontal"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            tools:ignore="UselessParent">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvHeaviest"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="80dp"
+                                android:fontFamily="@font/nunito_bold"
+                                android:text="@string/Heaviest"
+                                android:textColor="@color/text"
+                                android:textSize="14sp"
+                                tools:ignore="HardcodedText,TooDeepLayout" />
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nunito_bold"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:text="100 kg"
+                                android:layout_marginEnd="20dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentBottom="true"
+                                tools:ignore="HardcodedText,TooDeepLayout" />
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="180dp"
+                            android:orientation="horizontal"
+                            android:layout_below="@+id/rl_hori_he"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            tools:ignore="UselessParent">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="80dp"
+                                android:text="@string/Lightest"
+                                android:textColor="@color/text"
+                                android:fontFamily="@font/nunito_bold"
+                                android:textSize="14sp"
+                                tools:ignore="HardcodedText,TooDeepLayout" />
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tvlightest"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nunito_bold"
+                                android:textColor="@color/black"
+                                android:text="50 kg"
+                                android:textSize="14sp"
+                                android:layout_marginEnd="20dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentBottom="true"
+                                tools:ignore="HardcodedText,TooDeepLayout" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/rl_all_text"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp">
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/lineChart"
+                        android:layout_width="300dp"
+                        android:layout_height="200dp"
+                        android:layout_marginBottom="20dp"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_gravity="center"
+                        tools:ignore="MissingClass" />
+
+
+                </RelativeLayout>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_bmi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/rl_chart">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/BMI_Body"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="100dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:fontFamily="@font/opensans_bold"
+                tools:ignore="HardcodedText" />
+
+            <ImageView
+                android:id="@+id/edit_height"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_edit"
+                android:layout_gravity="center"
+                android:layout_marginStart="280dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                tools:ignore="ContentDescription" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/rl_bmi">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                app:cardCornerRadius="25dp"
+                android:backgroundTint="@color/card_view"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                app:cardElevation="10dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginBottom="20dp"
+                    tools:ignore="UselessLeaf">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/totle_bmi_rep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/BMI"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/nunito_bold"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_BMI"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="80dp">
+
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/tv_result"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_marginStart="120dp"
+                                android:layout_alignParentStart="true"
+                                android:elevation="8dp"
+                                app:cardCornerRadius="25dp" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/value_text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="10dp"
+                                android:layout_toEndOf="@+id/tv_result"
+                                android:fontFamily="@font/nunito_bold"
+                                android:text="Severely underweight"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                tools:ignore="HardcodedText" />
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_halfGauge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/rl_BMI">
+
+                        <com.ekn.gruzer.gaugelibrary.HalfGauge
+                            android:id="@+id/halfGauge"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="20dp"
+                            tools:ignore="MissingClass" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/rl_halfGauge"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentStart="true"
+                        tools:ignore="NotSibling">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/Height"
+                            android:textStyle="bold"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentTop="true"
+                            android:textSize="20sp"
+                            android:textColor="@color/text"
+                            android:fontFamily="@font/nunito_bold"
+                            tools:ignore="HardcodedText,RelativeOverlap"/>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/show_Height"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="224cm"
+                            android:textSize="25sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/nunito_bold"
+                            android:layout_marginEnd="20dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentTop="true"
+                            tools:ignore="HardcodedText,SpUsage" />
+                    </RelativeLayout>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+    </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

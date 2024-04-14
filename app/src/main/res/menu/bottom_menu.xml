@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:title="@string/home"
+        android:icon="@drawable/ic_home_select"
+        tools:ignore="HardcodedText"
+        android:background="@android:color/transparent"/>
+    <item
+        android:id="@+id/repot"
+        android:title="@string/Reports"
+        android:icon="@drawable/ic_chart_select"
+        tools:ignore="HardcodedText"
+        android:background="@android:color/transparent"/>
+    <item
+        android:id="@+id/workout"
+        android:title="@string/Workouts"
+        android:icon="@drawable/ic_workout_select"
+        tools:ignore="HardcodedText"
+        android:background="@android:color/transparent"/>
+    <item
+        android:id="@+id/account"
+        android:title="@string/Account"
+        android:icon="@drawable/ic_account_select"
+        tools:ignore="HardcodedText"
+        android:background="@android:color/transparent"/>
+
+
+</menu>

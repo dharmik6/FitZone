@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_blue"
+    tools:context=".trainer.Appointment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UselessLeaf"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/linearLayout"
+            android:background="@color/dark_blue"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_arrow_small_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/text_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:gravity="center"
+                android:layout_toStartOf="@+id/back"
+                android:layout_toEndOf="@+id/back"
+                android:fontFamily="@font/opensans_bold"
+                android:text="@string/Appointment"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/back"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="HardcodedText" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/linearLayout"
+            android:background="@color/card_view"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            tools:ignore="ObsoleteLayoutParam">
+
+            <RelativeLayout
+                android:id="@+id/rl_Appointment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                tools:ignore="UselessParent">
+
+            <RelativeLayout
+                android:id="@+id/trainer_review"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                tools:ignore="UselessParent">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/active_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:backgroundTint="@color/card_view"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="8dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    tools:ignore="MissingConstraints"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginHorizontal="10dp">
+
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingVertical="5dp"
+                        android:orientation="horizontal"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/app_tre_image"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp"
+                            app:civ_border_width="1dp"
+                            app:civ_border_color="@color/text"
+                            android:src="@drawable/people_imge"
+                            tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_marginStart="70dp"
+                            android:layout_marginEnd="70dp"
+                            android:layout_alignStart="@id/linner2"
+                            android:layout_marginTop="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/app_tre_name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nunito_bold"
+                                android:text="trainer_name"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                tools:ignore="HardcodedText,TextSizeCheck" />
+
+                            <TextView
+                                android:id="@+id/app_tre_specialization"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nunito_bold"
+                                android:layout_below="@+id/app_tre_name"
+                                android:text="specialization"
+                                android:textColor="@color/text"
+                                android:textSize="12sp"
+                                tools:ignore="HardcodedText,SmallSp,TextContrastCheck,TextSizeCheck" />
+
+                            <TextView
+                                android:id="@+id/app_tre_experience"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nunito_bold"
+                                android:text="experience"
+                                android:layout_below="@+id/app_tre_specialization"
+                                android:textColor="@color/greenish_cyan"
+                                android:textSize="12sp"
+                                tools:ignore="HardcodedText,SmallSp,TextContrastCheck,TextSizeCheck" />
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/linner2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/trainer_rating_bg"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginHorizontal="15dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/app_tre_review"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="4.45"
+                                android:fontFamily="@font/opensans_bold"
+                                android:textSize="12sp"
+                                android:padding="8dp"
+                                android:textColor="@color/white"
+                                tools:ignore="HardcodedText" />
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@id/rl_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_below="@+id/trainer_review"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    tools:ignore="UselessParent">
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_calender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="50dp"
+                        android:backgroundTint="@color/card_view"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="5dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        tools:ignore="MissingConstraints"
+                        android:layout_marginVertical="10dp"
+                        android:layout_marginHorizontal="10dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingVertical="5dp"
+                            android:orientation="vertical"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true">
+
+                            <CalendarView
+                                android:id="@+id/calendarView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginStart="0dp"
+                                android:layout_marginEnd="0dp"
+                                android:outlineSpotShadowColor="@color/dark_cyan"
+                                tools:ignore="UnusedAttribute"
+                                android:weekDayTextAppearance="@style/MyWeekDayTextAppearance"
+                                android:selectedWeekBackgroundColor="#FFFFFF"
+                                style="@style/MyWeekDayTextAppearance"
+                                />
+                            <TextView
+                                android:id="@+id/regiDate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:visibility="gone"
+                                />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_line"
+                                tools:ignore="ContentDescription" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:layout_marginHorizontal="20dp"
+                                android:layout_marginVertical="10dp"
+                                >
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_alignParentTop="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:fontFamily="@font/nunito_semi_bold"
+                                    android:gravity="center"
+                                    android:text="Time"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginHorizontal="20dp"
+    >
+
+    <TextView
+        android:id="@+id/strat_time"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/text_bg"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:gravity="center"
+        android:hint="Start Time"
+        android:minHeight="48dp"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/text"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/end_time"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/text_bg"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:gravity="center"
+        android:hint="End Time"
+        android:minHeight="48dp"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="5dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/text"
+        android:textSize="14sp"/>
+</RelativeLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+
+                    </androidx.cardview.widget.CardView>
+
+
+
+                </RelativeLayout>
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_Appointment"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    tools:ignore="NotSibling,UselessParent">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_next"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginVertical="30dp"
+                        android:layout_marginStart="23dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginEnd="27dp"
+                        android:background="@drawable/btn_bg"
+                        android:elevation="@dimen/button_elevation"
+                        android:fontFamily="@font/opensans_bold"
+                        android:gravity="center"
+                        android:shadowColor="@color/black"
+                        android:text="@string/Next"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/button_text_size"
+                        android:textStyle="bold"
+                        tools:ignore="HardcodedText,RtlHardcoded" />
+
+                </RelativeLayout>
+
+
+
+            </RelativeLayout>
+
+
+
+        </ScrollView>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
